@@ -1,0 +1,247 @@
+/**
+ * WGS (Webedia Grid System)
+ *
+ * 1) Introduction
+ *
+ * Ce fichier SASS à include dans votre projet génère des noms de classes et des
+ * propriétés utilisée dans le cadre du grid system webedia.
+ *
+ * Ces classes définissent des ratios ou des tailles fixes, préfixées ou pas 
+ * par des noms définissant les breakpoints à partir desquelles elles agissent.
+ *
+ * Inclure ce fichier génère des règles du type [class~="1/2"], [class~="1/2"],
+ * [class~="5/6"], etc...
+ *
+ * Le [class...] est utilisé pour pouvoir utiliser des "/"" (slash) dans le nom
+ * des classes car par exemple .1/2 ou .5/6 ne marcherait pas.
+ *
+ * Ce fichier définit deux options, à false par défaut :
+ *
+ *  - $fixedWidths (false)  => défini les tailles fixes. Ex :
+ *  - $breakpoints (false)  => les breakpoints utilisables avec un nom "humain".
+ *  - $gutter (24px)        => espace entre les cases
+ *  - $useFixedGrid (false) => les grids fixes sont-elles utilisées
+ *
+ * 2) Exemple d'utilisation :
+ *
+ *    $fixedWidths: 600px 660px 900px;
+ *    $breakpoints: (
+ *        tablet     : 480px,
+ *        big-tablet : 660px,
+ *        desk       : 990px
+ *    );
+ *    @import "wgs";
+ */
+
+
+$fixedWidths  : false !default;
+$breakpoints  : false !default;
+$gutter       : 24px !default;
+$useFixedGrid : false !default;
+
+
+*{
+    &,
+    &:before,
+    &:after{
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+             -o-box-sizing: border-box;
+                box-sizing: border-box;
+    }
+}
+
+
+@mixin ratioGrid($prefix:false) {
+    @if $prefix{
+        $prefix: "#{$prefix}-";
+    }
+    @else{
+        $prefix: "";
+    }
+
+    $moduleName: grid;
+
+    .#{$prefix}#{$moduleName}{
+        display: block;
+        margin-left: -$gutter;
+        margin-top: -$gutter;
+
+        & + .#{$prefix}#{$moduleName}{
+            margin-top: 0;
+        }
+
+        & > &__item {
+            display: inline-block;
+            vertical-align: top;
+            padding-left: $gutter;
+            padding-top: $gutter;
+            width: 100%;
+
+        }
+    }
+
+    @if $useFixedGrid {
+
+        .#{$moduleName}.#{$prefix}#{$moduleName}--fixed{
+            width: 100%;
+            display: table;
+            table-layout: fixed;
+            margin-left: 0;
+
+            margin-top: $gutter;
+            .#{$moduleName} & {
+                margin-top: 0;
+            }
+            
+            
+            > .#{$moduleName}__item {
+                display: table-cell;
+                vertical-align: top;
+                padding-left: 0;
+                padding-top: 0;
+
+                & + .#{$moduleName}__item {
+                    padding-left: $gutter;
+                }
+            }
+
+        }
+
+
+    }
+
+}
+
+/**
+ * Ecrit des classes de largeur ratio.
+ * @param String $prefix : le préfixe à ajouter devant chaque classe
+ */
+@mixin ratioWidths($prefix:false){
+    @if $prefix{
+        $prefix: "#{$prefix}-";
+    }
+    @else{
+        $prefix: "";
+    }
+
+
+    [class~="#{$prefix}1/1"]       { width: 100% !important; }
+    
+    // Demis
+    [class~="#{$prefix}1/2"],
+    [class~="#{$prefix}2/4"],
+    [class~="#{$prefix}3/6"],
+    [class~="#{$prefix}4/8"],
+    [class~="#{$prefix}5/10"],
+    [class~="#{$prefix}6/12"]      { width: 50% !important; }
+    
+    // Tiers
+    [class~="#{$prefix}1/3"],
+    [class~="#{$prefix}2/6"],
+    [class~="#{$prefix}3/9"],
+    [class~="#{$prefix}4/12"]      { width: 33.3333333% !important; }
+    [class~="#{$prefix}2/3"],
+    [class~="#{$prefix}4/6"],
+    [class~="#{$prefix}6/9"],
+    [class~="#{$prefix}8/12"]      { width: 66.6666666% !important; }
+    
+    // Quarts
+    [class~="#{$prefix}1/4"],
+    [class~="#{$prefix}2/8"],
+    [class~="#{$prefix}3/12"]      { width: 25% !important; }
+    [class~="#{$prefix}3/4"],
+    [class~="#{$prefix}6/8"],
+    [class~="#{$prefix}9/12"]      { width: 75% !important; }
+    
+    // Cinquièmes
+    [class~="#{$prefix}1/5"],
+    [class~="#{$prefix}2/10"]      { width: 20% !important; }
+    [class~="#{$prefix}2/5"],
+    [class~="#{$prefix}4/10"]      { width: 40% !important; }
+    [class~="#{$prefix}3/5"],
+    [class~="#{$prefix}6/10"]      { width: 60% !important; }
+    [class~="#{$prefix}4/5"],
+    [class~="#{$prefix}8/10"]      { width: 80% !important; }
+    
+    // Sixièmes
+    [class~="#{$prefix}1/6"],
+    [class~="#{$prefix}2/12"]      { width: 16.6666666% !important; }
+    [class~="#{$prefix}5/6"],
+    [class~="#{$prefix}10/12"]     { width: 83.3333333% !important; }
+
+    // Huitièmes
+    [class~="#{$prefix}1/8"]       { width: 12.5% !important; }
+    [class~="#{$prefix}3/8"]       { width: 37.5% !important; }
+    [class~="#{$prefix}5/8"]       { width: 62.5% !important; }
+    [class~="#{$prefix}7/8"]       { width: 87.5% !important; }
+    
+    // Neuvièmes
+    [class~="#{$prefix}1/9"]       { width: 11.1111111% !important; }
+    [class~="#{$prefix}2/9"]       { width: 22.2222222% !important; }
+    [class~="#{$prefix}4/9"]       { width: 44.4444444% !important; }
+    [class~="#{$prefix}5/9"]       { width: 55.5555555% !important; }
+    [class~="#{$prefix}7/9"]       { width: 77.7777777% !important; }
+    [class~="#{$prefix}8/9"]       { width: 88.8888888% !important; }
+    
+    // Dixièmes
+    [class~="#{$prefix}1/10"]      { width: 10% !important; }
+    [class~="#{$prefix}3/10"]      { width: 30% !important; }
+    [class~="#{$prefix}7/10"]      { width: 70% !important; }
+    [class~="#{$prefix}9/10"]      { width: 90% !important; }
+    
+    // Douzièmes
+    [class~="#{$prefix}1/12"]      { width:  8.3333333% !important; }
+    [class~="#{$prefix}5/12"]      { width: 41.6666666% !important; }
+    [class~="#{$prefix}7/12"]      { width: 58.3333333% !important; }
+    [class~="#{$prefix}11/12"]     { width: 91.6666666% !important; }
+}
+
+/**
+ * Ecrit des classes de largeur fixe.
+ * @param String $prefix : le préfixe à ajouter devant chaque classe
+ */
+@mixin fixedWidth($size, $prefix:false){
+    @if $prefix{
+        $prefix: "#{$prefix}-";
+    }
+    @else{
+        $prefix: "";
+    }
+
+    [class~="#{$prefix}#{$size}"] {
+        width: $size + $gutter !important;
+    }
+}
+
+
+
+// Ratios sans responsive
+@include ratioGrid;
+@include ratioWidths;
+
+
+// Tailles fixes sans responsive
+@if $fixedWidths {
+    @each $width in $fixedWidths {
+        @include fixedWidth($width);
+    }
+}
+
+// Gestion des ratios et tailles fixes en responsive
+@if $breakpoints {
+    
+    @each $name, $size in $breakpoints {
+        @media screen and (min-width: #{$size}) {
+            @include ratioGrid("#{$name}");
+            @include ratioWidths("#{$name}");
+
+            @if $fixedWidths {
+                @each $width in $fixedWidths {
+                    @include fixedWidth($width, "#{$name}");
+                }
+            }
+        }
+    }
+}

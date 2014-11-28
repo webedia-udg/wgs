@@ -1,0 +1,52 @@
+$useFixedGrid: true;
+$fixedWidths: 300px;
+$breakpoints: (
+    tablet     : 480px,
+    big-tablet : 660px,
+    desk       : 990px
+);
+
+
+// Import du WGS
+@import "wgs";
+
+
+
+// Simulation de contenu
+.bloc{
+    position: relative;
+    background-color: #dadada;
+
+    &__content{
+        text-align: center;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 24px;
+        text-transform: uppercase;
+        color: #666;
+        padding: 24px;
+    }
+    &--150{
+        height: 150px;
+    }
+
+    &--300{
+        height: 300px;
+    }
+
+    &--600{
+        height: 600px;
+    }
+
+    &--1000{
+        height: 1000px;
+    }
+}
+
+
+hr{
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+}
