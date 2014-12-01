@@ -5,7 +5,9 @@ Webedia Grid System (WGS)
 
 --- 
 
-Ce projet est très fortement inspiré par le système de grille du framework inuit.css
+Ce projet est très fortement inspiré par le système de grille du framework inuit.css.
+
+Ce projet est "mobile first", c'est à dire que les breakpoints sont à base de "min-width" (pas de max-width donc)
 
 http://csswizardry.com/csswizardry-grids/
 
@@ -13,6 +15,48 @@ http://csswizardry.com/csswizardry-grids/
 
 
 ```git clone https://github.com/webedia-udg/wgs```
+
+### Options
+
+Les options sont des variables qui doivent être initialisées **avant** d'inclure le fichier ``_wgs.scss`` dans votre fichier.
+
+**fixedWidths**
+
+Défaut à ``false`` : défini les tailles fixes disponibles. Ex : 
+
+```scss
+$fixedWidths: 300px 400px 500px;
+```
+
+**breakpoints**
+
+Défaut à ``false`` : définit les breakpoints utilisables, tout en leur associant  un nom "humain". Ex :
+
+```scss
+// 3 breakpoints
+$breakpoints: (
+    tablet     : 480px,
+    big-tablet : 660px,
+    desk       : 990px
+);
+
+// 1 breakpoint
+$breakpoints: (
+    desktop: 990px
+);
+```
+
+**gutter**
+
+Défaut à ``24px`` : taille des gouttières. Ex : 
+
+```scss
+$gutter: 24px
+```
+
+**useFixedGrid**
+
+Défaut à ``false`` : faut-il inclure les règles liées aux tailles fixes
 
 ### Utilisation
 
