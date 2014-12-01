@@ -13,8 +13,8 @@ http://csswizardry.com/csswizardry-grids/
 
 ### Installation
 
-
-```git clone https://github.com/webedia-udg/wgs```
+* git : ``git clone https://github.com/webedia-udg/wgs``
+* bower : ``bower install webedia-udg/wgs``
 
 ### Options
 
