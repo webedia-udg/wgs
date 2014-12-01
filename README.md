@@ -19,9 +19,11 @@ http://csswizardry.com/csswizardry-grids/
 
 ```scss
 // style.scss
-$useFixedGrid: true;
-$fixedWidths: 300px;
-$breakpoints: (
+
+// Options utilisées par wgs_.scss
+$useFixedGrid: true; // Faut-il inclure les règles dédiées aux tailles fixes
+$fixedWidths: 300px; // Quelles tailles fixes faut-il prendre en compte ?
+$breakpoints: (      // Quels breakpoints ? (noms et tailles minimales)
     tablet     : 480px,
     big-tablet : 660px,
     desk       : 990px
