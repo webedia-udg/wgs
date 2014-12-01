@@ -11,6 +11,10 @@ Ce projet est "mobile first", c'est à dire que les breakpoints sont à base de 
 
 http://csswizardry.com/csswizardry-grids/
 
+### Pré-requis
+
+* sass > 3.4
+
 ### Installation
 
 * git : ``git clone https://github.com/webedia-udg/wgs``
