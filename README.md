@@ -94,6 +94,10 @@ $breakpoints: (      // Quels breakpoints ? (noms et tailles minimales)
 </div>
 ```
 
+### Demo
+
+Le fichier demo.html présente quelques exemples d'utilisation, notamment pour les grilles fixes
+
 ### Roadmap
 
 - Documentation
