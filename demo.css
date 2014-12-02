@@ -335,6 +335,9 @@
   [class~="tablet-11/12"] {
     width: 91.6666666% !important; }
 
+  [class~="tablet-hidden"] {
+    display: none !important; }
+
   [class~="tablet-300px"] {
     width: 300px !important; }
 
@@ -481,6 +484,9 @@
   [class~="big-tablet-11/12"] {
     width: 91.6666666% !important; }
 
+  [class~="big-tablet-hidden"] {
+    display: none !important; }
+
   [class~="big-tablet-300px"] {
     width: 300px !important; }
 
@@ -626,6 +632,9 @@
 
   [class~="desk-11/12"] {
     width: 91.6666666% !important; }
+
+  [class~="desk-hidden"] {
+    display: none !important; }
 
   [class~="desk-300px"] {
     width: 300px !important; }

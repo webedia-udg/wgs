@@ -202,7 +202,7 @@ $useFixedGrid : false !default;
  * Ecrit des classes de largeur fixe.
  * @param String $prefix : le préfixe à ajouter devant chaque classe
  */
-@mixin fixedWidth($size, $prefix:false){
+@mixin fixedWidth($size, $prefix:false) {
     @if $prefix{
         $prefix: "#{$prefix}-";
     }
@@ -219,7 +219,11 @@ $useFixedGrid : false !default;
     }
 }
 
-
+@mixin hidden($prefix) {
+    [class~="#{$prefix}-hidden"] {
+        display: none !important;
+    }    
+}
 
 // Ratios sans responsive
 @include ratioGrid;
@@ -240,6 +244,8 @@ $useFixedGrid : false !default;
         @media screen and (min-width: #{$size}) {
             @include ratioGrid("#{$name}");
             @include ratioWidths("#{$name}");
+            @include hidden("#{$name}");
+            
 
             @if $fixedWidths {
                 @each $width in $fixedWidths {
