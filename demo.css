@@ -4,7 +4,7 @@
  *
  * 1) Introduction
  *
- * Ce fichier SASS à include dans votre projet génère des noms de classes et des
+ * Ce fichier SASS à inclure dans votre projet génère des noms de classes et des
  * propriétés utilisée dans le cadre du grid system webedia.
  *
  * Ces classes définissent des ratios ou des tailles fixes, préfixées ou pas 
@@ -18,7 +18,7 @@
  *
  * Ce fichier définit deux options, à false par défaut :
  *
- *  - $fixedWidths (false)  => défini les tailles fixes. Ex :
+ *  - $fixedWidths (false)  => défini les tailles fixes.
  *  - $breakpoints (false)  => les breakpoints utilisables avec un nom "humain".
  *  - $gutter (24px)        => espace entre les cases
  *  - $useFixedGrid (false) => les grids fixes sont-elles utilisées
@@ -189,6 +189,9 @@
   width: 91.6666666% !important; }
 
 [class~="300px"] {
+  width: 300px !important; }
+
+.grid__item + [class~="300px"] {
   width: 324px !important; }
 
 @media screen and (min-width: 480px) {
@@ -333,6 +336,9 @@
     width: 91.6666666% !important; }
 
   [class~="tablet-300px"] {
+    width: 300px !important; }
+
+  .grid__item + [class~="tablet-300px"] {
     width: 324px !important; } }
 @media screen and (min-width: 660px) {
   .big-tablet-grid {
@@ -476,6 +482,9 @@
     width: 91.6666666% !important; }
 
   [class~="big-tablet-300px"] {
+    width: 300px !important; }
+
+  .grid__item + [class~="big-tablet-300px"] {
     width: 324px !important; } }
 @media screen and (min-width: 990px) {
   .desk-grid {
@@ -619,6 +628,9 @@
     width: 91.6666666% !important; }
 
   [class~="desk-300px"] {
+    width: 300px !important; }
+
+  .grid__item + [class~="desk-300px"] {
     width: 324px !important; } }
 .bloc {
   position: relative;

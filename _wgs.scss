@@ -3,7 +3,7 @@
  *
  * 1) Introduction
  *
- * Ce fichier SASS à include dans votre projet génère des noms de classes et des
+ * Ce fichier SASS à inclure dans votre projet génère des noms de classes et des
  * propriétés utilisée dans le cadre du grid system webedia.
  *
  * Ces classes définissent des ratios ou des tailles fixes, préfixées ou pas 
@@ -17,7 +17,7 @@
  *
  * Ce fichier définit deux options, à false par défaut :
  *
- *  - $fixedWidths (false)  => défini les tailles fixes. Ex :
+ *  - $fixedWidths (false)  => défini les tailles fixes.
  *  - $breakpoints (false)  => les breakpoints utilisables avec un nom "humain".
  *  - $gutter (24px)        => espace entre les cases
  *  - $useFixedGrid (false) => les grids fixes sont-elles utilisées
@@ -210,7 +210,11 @@ $useFixedGrid : false !default;
         $prefix: "";
     }
 
-    [class~="#{$prefix}#{$size}"] {
+    [class~="#{$prefix}#{$size}"]{
+        width: $size !important;
+    }
+
+    .grid__item + [class~="#{$prefix}#{$size}"] {
         width: $size + $gutter !important;
     }
 }
