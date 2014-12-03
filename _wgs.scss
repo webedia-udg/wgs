@@ -76,10 +76,18 @@ $usePull      : false !default;
         $prefix: "";
     }
 
+
+
     .#{$prefix}grid{
         display: block;
         margin-left: -$gutter;
         margin-top: -$gutter;
+
+        &--rev {
+            direction:rtl;
+            text-align:left;
+        }
+
 
         & + .#{$prefix}grid{
             margin-top: 0;
@@ -92,6 +100,9 @@ $usePull      : false !default;
             padding-top: $gutter;
             width: 100%;
 
+            // Pour remettre bien l'ordre au cas où la grille serait inversée
+            direction:ltr;
+            text-align:left;
         }
     }
 
@@ -208,7 +219,6 @@ $usePull      : false !default;
     [class~="#{$prefix}11/12"]     { width: 91.6666666% !important; }
 }
 
-
 /**
  * Ecrit des classes de largeur fixe.
  * @param String $prefix : le préfixe à ajouter devant chaque classe
@@ -221,7 +231,7 @@ $usePull      : false !default;
         $prefix: "";
     }
 
-    [class~="#{$prefix}#{$size}"]{
+    [class~="#{$prefix}#{$size}"] {
         width: $size !important;
     }
 
@@ -252,6 +262,13 @@ $usePull      : false !default;
 
 
 // 1/ Borderbox pour tout le monde !
+// css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
+// paulirish.com/2012/box-sizing-border-box-ftw
+html {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
 *{
     &,
     &:before,
@@ -287,7 +304,6 @@ $usePull      : false !default;
             @include ratioWidths($name);
             @include hidden($name);
             @include visible($name);
-            
 
             @if $fixedWidths {
                 @each $width in $fixedWidths {

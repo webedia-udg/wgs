@@ -66,6 +66,11 @@
 /**
  * Ecriture des règles 
  */
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -77,6 +82,9 @@
   display: block;
   margin-left: -24px;
   margin-top: -24px; }
+  .grid--rev {
+    direction: rtl;
+    text-align: left; }
   .grid + .grid {
     margin-top: 0; }
   .grid > .grid__item {
@@ -84,7 +92,9 @@
     vertical-align: top;
     padding-left: 24px;
     padding-top: 24px;
-    width: 100%; }
+    width: 100%;
+    direction: ltr;
+    text-align: left; }
 
 .grid.grid--fixed {
   width: 100%;
@@ -224,6 +234,9 @@
     display: block;
     margin-left: -24px;
     margin-top: -24px; }
+    .tablet-grid--rev {
+      direction: rtl;
+      text-align: left; }
     .tablet-grid + .tablet-grid {
       margin-top: 0; }
     .tablet-grid > .tablet-grid__item {
@@ -231,7 +244,9 @@
       vertical-align: top;
       padding-left: 24px;
       padding-top: 24px;
-      width: 100%; }
+      width: 100%;
+      direction: ltr;
+      text-align: left; }
 
   .grid.tablet-grid--fixed {
     width: 100%;
@@ -376,6 +391,9 @@
     display: block;
     margin-left: -24px;
     margin-top: -24px; }
+    .big-tablet-grid--rev {
+      direction: rtl;
+      text-align: left; }
     .big-tablet-grid + .big-tablet-grid {
       margin-top: 0; }
     .big-tablet-grid > .big-tablet-grid__item {
@@ -383,7 +401,9 @@
       vertical-align: top;
       padding-left: 24px;
       padding-top: 24px;
-      width: 100%; }
+      width: 100%;
+      direction: ltr;
+      text-align: left; }
 
   .grid.big-tablet-grid--fixed {
     width: 100%;
@@ -528,6 +548,9 @@
     display: block;
     margin-left: -24px;
     margin-top: -24px; }
+    .desk-grid--rev {
+      direction: rtl;
+      text-align: left; }
     .desk-grid + .desk-grid {
       margin-top: 0; }
     .desk-grid > .desk-grid__item {
@@ -535,7 +558,9 @@
       vertical-align: top;
       padding-left: 24px;
       padding-top: 24px;
-      width: 100%; }
+      width: 100%;
+      direction: ltr;
+      text-align: left; }
 
   .grid.desk-grid--fixed {
     width: 100%;
