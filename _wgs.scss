@@ -12,8 +12,11 @@
  * Inclure ce fichier génère des règles du type [class~="1/2"], [class~="1/2"],
  * [class~="5/6"], etc...
  *
- * Le [class...] est utilisé pour pouvoir utiliser des "/"" (slash) dans le nom
+ * Le [class...] est utilisé pour pouvoir utiliser des "/" (slash) dans le nom
  * des classes car par exemple .1/2 ou .5/6 ne marcherait pas.
+ *
+ * Ce fichier founi aussi un mixin @mq (media-query) et des classes de 
+ * visibilité (desk-hidden, tablet-visible...)
  *
  * Ce fichier définit deux options, à false par défaut :
  *
@@ -21,6 +24,8 @@
  *  - $breakpoints (false)  => les breakpoints utilisables avec un nom "humain".
  *  - $gutter (24px)        => espace entre les cases
  *  - $useFixedGrid (false) => les grids fixes sont-elles utilisées
+ *  - $usePush (false)      => Utilisation des classes de push ?
+ *  - $usePull (false)      => Utilisation des classes de pull ?
  *
  * 2) Exemple d'utilisation :
  *
@@ -38,22 +43,32 @@ $fixedWidths  : false !default;
 $breakpoints  : false !default;
 $gutter       : 24px !default;
 $useFixedGrid : false !default;
+$usePush      : false !default;
+$usePull      : false !default;
 
-
-*{
-    &,
-    &:before,
-    &:after{
-        -webkit-box-sizing: border-box;
-           -moz-box-sizing: border-box;
-            -ms-box-sizing: border-box;
-             -o-box-sizing: border-box;
-                box-sizing: border-box;
+/**
+ * Mixin de media-query
+ *
+ * @param string $breakpoint : nom du breakpoint. Doit correspondre à l'un des
+ *                             éléments de $breakpoints
+ * Ex : @include mq(desk){...}
+ */
+@mixin mq($breakpoint) { 
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and (min-width: #{map-get($breakpoints, $breakpoint)}) {
+      @content;
     }
+  }
 }
 
 
-@mixin ratioGrid($prefix:false) {
+/**
+ * Ajoute les classes de grilles (.grid, .grid--fixed, .grid__item),
+ * éventuellement préfixées. Gère les relations entre les .grid & .grid__item
+ *
+ * @param string $prefix (false) => Le préfixe.
+ */
+@mixin grid($prefix:false) {
     @if $prefix{
         $prefix: "#{$prefix}-";
     }
@@ -61,14 +76,12 @@ $useFixedGrid : false !default;
         $prefix: "";
     }
 
-    $moduleName: grid;
-
-    .#{$prefix}#{$moduleName}{
+    .#{$prefix}grid{
         display: block;
         margin-left: -$gutter;
         margin-top: -$gutter;
 
-        & + .#{$prefix}#{$moduleName}{
+        & + .#{$prefix}grid{
             margin-top: 0;
         }
 
@@ -84,38 +97,36 @@ $useFixedGrid : false !default;
 
     @if $useFixedGrid {
 
-        .#{$moduleName}.#{$prefix}#{$moduleName}--fixed{
+        .grid.#{$prefix}grid--fixed{
             width: 100%;
             display: table;
             table-layout: fixed;
             margin-left: 0;
 
             margin-top: $gutter;
-            .#{$moduleName} & {
+            .grid & {
                 margin-top: 0;
             }
             
             
-            > .#{$moduleName}__item {
+            > .grid__item {
                 display: table-cell;
                 vertical-align: top;
                 padding-left: 0;
                 padding-top: 0;
 
-                & + .#{$moduleName}__item {
+                & + .grid__item {
                     padding-left: $gutter;
                 }
             }
-
         }
-
-
     }
-
 }
+
 
 /**
  * Ecrit des classes de largeur ratio.
+ * 
  * @param String $prefix : le préfixe à ajouter devant chaque classe
  */
 @mixin ratioWidths($prefix:false){
@@ -125,7 +136,6 @@ $useFixedGrid : false !default;
     @else{
         $prefix: "";
     }
-
 
     [class~="#{$prefix}1/1"]       { width: 100% !important; }
     
@@ -198,6 +208,7 @@ $useFixedGrid : false !default;
     [class~="#{$prefix}11/12"]     { width: 91.6666666% !important; }
 }
 
+
 /**
  * Ecrit des classes de largeur fixe.
  * @param String $prefix : le préfixe à ajouter devant chaque classe
@@ -219,37 +230,68 @@ $useFixedGrid : false !default;
     }
 }
 
+
+/**
+ * Quelques classes de visibilité
+ */
 @mixin hidden($prefix) {
     [class~="#{$prefix}-hidden"] {
         display: none !important;
     }    
 }
+@mixin visible($prefix) {
+    [class~="#{$prefix}-visible"] {
+        display: block !important;
+    }    
+}
 
-// Ratios sans responsive
-@include ratioGrid;
+
+/**
+ * Ecriture des règles 
+ */
+
+
+// 1/ Borderbox pour tout le monde !
+*{
+    &,
+    &:before,
+    &:after{
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+             -o-box-sizing: border-box;
+                box-sizing: border-box;
+    }
+}
+
+
+// 2/ Ratios sans responsive
+@include grid;
 @include ratioWidths;
 
 
-// Tailles fixes sans responsive
+// 3/ Tailles fixes sans responsive
 @if $fixedWidths {
     @each $width in $fixedWidths {
         @include fixedWidth($width);
     }
 }
 
-// Gestion des ratios et tailles fixes en responsive
+
+// 4/ Gestion des ratios et tailles fixes en responsive
 @if $breakpoints {
     
     @each $name, $size in $breakpoints {
-        @media screen and (min-width: #{$size}) {
-            @include ratioGrid("#{$name}");
-            @include ratioWidths("#{$name}");
-            @include hidden("#{$name}");
+        @include mq($name) {
+            @include grid($name);
+            @include ratioWidths($name);
+            @include hidden($name);
+            @include visible($name);
             
 
             @if $fixedWidths {
                 @each $width in $fixedWidths {
-                    @include fixedWidth($width, "#{$name}");
+                    @include fixedWidth($width, $name);
                 }
             }
         }

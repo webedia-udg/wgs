@@ -13,8 +13,11 @@
  * Inclure ce fichier génère des règles du type [class~="1/2"], [class~="1/2"],
  * [class~="5/6"], etc...
  *
- * Le [class...] est utilisé pour pouvoir utiliser des "/"" (slash) dans le nom
+ * Le [class...] est utilisé pour pouvoir utiliser des "/" (slash) dans le nom
  * des classes car par exemple .1/2 ou .5/6 ne marcherait pas.
+ *
+ * Ce fichier founi aussi un mixin @mq (media-query) et des classes de 
+ * visibilité (desk-hidden, tablet-visible...)
  *
  * Ce fichier définit deux options, à false par défaut :
  *
@@ -22,6 +25,8 @@
  *  - $breakpoints (false)  => les breakpoints utilisables avec un nom "humain".
  *  - $gutter (24px)        => espace entre les cases
  *  - $useFixedGrid (false) => les grids fixes sont-elles utilisées
+ *  - $usePush (false)      => Utilisation des classes de push ?
+ *  - $usePull (false)      => Utilisation des classes de pull ?
  *
  * 2) Exemple d'utilisation :
  *
@@ -33,6 +38,34 @@
  *    );
  *    @import "wgs";
  */
+/**
+ * Mixin de media-query
+ *
+ * @param string $breakpoint : nom du breakpoint. Doit correspondre à l'un des
+ *                             éléments de $breakpoints
+ * Ex : @include mq(desk){...}
+ */
+/**
+ * Ajoute les classes de grilles (.grid, .grid--fixed, .grid__item),
+ * éventuellement préfixées. Gère les relations entre les .grid & .grid__item
+ *
+ * @param string $prefix (false) => Le préfixe.
+ */
+/**
+ * Ecrit des classes de largeur ratio.
+ * 
+ * @param String $prefix : le préfixe à ajouter devant chaque classe
+ */
+/**
+ * Ecrit des classes de largeur fixe.
+ * @param String $prefix : le préfixe à ajouter devant chaque classe
+ */
+/**
+ * Quelques classes de visibilité
+ */
+/**
+ * Ecriture des règles 
+ */
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -40,14 +73,6 @@
   -o-box-sizing: border-box;
   box-sizing: border-box; }
 
-/**
- * Ecrit des classes de largeur ratio.
- * @param String $prefix : le préfixe à ajouter devant chaque classe
- */
-/**
- * Ecrit des classes de largeur fixe.
- * @param String $prefix : le préfixe à ajouter devant chaque classe
- */
 .grid {
   display: block;
   margin-left: -24px;
@@ -338,6 +363,9 @@
   [class~="tablet-hidden"] {
     display: none !important; }
 
+  [class~="tablet-visible"] {
+    display: block !important; }
+
   [class~="tablet-300px"] {
     width: 300px !important; }
 
@@ -487,6 +515,9 @@
   [class~="big-tablet-hidden"] {
     display: none !important; }
 
+  [class~="big-tablet-visible"] {
+    display: block !important; }
+
   [class~="big-tablet-300px"] {
     width: 300px !important; }
 
@@ -635,6 +666,9 @@
 
   [class~="desk-hidden"] {
     display: none !important; }
+
+  [class~="desk-visible"] {
+    display: block !important; }
 
   [class~="desk-300px"] {
     width: 300px !important; }
