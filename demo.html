@@ -54,7 +54,7 @@
 
         <hr/>
 
-        <h3>2 colonnes, celle de droite fixe à 300px à partir de 660px</h3>
+        <h3>2 colonnes, celle de droite fixe à 300px ET <b>visible</b> à partir de 660px</h3>
 
         <div class="grid big-tablet-grid--fixed">
             <div class="grid__item">
@@ -62,9 +62,9 @@
                     <div class="bloc__content"></div>
                 </div>
             </div><!--
-         --><div class="grid__item big-tablet-300px">
+         --><div class="grid__item big-tablet-300px big-tablet-visible">
                 <div class="bloc bloc--150">
-                    <div class="bloc__content">.big-tablet-300px</div>
+                    <div class="bloc__content">.big-tablet-visible .big-tablet-300px</div>
                 </div>
             </div>
         </div>
@@ -208,6 +208,10 @@
 
     </div>
 
+
+    <div class="hidden tablet-visible">
+        caché en mobile, visible à partir de tablette"
+    </div>
     <div class="desk-hidden">
         caché en desktop
     </div>

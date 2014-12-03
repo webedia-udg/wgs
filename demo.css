@@ -223,12 +223,6 @@ html {
 [class~="11/12"] {
   width: 91.6666666% !important; }
 
-[class~="-hidden"] {
-  display: none !important; }
-
-[class~="-visible"] {
-  display: block !important; }
-
 [class~="300px"] {
   width: 300px !important; }
 
@@ -381,17 +375,17 @@ html {
   [class~="tablet-11/12"] {
     width: 91.6666666% !important; }
 
-  [class~="tablet--hidden"] {
+  .tablet-hidden {
     display: none !important; }
-
-  [class~="tablet--visible"] {
-    display: block !important; }
 
   [class~="tablet-300px"] {
     width: 300px !important; }
 
   .grid__item + [class~="tablet-300px"] {
     width: 324px !important; } }
+@media screen and (max-width: 479px) {
+  .tablet-visible {
+    display: none !important; } }
 @media screen and (min-width: 660px) {
   .big-tablet-grid {
     display: block;
@@ -538,17 +532,17 @@ html {
   [class~="big-tablet-11/12"] {
     width: 91.6666666% !important; }
 
-  [class~="big-tablet--hidden"] {
+  .big-tablet-hidden {
     display: none !important; }
-
-  [class~="big-tablet--visible"] {
-    display: block !important; }
 
   [class~="big-tablet-300px"] {
     width: 300px !important; }
 
   .grid__item + [class~="big-tablet-300px"] {
     width: 324px !important; } }
+@media screen and (max-width: 659px) {
+  .big-tablet-visible {
+    display: none !important; } }
 @media screen and (min-width: 990px) {
   .desk-grid {
     display: block;
@@ -695,17 +689,17 @@ html {
   [class~="desk-11/12"] {
     width: 91.6666666% !important; }
 
-  [class~="desk--hidden"] {
+  .desk-hidden {
     display: none !important; }
-
-  [class~="desk--visible"] {
-    display: block !important; }
 
   [class~="desk-300px"] {
     width: 300px !important; }
 
   .grid__item + [class~="desk-300px"] {
     width: 324px !important; } }
+@media screen and (max-width: 989px) {
+  .desk-visible {
+    display: none !important; } }
 .bloc {
   position: relative;
   background-color: #dadada; }

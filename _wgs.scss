@@ -61,6 +61,16 @@ $usePull      : false !default;
   }
 }
 
+@mixin mqUntil($breakpoint, $size) { 
+  @if map-has-key($breakpoints, $breakpoint) {
+    $size: $size - 1px;
+    @media screen and (max-width: $size ) {
+      @content;
+    }
+  }
+}
+
+
 
 /**
  * Ajoute les classes de grilles (.grid, .grid--fixed, .grid__item),
@@ -251,10 +261,11 @@ $usePull      : false !default;
     @else{
         $prefix: "";
     }
-    [class~="#{$prefix}-hidden"] {
+    .#{$prefix}hidden {
         display: none !important;
     }    
 }
+
 @mixin visible($prefix: false) {
     @if $prefix{
         $prefix: "#{$prefix}-";
@@ -262,11 +273,10 @@ $usePull      : false !default;
     @else{
         $prefix: "";
     }
-    [class~="#{$prefix}-visible"] {
-        display: block !important;
+    .#{$prefix}visible {
+        display: none !important;
     }    
 }
-
 
 /**
  * Ecriture des règles 
@@ -297,8 +307,6 @@ html {
 // 2/ Ratios sans responsive
 @include grid;
 @include ratioWidths;
-@include hidden;
-@include visible;
 
 
 // 3/ Tailles fixes sans responsive
@@ -317,13 +325,17 @@ html {
             @include grid($name);
             @include ratioWidths($name);
             @include hidden($name);
-            @include visible($name);
+
 
             @if $fixedWidths {
                 @each $width in $fixedWidths {
                     @include fixedWidth($width, $name);
                 }
             }
+        }
+
+        @include mqUntil($name, $size){
+            @include visible($name);
         }
     }
 }
