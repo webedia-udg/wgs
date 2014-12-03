@@ -244,12 +244,24 @@ $usePull      : false !default;
 /**
  * Quelques classes de visibilité
  */
-@mixin hidden($prefix) {
+@mixin hidden($prefix: false) {
+    @if $prefix{
+        $prefix: "#{$prefix}-";
+    }
+    @else{
+        $prefix: "";
+    }
     [class~="#{$prefix}-hidden"] {
         display: none !important;
     }    
 }
-@mixin visible($prefix) {
+@mixin visible($prefix: false) {
+    @if $prefix{
+        $prefix: "#{$prefix}-";
+    }
+    @else{
+        $prefix: "";
+    }
     [class~="#{$prefix}-visible"] {
         display: block !important;
     }    
@@ -285,6 +297,8 @@ html {
 // 2/ Ratios sans responsive
 @include grid;
 @include ratioWidths;
+@include hidden;
+@include visible;
 
 
 // 3/ Tailles fixes sans responsive
