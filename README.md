@@ -11,16 +11,16 @@ Ce grid system est **mobile first**, c'est à dire que les valeurs proposées pa
 
 Si des breakpoints sont à prendre en compte, ils sont à base de ``min-width``.
 
-### Pré-requis
+## Pré-requis
 
 * sass > 3.4
 
-### Installation
+## Installation
 
 * git : ``git clone https://github.com/webedia-udg/wgs``
 * bower : ``bower install webedia-udg/wgs``
 
-### Utilisation
+## Utilisation
 
 ```scss
 // style.scss
@@ -60,7 +60,7 @@ Si des breakpoints sont à prendre en compte, ils sont à base de ``min-width``.
 </div>
 ```
 
-### Nomenclature des classes
+## Nomenclature des classes
 
 Nommage à base de **BEM** et suffixe pour le breakpoint
 
@@ -79,7 +79,7 @@ Ex :
 
 ```
 
-### Setup
+## Setup
 
 Inclure le wgs dans votre projet vous donne accès à **2 mixins** sass :
 
@@ -179,11 +179,11 @@ génère :
 ```
 
 
-### Demo
+## Demo
 
 Le fichier demo.html présente quelques exemples d'utilisation, notamment pour les grilles fixes
 
-### Roadmap
+## Roadmap
 
 - Documentation
 - Push et pull
