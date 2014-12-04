@@ -24,16 +24,13 @@ function c(){
 
     <div class="wrapper">
 
-        <h2>Note sur la nomenclature</h2>
-        <p>
-            .tablet => à partir de 480px<br/>
-            .big-tablet => à partir de 660px<br/>
-            .desk => à partir de 990px
-        </p>
+        <h1 class="main-title">Démonstration</h3>
 
-        <p>Les valeurs et les noms sont configurables. ici :</p>
+
+        
 
         <code>
+            // Configuration<br/><br/>
             $useFixedGrid: true;<br/>
             $fixedWidths: 300px;<br/>
             $breakpoints: (<br/>
@@ -44,6 +41,7 @@ function c(){
         </code>
 
         <h3 class="title">Grilles imbriquées avec ratios</h3>
+
         <div class="grid">
 
             <div class="grid__item 1/2@tablet">

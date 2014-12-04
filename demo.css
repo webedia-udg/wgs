@@ -751,6 +751,15 @@ html {
 .grid__item {
   transition: width .2s ease-out; }
 
+.main-title {
+  color: #444;
+  text-transform: uppercase;
+  font-size: 36px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  text-align: center;
+  padding-bottom: 12px;
+  margin-top: 60px; }
+
 .title {
   color: #444;
   text-transform: uppercase;
@@ -760,6 +769,14 @@ html {
   padding-bottom: 12px;
   margin-top: 60px;
   margin-bottom: 30px; }
+
+code {
+  display: block;
+  background-color: #fafafa;
+  border: 1px solid #dadada;
+  padding: 10px;
+  line-height: 24px;
+  font-size: 16px; }
 
 .bloc {
   position: relative;
