@@ -2,47 +2,16 @@
 /**
  * WGS (Webedia Grid System)
  *
- * 1) Introduction
+ * README :
  *
- * Ce fichier SASS à inclure dans votre projet génère des noms de classes et des
- * propriétés utilisée dans le cadre du grid system webedia.
+ * https://github.com/webedia-udg/wgs
  *
- * Ces classes définissent des ratios ou des tailles fixes, préfixées ou pas 
- * par des noms définissant les breakpoints à partir desquelles elles agissent.
- *
- * Inclure ce fichier génère des règles du type [class~="1/2"], [class~="1/2"],
- * [class~="5/6"], etc...
- *
- * Le [class...] est utilisé pour pouvoir utiliser des "/" (slash) dans le nom
- * des classes car par exemple .1/2 ou .5/6 ne marcherait pas.
- *
- * Ce fichier founi aussi un mixin @mq (media-query) et des classes de 
- * visibilité (desk-hidden, tablet-visible...)
- *
- * Ce fichier définit deux options, à false par défaut :
- *
- *  - $fixedWidths (false)  => défini les tailles fixes.
- *  - $breakpoints (false)  => les breakpoints utilisables avec un nom "humain".
- *  - $gutter (24px)        => espace entre les cases
- *  - $useFixedGrid (false) => les grids fixes sont-elles utilisées
- *  - $usePush (false)      => Utilisation des classes de push ?
- *  - $usePull (false)      => Utilisation des classes de pull ?
- *
- * 2) Exemple d'utilisation :
- *
- *    $fixedWidths: 600px 660px 900px;
- *    $breakpoints: (
- *        tablet     : 480px,
- *        big-tablet : 660px,
- *        desk       : 990px
- *    );
- *    @import "wgs";
  */
 /**
  * Mixin de media-query
  *
  * @param string $breakpoint : nom du breakpoint. Doit correspondre à l'un des
- *                             éléments de $breakpoints
+ *                             éléments de $breakpoints transmis à wgsSetup()
  * Ex : @include mq(desk){...}
  */
 /**

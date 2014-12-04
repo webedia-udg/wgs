@@ -1,73 +1,34 @@
 /**
  * WGS (Webedia Grid System)
  *
- * 1) Introduction
+ * README :
  *
- * Ce fichier SASS à inclure dans votre projet génère des noms de classes et des
- * propriétés utilisée dans le cadre du grid system webedia.
+ * https://github.com/webedia-udg/wgs
  *
- * Ces classes définissent des ratios ou des tailles fixes, préfixées ou pas 
- * par des noms définissant les breakpoints à partir desquelles elles agissent.
- *
- * Inclure ce fichier génère des règles du type [class~="1/2"], [class~="1/2"],
- * [class~="5/6"], etc...
- *
- * Le [class...] est utilisé pour pouvoir utiliser des "/" (slash) dans le nom
- * des classes car par exemple .1/2 ou .5/6 ne marcherait pas.
- *
- * Ce fichier founi aussi un mixin @mq (media-query) et des classes de 
- * visibilité (desk-hidden, tablet-visible...)
- *
- * Ce fichier définit deux options, à false par défaut :
- *
- *  - $fixedWidths (false)  => défini les tailles fixes.
- *  - $breakpoints (false)  => les breakpoints utilisables avec un nom "humain".
- *  - $gutter (24px)        => espace entre les cases
- *  - $useFixedGrid (false) => les grids fixes sont-elles utilisées
- *  - $usePush (false)      => Utilisation des classes de push ?
- *  - $usePull (false)      => Utilisation des classes de pull ?
- *
- * 2) Exemple d'utilisation :
- *
- *    $fixedWidths: 600px 660px 900px;
- *    $breakpoints: (
- *        tablet     : 480px,
- *        big-tablet : 660px,
- *        desk       : 990px
- *    );
- *    @import "wgs";
  */
-
-
-$fixedWidths  : false !default;
-$breakpoints  : false !default;
-$gutter       : 24px !default;
-$useFixedGrid : false !default;
-$usePush      : false !default;
-$usePull      : false !default;
 
 /**
  * Mixin de media-query
  *
  * @param string $breakpoint : nom du breakpoint. Doit correspondre à l'un des
- *                             éléments de $breakpoints
+ *                             éléments de $breakpoints transmis à wgsSetup()
  * Ex : @include mq(desk){...}
  */
 @mixin mq($breakpoint) { 
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media screen and (min-width: #{map-get($breakpoints, $breakpoint)}) {
-      @content;
+    @if map-has-key($_wgsBreakpoints, $breakpoint) {
+        @media screen and (min-width: map-get($_wgsBreakpoints, $breakpoint)) {
+            @content;
+        }
     }
-  }
 }
 
 @mixin mqUntil($breakpoint, $size) { 
-  @if map-has-key($breakpoints, $breakpoint) {
-    $size: $size - 1px;
-    @media screen and (max-width: $size ) {
-      @content;
+    @if map-has-key($_wgsBreakpoints, $breakpoint) {
+        $size: $size - 1px;
+        @media screen and (max-width: $size ) {
+            @content;
+        }
     }
-  }
 }
 
 
@@ -78,7 +39,7 @@ $usePull      : false !default;
  *
  * @param string $breakpoint (false) => Le préfixe.
  */
-@mixin grid($breakpoint:false) {
+@mixin grid($gutter, $useFixedGrid: false, $breakpoint:false) {
     $sufix: "";
     @if $breakpoint{
         $sufix: "@#{$breakpoint}";
@@ -244,7 +205,7 @@ $usePull      : false !default;
  * Ecrit des classes de largeur fixe.
  * @param String $prefix : le préfixe à ajouter devant chaque classe
  */
-@mixin fixedWidth($size, $breakpoint:false) {
+@mixin fixedWidth($size, $gutter, $breakpoint:false) {
 
     $sufix: "";
     @if $breakpoint{
@@ -291,61 +252,70 @@ $usePull      : false !default;
 /**
  * Ecriture des règles 
  */
+@mixin wgsSetup(
+    $fixedWidths  : false,
+    $breakpoints  : false,
+    $gutter       : 24px,
+    $useFixedGrid : false
+){
+    // Global namespaced variable, utilisée par @include mq() pour éviter 
+    // d'avoir à lui filer le tableau à chaque fois
+    $_wgsBreakpoints : $breakpoints !global;
 
-
-// 1/ Borderbox pour tout le monde !
-// css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
-// paulirish.com/2012/box-sizing-border-box-ftw
-html {
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
-}
-*{
-    &,
-    &:before,
-    &:after{
+    // 1/ Borderbox pour tout le monde !
+    // css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
+    // paulirish.com/2012/box-sizing-border-box-ftw
+    html {
         -webkit-box-sizing: border-box;
            -moz-box-sizing: border-box;
-            -ms-box-sizing: border-box;
-             -o-box-sizing: border-box;
                 box-sizing: border-box;
     }
-}
-
-
-// 2/ Ratios sans responsive
-@include grid;
-@include ratioWidths;
-
-
-// 3/ Tailles fixes sans responsive
-@if $fixedWidths {
-    @each $width in $fixedWidths {
-        @include fixedWidth($width);
+    *{
+        &,
+        &:before,
+        &:after{
+            -webkit-box-sizing: border-box;
+               -moz-box-sizing: border-box;
+                -ms-box-sizing: border-box;
+                 -o-box-sizing: border-box;
+                    box-sizing: border-box;
+        }
     }
-}
 
 
-// 4/ Gestion des ratios et tailles fixes en responsive
-@if $breakpoints {
-    
-    @each $name, $size in $breakpoints {
-        @include mq($name) {
-            @include grid($name);
-            @include ratioWidths($name);
-            @include hidden($name);
+    // 2/ Ratios sans responsive
+    @include grid($gutter, $useFixedGrid);
+    @include ratioWidths;
 
 
-            @if $fixedWidths {
-                @each $width in $fixedWidths {
-                    @include fixedWidth($width, $name);
+    // 3/ Tailles fixes sans responsive
+    @if $fixedWidths {
+        @each $width in $fixedWidths {
+            @include fixedWidth($width, $gutter);
+        }
+    }
+
+
+    // 4/ Gestion des ratios et tailles fixes en responsive
+    @if $breakpoints {
+        
+        @each $breakpoint, $size in $breakpoints {
+            @include mq($breakpoint) {
+                @include grid($gutter, $useFixedGrid, $breakpoint);
+                @include ratioWidths($breakpoint);
+                @include hidden($breakpoint);
+
+
+                @if $fixedWidths {
+                    @each $width in $fixedWidths {
+                        @include fixedWidth($width, $gutter, $breakpoint);
+                    }
                 }
             }
-        }
 
-        @include mqUntil($name, $size){
-            @include visible($name);
+            @include mqUntil($breakpoint, $size){
+                @include visible($breakpoint);
+            }
         }
     }
 }

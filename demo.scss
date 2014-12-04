@@ -1,14 +1,15 @@
-$useFixedGrid: true;
-$fixedWidths: 300px;
-$breakpoints: (
-    tablet     : 480px,
-    big-tablet : 660px,
-    desk       : 990px
-);
-
-
 // Import du WGS
 @import "wgs";
+
+@include wgsSetup(
+    $useFixedGrid: true,
+    $fixedWidths: 300px,
+    $breakpoints: (
+        tablet     : 480px,
+        big-tablet : 660px,
+        desk       : 990px
+    )
+);
 
 
 
