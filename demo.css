@@ -49,12 +49,12 @@
  * Ajoute les classes de grilles (.grid, .grid--fixed, .grid__item),
  * éventuellement préfixées. Gère les relations entre les .grid & .grid__item
  *
- * @param string $prefix (false) => Le préfixe.
+ * @param string $breakpoint (false) => Le préfixe.
  */
 /**
  * Ecrit des classes de largeur ratio.
  * 
- * @param String $prefix : le préfixe à ajouter devant chaque classe
+ * @param String $breakpoint : le nom du breakpoint à prendre en compte
  */
 /**
  * Ecrit des classes de largeur fixe.
@@ -78,16 +78,13 @@ html {
   -o-box-sizing: border-box;
   box-sizing: border-box; }
 
-.grid {
+[class~="grid"] {
   display: block;
   margin-left: -24px;
   margin-top: -24px; }
-  .grid--rev {
-    direction: rtl;
-    text-align: left; }
-  .grid + .grid {
+  [class~="grid"] + [class~="grid"] {
     margin-top: 0; }
-  .grid > .grid__item {
+  [class~="grid"] > .grid__item {
     display: inline-block;
     vertical-align: top;
     padding-left: 24px;
@@ -96,20 +93,34 @@ html {
     direction: ltr;
     text-align: left; }
 
-.grid.grid--fixed {
+[class~="grid--rev"] {
+  direction: rtl;
+  text-align: left; }
+
+[class~="grid--center"] {
+  text-align: center; }
+  [class~="grid--center"] > .grid__item {
+    text-align: left; }
+
+[class~="grid--right"] {
+  text-align: right; }
+  [class~="grid--right"] > .grid__item {
+    text-align: left; }
+
+.grid[class~="grid--fixed"] {
   width: 100%;
   display: table;
   table-layout: fixed;
   margin-left: 0;
   margin-top: 24px; }
-  .grid .grid.grid--fixed {
+  .grid .grid[class~="grid--fixed"] {
     margin-top: 0; }
-  .grid.grid--fixed > .grid__item {
+  .grid[class~="grid--fixed"] > .grid__item {
     display: table-cell;
     vertical-align: top;
     padding-left: 0;
     padding-top: 0; }
-    .grid.grid--fixed > .grid__item + .grid__item {
+    .grid[class~="grid--fixed"] > .grid__item + .grid__item {
       padding-left: 24px; }
 
 [class~="1/1"] {
@@ -230,16 +241,13 @@ html {
   width: 324px !important; }
 
 @media screen and (min-width: 480px) {
-  .tablet-grid {
+  [class~="grid@tablet"] {
     display: block;
     margin-left: -24px;
     margin-top: -24px; }
-    .tablet-grid--rev {
-      direction: rtl;
-      text-align: left; }
-    .tablet-grid + .tablet-grid {
+    [class~="grid@tablet"] + [class~="grid@tablet"] {
       margin-top: 0; }
-    .tablet-grid > .tablet-grid__item {
+    [class~="grid@tablet"] > .grid__item {
       display: inline-block;
       vertical-align: top;
       padding-left: 24px;
@@ -248,155 +256,166 @@ html {
       direction: ltr;
       text-align: left; }
 
-  .grid.tablet-grid--fixed {
+  [class~="grid--rev@tablet"] {
+    direction: rtl;
+    text-align: left; }
+
+  [class~="grid--center@tablet"] {
+    text-align: center; }
+    [class~="grid--center@tablet"] > .grid__item {
+      text-align: left; }
+
+  [class~="grid--right@tablet"] {
+    text-align: right; }
+    [class~="grid--right@tablet"] > .grid__item {
+      text-align: left; }
+
+  .grid[class~="grid--fixed@tablet"] {
     width: 100%;
     display: table;
     table-layout: fixed;
     margin-left: 0;
     margin-top: 24px; }
-    .grid .grid.tablet-grid--fixed {
+    .grid .grid[class~="grid--fixed@tablet"] {
       margin-top: 0; }
-    .grid.tablet-grid--fixed > .grid__item {
+    .grid[class~="grid--fixed@tablet"] > .grid__item {
       display: table-cell;
       vertical-align: top;
       padding-left: 0;
       padding-top: 0; }
-      .grid.tablet-grid--fixed > .grid__item + .grid__item {
+      .grid[class~="grid--fixed@tablet"] > .grid__item + .grid__item {
         padding-left: 24px; }
 
-  [class~="tablet-1/1"] {
+  [class~="1/1@tablet"] {
     width: 100% !important; }
 
-  [class~="tablet-1/2"],
-  [class~="tablet-2/4"],
-  [class~="tablet-3/6"],
-  [class~="tablet-4/8"],
-  [class~="tablet-5/10"],
-  [class~="tablet-6/12"] {
+  [class~="1/2@tablet"],
+  [class~="2/4@tablet"],
+  [class~="3/6@tablet"],
+  [class~="4/8@tablet"],
+  [class~="5/10@tablet"],
+  [class~="6/12@tablet"] {
     width: 50% !important; }
 
-  [class~="tablet-1/3"],
-  [class~="tablet-2/6"],
-  [class~="tablet-3/9"],
-  [class~="tablet-4/12"] {
+  [class~="1/3@tablet"],
+  [class~="2/6@tablet"],
+  [class~="3/9@tablet"],
+  [class~="4/12@tablet"] {
     width: 33.3333333% !important; }
 
-  [class~="tablet-2/3"],
-  [class~="tablet-4/6"],
-  [class~="tablet-6/9"],
-  [class~="tablet-8/12"] {
+  [class~="2/3@tablet"],
+  [class~="4/6@tablet"],
+  [class~="6/9@tablet"],
+  [class~="8/12@tablet"] {
     width: 66.6666666% !important; }
 
-  [class~="tablet-1/4"],
-  [class~="tablet-2/8"],
-  [class~="tablet-3/12"] {
+  [class~="1/4@tablet"],
+  [class~="2/8@tablet"],
+  [class~="3/12@tablet"] {
     width: 25% !important; }
 
-  [class~="tablet-3/4"],
-  [class~="tablet-6/8"],
-  [class~="tablet-9/12"] {
+  [class~="3/4@tablet"],
+  [class~="6/8@tablet"],
+  [class~="9/12@tablet"] {
     width: 75% !important; }
 
-  [class~="tablet-1/5"],
-  [class~="tablet-2/10"] {
+  [class~="1/5@tablet"],
+  [class~="2/10@tablet"] {
     width: 20% !important; }
 
-  [class~="tablet-2/5"],
-  [class~="tablet-4/10"] {
+  [class~="2/5@tablet"],
+  [class~="4/10@tablet"] {
     width: 40% !important; }
 
-  [class~="tablet-3/5"],
-  [class~="tablet-6/10"] {
+  [class~="3/5@tablet"],
+  [class~="6/10@tablet"] {
     width: 60% !important; }
 
-  [class~="tablet-4/5"],
-  [class~="tablet-8/10"] {
+  [class~="4/5@tablet"],
+  [class~="8/10@tablet"] {
     width: 80% !important; }
 
-  [class~="tablet-1/6"],
-  [class~="tablet-2/12"] {
+  [class~="1/6@tablet"],
+  [class~="2/12@tablet"] {
     width: 16.6666666% !important; }
 
-  [class~="tablet-5/6"],
-  [class~="tablet-10/12"] {
+  [class~="5/6@tablet"],
+  [class~="10/12@tablet"] {
     width: 83.3333333% !important; }
 
-  [class~="tablet-1/8"] {
+  [class~="1/8@tablet"] {
     width: 12.5% !important; }
 
-  [class~="tablet-3/8"] {
+  [class~="3/8@tablet"] {
     width: 37.5% !important; }
 
-  [class~="tablet-5/8"] {
+  [class~="5/8@tablet"] {
     width: 62.5% !important; }
 
-  [class~="tablet-7/8"] {
+  [class~="7/8@tablet"] {
     width: 87.5% !important; }
 
-  [class~="tablet-1/9"] {
+  [class~="1/9@tablet"] {
     width: 11.1111111% !important; }
 
-  [class~="tablet-2/9"] {
+  [class~="2/9@tablet"] {
     width: 22.2222222% !important; }
 
-  [class~="tablet-4/9"] {
+  [class~="4/9@tablet"] {
     width: 44.4444444% !important; }
 
-  [class~="tablet-5/9"] {
+  [class~="5/9@tablet"] {
     width: 55.5555555% !important; }
 
-  [class~="tablet-7/9"] {
+  [class~="7/9@tablet"] {
     width: 77.7777777% !important; }
 
-  [class~="tablet-8/9"] {
+  [class~="8/9@tablet"] {
     width: 88.8888888% !important; }
 
-  [class~="tablet-1/10"] {
+  [class~="1/10@tablet"] {
     width: 10% !important; }
 
-  [class~="tablet-3/10"] {
+  [class~="3/10@tablet"] {
     width: 30% !important; }
 
-  [class~="tablet-7/10"] {
+  [class~="7/10@tablet"] {
     width: 70% !important; }
 
-  [class~="tablet-9/10"] {
+  [class~="9/10@tablet"] {
     width: 90% !important; }
 
-  [class~="tablet-1/12"] {
+  [class~="1/12@tablet"] {
     width: 8.3333333% !important; }
 
-  [class~="tablet-5/12"] {
+  [class~="5/12@tablet"] {
     width: 41.6666666% !important; }
 
-  [class~="tablet-7/12"] {
+  [class~="7/12@tablet"] {
     width: 58.3333333% !important; }
 
-  [class~="tablet-11/12"] {
+  [class~="11/12@tablet"] {
     width: 91.6666666% !important; }
 
-  .tablet-hidden {
+  [class~="hidden@tablet"] {
     display: none !important; }
 
-  [class~="tablet-300px"] {
+  [class~="300px@tablet"] {
     width: 300px !important; }
 
-  .grid__item + [class~="tablet-300px"] {
+  .grid__item + [class~="300px@tablet"] {
     width: 324px !important; } }
 @media screen and (max-width: 479px) {
-  .tablet-visible {
+  [class~="visible@tablet"] {
     display: none !important; } }
 @media screen and (min-width: 660px) {
-  .big-tablet-grid {
+  [class~="grid@big-tablet"] {
     display: block;
     margin-left: -24px;
     margin-top: -24px; }
-    .big-tablet-grid--rev {
-      direction: rtl;
-      text-align: left; }
-    .big-tablet-grid + .big-tablet-grid {
+    [class~="grid@big-tablet"] + [class~="grid@big-tablet"] {
       margin-top: 0; }
-    .big-tablet-grid > .big-tablet-grid__item {
+    [class~="grid@big-tablet"] > .grid__item {
       display: inline-block;
       vertical-align: top;
       padding-left: 24px;
@@ -405,155 +424,166 @@ html {
       direction: ltr;
       text-align: left; }
 
-  .grid.big-tablet-grid--fixed {
+  [class~="grid--rev@big-tablet"] {
+    direction: rtl;
+    text-align: left; }
+
+  [class~="grid--center@big-tablet"] {
+    text-align: center; }
+    [class~="grid--center@big-tablet"] > .grid__item {
+      text-align: left; }
+
+  [class~="grid--right@big-tablet"] {
+    text-align: right; }
+    [class~="grid--right@big-tablet"] > .grid__item {
+      text-align: left; }
+
+  .grid[class~="grid--fixed@big-tablet"] {
     width: 100%;
     display: table;
     table-layout: fixed;
     margin-left: 0;
     margin-top: 24px; }
-    .grid .grid.big-tablet-grid--fixed {
+    .grid .grid[class~="grid--fixed@big-tablet"] {
       margin-top: 0; }
-    .grid.big-tablet-grid--fixed > .grid__item {
+    .grid[class~="grid--fixed@big-tablet"] > .grid__item {
       display: table-cell;
       vertical-align: top;
       padding-left: 0;
       padding-top: 0; }
-      .grid.big-tablet-grid--fixed > .grid__item + .grid__item {
+      .grid[class~="grid--fixed@big-tablet"] > .grid__item + .grid__item {
         padding-left: 24px; }
 
-  [class~="big-tablet-1/1"] {
+  [class~="1/1@big-tablet"] {
     width: 100% !important; }
 
-  [class~="big-tablet-1/2"],
-  [class~="big-tablet-2/4"],
-  [class~="big-tablet-3/6"],
-  [class~="big-tablet-4/8"],
-  [class~="big-tablet-5/10"],
-  [class~="big-tablet-6/12"] {
+  [class~="1/2@big-tablet"],
+  [class~="2/4@big-tablet"],
+  [class~="3/6@big-tablet"],
+  [class~="4/8@big-tablet"],
+  [class~="5/10@big-tablet"],
+  [class~="6/12@big-tablet"] {
     width: 50% !important; }
 
-  [class~="big-tablet-1/3"],
-  [class~="big-tablet-2/6"],
-  [class~="big-tablet-3/9"],
-  [class~="big-tablet-4/12"] {
+  [class~="1/3@big-tablet"],
+  [class~="2/6@big-tablet"],
+  [class~="3/9@big-tablet"],
+  [class~="4/12@big-tablet"] {
     width: 33.3333333% !important; }
 
-  [class~="big-tablet-2/3"],
-  [class~="big-tablet-4/6"],
-  [class~="big-tablet-6/9"],
-  [class~="big-tablet-8/12"] {
+  [class~="2/3@big-tablet"],
+  [class~="4/6@big-tablet"],
+  [class~="6/9@big-tablet"],
+  [class~="8/12@big-tablet"] {
     width: 66.6666666% !important; }
 
-  [class~="big-tablet-1/4"],
-  [class~="big-tablet-2/8"],
-  [class~="big-tablet-3/12"] {
+  [class~="1/4@big-tablet"],
+  [class~="2/8@big-tablet"],
+  [class~="3/12@big-tablet"] {
     width: 25% !important; }
 
-  [class~="big-tablet-3/4"],
-  [class~="big-tablet-6/8"],
-  [class~="big-tablet-9/12"] {
+  [class~="3/4@big-tablet"],
+  [class~="6/8@big-tablet"],
+  [class~="9/12@big-tablet"] {
     width: 75% !important; }
 
-  [class~="big-tablet-1/5"],
-  [class~="big-tablet-2/10"] {
+  [class~="1/5@big-tablet"],
+  [class~="2/10@big-tablet"] {
     width: 20% !important; }
 
-  [class~="big-tablet-2/5"],
-  [class~="big-tablet-4/10"] {
+  [class~="2/5@big-tablet"],
+  [class~="4/10@big-tablet"] {
     width: 40% !important; }
 
-  [class~="big-tablet-3/5"],
-  [class~="big-tablet-6/10"] {
+  [class~="3/5@big-tablet"],
+  [class~="6/10@big-tablet"] {
     width: 60% !important; }
 
-  [class~="big-tablet-4/5"],
-  [class~="big-tablet-8/10"] {
+  [class~="4/5@big-tablet"],
+  [class~="8/10@big-tablet"] {
     width: 80% !important; }
 
-  [class~="big-tablet-1/6"],
-  [class~="big-tablet-2/12"] {
+  [class~="1/6@big-tablet"],
+  [class~="2/12@big-tablet"] {
     width: 16.6666666% !important; }
 
-  [class~="big-tablet-5/6"],
-  [class~="big-tablet-10/12"] {
+  [class~="5/6@big-tablet"],
+  [class~="10/12@big-tablet"] {
     width: 83.3333333% !important; }
 
-  [class~="big-tablet-1/8"] {
+  [class~="1/8@big-tablet"] {
     width: 12.5% !important; }
 
-  [class~="big-tablet-3/8"] {
+  [class~="3/8@big-tablet"] {
     width: 37.5% !important; }
 
-  [class~="big-tablet-5/8"] {
+  [class~="5/8@big-tablet"] {
     width: 62.5% !important; }
 
-  [class~="big-tablet-7/8"] {
+  [class~="7/8@big-tablet"] {
     width: 87.5% !important; }
 
-  [class~="big-tablet-1/9"] {
+  [class~="1/9@big-tablet"] {
     width: 11.1111111% !important; }
 
-  [class~="big-tablet-2/9"] {
+  [class~="2/9@big-tablet"] {
     width: 22.2222222% !important; }
 
-  [class~="big-tablet-4/9"] {
+  [class~="4/9@big-tablet"] {
     width: 44.4444444% !important; }
 
-  [class~="big-tablet-5/9"] {
+  [class~="5/9@big-tablet"] {
     width: 55.5555555% !important; }
 
-  [class~="big-tablet-7/9"] {
+  [class~="7/9@big-tablet"] {
     width: 77.7777777% !important; }
 
-  [class~="big-tablet-8/9"] {
+  [class~="8/9@big-tablet"] {
     width: 88.8888888% !important; }
 
-  [class~="big-tablet-1/10"] {
+  [class~="1/10@big-tablet"] {
     width: 10% !important; }
 
-  [class~="big-tablet-3/10"] {
+  [class~="3/10@big-tablet"] {
     width: 30% !important; }
 
-  [class~="big-tablet-7/10"] {
+  [class~="7/10@big-tablet"] {
     width: 70% !important; }
 
-  [class~="big-tablet-9/10"] {
+  [class~="9/10@big-tablet"] {
     width: 90% !important; }
 
-  [class~="big-tablet-1/12"] {
+  [class~="1/12@big-tablet"] {
     width: 8.3333333% !important; }
 
-  [class~="big-tablet-5/12"] {
+  [class~="5/12@big-tablet"] {
     width: 41.6666666% !important; }
 
-  [class~="big-tablet-7/12"] {
+  [class~="7/12@big-tablet"] {
     width: 58.3333333% !important; }
 
-  [class~="big-tablet-11/12"] {
+  [class~="11/12@big-tablet"] {
     width: 91.6666666% !important; }
 
-  .big-tablet-hidden {
+  [class~="hidden@big-tablet"] {
     display: none !important; }
 
-  [class~="big-tablet-300px"] {
+  [class~="300px@big-tablet"] {
     width: 300px !important; }
 
-  .grid__item + [class~="big-tablet-300px"] {
+  .grid__item + [class~="300px@big-tablet"] {
     width: 324px !important; } }
 @media screen and (max-width: 659px) {
-  .big-tablet-visible {
+  [class~="visible@big-tablet"] {
     display: none !important; } }
 @media screen and (min-width: 990px) {
-  .desk-grid {
+  [class~="grid@desk"] {
     display: block;
     margin-left: -24px;
     margin-top: -24px; }
-    .desk-grid--rev {
-      direction: rtl;
-      text-align: left; }
-    .desk-grid + .desk-grid {
+    [class~="grid@desk"] + [class~="grid@desk"] {
       margin-top: 0; }
-    .desk-grid > .desk-grid__item {
+    [class~="grid@desk"] > .grid__item {
       display: inline-block;
       vertical-align: top;
       padding-left: 24px;
@@ -562,144 +592,165 @@ html {
       direction: ltr;
       text-align: left; }
 
-  .grid.desk-grid--fixed {
+  [class~="grid--rev@desk"] {
+    direction: rtl;
+    text-align: left; }
+
+  [class~="grid--center@desk"] {
+    text-align: center; }
+    [class~="grid--center@desk"] > .grid__item {
+      text-align: left; }
+
+  [class~="grid--right@desk"] {
+    text-align: right; }
+    [class~="grid--right@desk"] > .grid__item {
+      text-align: left; }
+
+  .grid[class~="grid--fixed@desk"] {
     width: 100%;
     display: table;
     table-layout: fixed;
     margin-left: 0;
     margin-top: 24px; }
-    .grid .grid.desk-grid--fixed {
+    .grid .grid[class~="grid--fixed@desk"] {
       margin-top: 0; }
-    .grid.desk-grid--fixed > .grid__item {
+    .grid[class~="grid--fixed@desk"] > .grid__item {
       display: table-cell;
       vertical-align: top;
       padding-left: 0;
       padding-top: 0; }
-      .grid.desk-grid--fixed > .grid__item + .grid__item {
+      .grid[class~="grid--fixed@desk"] > .grid__item + .grid__item {
         padding-left: 24px; }
 
-  [class~="desk-1/1"] {
+  [class~="1/1@desk"] {
     width: 100% !important; }
 
-  [class~="desk-1/2"],
-  [class~="desk-2/4"],
-  [class~="desk-3/6"],
-  [class~="desk-4/8"],
-  [class~="desk-5/10"],
-  [class~="desk-6/12"] {
+  [class~="1/2@desk"],
+  [class~="2/4@desk"],
+  [class~="3/6@desk"],
+  [class~="4/8@desk"],
+  [class~="5/10@desk"],
+  [class~="6/12@desk"] {
     width: 50% !important; }
 
-  [class~="desk-1/3"],
-  [class~="desk-2/6"],
-  [class~="desk-3/9"],
-  [class~="desk-4/12"] {
+  [class~="1/3@desk"],
+  [class~="2/6@desk"],
+  [class~="3/9@desk"],
+  [class~="4/12@desk"] {
     width: 33.3333333% !important; }
 
-  [class~="desk-2/3"],
-  [class~="desk-4/6"],
-  [class~="desk-6/9"],
-  [class~="desk-8/12"] {
+  [class~="2/3@desk"],
+  [class~="4/6@desk"],
+  [class~="6/9@desk"],
+  [class~="8/12@desk"] {
     width: 66.6666666% !important; }
 
-  [class~="desk-1/4"],
-  [class~="desk-2/8"],
-  [class~="desk-3/12"] {
+  [class~="1/4@desk"],
+  [class~="2/8@desk"],
+  [class~="3/12@desk"] {
     width: 25% !important; }
 
-  [class~="desk-3/4"],
-  [class~="desk-6/8"],
-  [class~="desk-9/12"] {
+  [class~="3/4@desk"],
+  [class~="6/8@desk"],
+  [class~="9/12@desk"] {
     width: 75% !important; }
 
-  [class~="desk-1/5"],
-  [class~="desk-2/10"] {
+  [class~="1/5@desk"],
+  [class~="2/10@desk"] {
     width: 20% !important; }
 
-  [class~="desk-2/5"],
-  [class~="desk-4/10"] {
+  [class~="2/5@desk"],
+  [class~="4/10@desk"] {
     width: 40% !important; }
 
-  [class~="desk-3/5"],
-  [class~="desk-6/10"] {
+  [class~="3/5@desk"],
+  [class~="6/10@desk"] {
     width: 60% !important; }
 
-  [class~="desk-4/5"],
-  [class~="desk-8/10"] {
+  [class~="4/5@desk"],
+  [class~="8/10@desk"] {
     width: 80% !important; }
 
-  [class~="desk-1/6"],
-  [class~="desk-2/12"] {
+  [class~="1/6@desk"],
+  [class~="2/12@desk"] {
     width: 16.6666666% !important; }
 
-  [class~="desk-5/6"],
-  [class~="desk-10/12"] {
+  [class~="5/6@desk"],
+  [class~="10/12@desk"] {
     width: 83.3333333% !important; }
 
-  [class~="desk-1/8"] {
+  [class~="1/8@desk"] {
     width: 12.5% !important; }
 
-  [class~="desk-3/8"] {
+  [class~="3/8@desk"] {
     width: 37.5% !important; }
 
-  [class~="desk-5/8"] {
+  [class~="5/8@desk"] {
     width: 62.5% !important; }
 
-  [class~="desk-7/8"] {
+  [class~="7/8@desk"] {
     width: 87.5% !important; }
 
-  [class~="desk-1/9"] {
+  [class~="1/9@desk"] {
     width: 11.1111111% !important; }
 
-  [class~="desk-2/9"] {
+  [class~="2/9@desk"] {
     width: 22.2222222% !important; }
 
-  [class~="desk-4/9"] {
+  [class~="4/9@desk"] {
     width: 44.4444444% !important; }
 
-  [class~="desk-5/9"] {
+  [class~="5/9@desk"] {
     width: 55.5555555% !important; }
 
-  [class~="desk-7/9"] {
+  [class~="7/9@desk"] {
     width: 77.7777777% !important; }
 
-  [class~="desk-8/9"] {
+  [class~="8/9@desk"] {
     width: 88.8888888% !important; }
 
-  [class~="desk-1/10"] {
+  [class~="1/10@desk"] {
     width: 10% !important; }
 
-  [class~="desk-3/10"] {
+  [class~="3/10@desk"] {
     width: 30% !important; }
 
-  [class~="desk-7/10"] {
+  [class~="7/10@desk"] {
     width: 70% !important; }
 
-  [class~="desk-9/10"] {
+  [class~="9/10@desk"] {
     width: 90% !important; }
 
-  [class~="desk-1/12"] {
+  [class~="1/12@desk"] {
     width: 8.3333333% !important; }
 
-  [class~="desk-5/12"] {
+  [class~="5/12@desk"] {
     width: 41.6666666% !important; }
 
-  [class~="desk-7/12"] {
+  [class~="7/12@desk"] {
     width: 58.3333333% !important; }
 
-  [class~="desk-11/12"] {
+  [class~="11/12@desk"] {
     width: 91.6666666% !important; }
 
-  .desk-hidden {
+  [class~="hidden@desk"] {
     display: none !important; }
 
-  [class~="desk-300px"] {
+  [class~="300px@desk"] {
     width: 300px !important; }
 
-  .grid__item + [class~="desk-300px"] {
+  .grid__item + [class~="300px@desk"] {
     width: 324px !important; } }
 @media screen and (max-width: 989px) {
-  .desk-visible {
+  [class~="visible@desk"] {
     display: none !important; } }
+.wrapper {
+  max-width: 990px;
+  margin: 0 auto; }
+
+.grid__item {
+  transition: width .2s ease-out; }
+
 .bloc {
   position: relative;
   background-color: #dadada; }
@@ -712,6 +763,8 @@ html {
     font-size: 18px;
     color: #666;
     padding: 24px; }
+  .bloc--50 {
+    height: 50px; }
   .bloc--150 {
     height: 150px; }
   .bloc--300 {

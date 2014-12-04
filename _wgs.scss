@@ -76,34 +76,26 @@ $usePull      : false !default;
  * Ajoute les classes de grilles (.grid, .grid--fixed, .grid__item),
  * éventuellement préfixées. Gère les relations entre les .grid & .grid__item
  *
- * @param string $prefix (false) => Le préfixe.
+ * @param string $breakpoint (false) => Le préfixe.
  */
-@mixin grid($prefix:false) {
-    @if $prefix{
-        $prefix: "#{$prefix}-";
-    }
-    @else{
-        $prefix: "";
+@mixin grid($breakpoint:false) {
+    $sufix: "";
+    @if $breakpoint{
+        $sufix: "@#{$breakpoint}";
     }
 
-
-
-    .#{$prefix}grid{
+    [class~="grid#{$sufix}"] {
         display: block;
         margin-left: -$gutter;
         margin-top: -$gutter;
 
-        &--rev {
-            direction:rtl;
-            text-align:left;
-        }
 
 
-        & + .#{$prefix}grid{
+        & + [class~="grid#{$sufix}"] {
             margin-top: 0;
         }
 
-        & > &__item {
+        & > .grid__item {
             display: inline-block;
             vertical-align: top;
             padding-left: $gutter;
@@ -116,9 +108,29 @@ $usePull      : false !default;
         }
     }
 
+
+    [class~="grid--rev#{$sufix}"] {
+        direction:rtl;
+        text-align:left;
+    }
+
+    [class~="grid--center#{$sufix}"] {
+        text-align: center;
+        & > .grid__item {
+            text-align: left;
+        }
+    }
+
+    [class~="grid--right#{$sufix}"] {
+        text-align: right;
+        & > .grid__item {
+            text-align: left;
+        }
+    }
+
     @if $useFixedGrid {
 
-        .grid.#{$prefix}grid--fixed{
+        .grid[class~="grid--fixed#{$sufix}"] {
             width: 100%;
             display: table;
             table-layout: fixed;
@@ -148,104 +160,102 @@ $usePull      : false !default;
 /**
  * Ecrit des classes de largeur ratio.
  * 
- * @param String $prefix : le préfixe à ajouter devant chaque classe
+ * @param String $breakpoint : le nom du breakpoint à prendre en compte
  */
-@mixin ratioWidths($prefix:false){
-    @if $prefix{
-        $prefix: "#{$prefix}-";
-    }
-    @else{
-        $prefix: "";
+@mixin ratioWidths($breakpoint:false){
+
+    $sufix: "";
+    @if $breakpoint{
+        $sufix: "@#{$breakpoint}";
     }
 
-    [class~="#{$prefix}1/1"]       { width: 100% !important; }
+    [class~="1/1#{$sufix}"]       { width: 100% !important; }
     
     // Demis
-    [class~="#{$prefix}1/2"],
-    [class~="#{$prefix}2/4"],
-    [class~="#{$prefix}3/6"],
-    [class~="#{$prefix}4/8"],
-    [class~="#{$prefix}5/10"],
-    [class~="#{$prefix}6/12"]      { width: 50% !important; }
+    [class~="1/2#{$sufix}"],
+    [class~="2/4#{$sufix}"],
+    [class~="3/6#{$sufix}"],
+    [class~="4/8#{$sufix}"],
+    [class~="5/10#{$sufix}"],
+    [class~="6/12#{$sufix}"]      { width: 50% !important; }
     
     // Tiers
-    [class~="#{$prefix}1/3"],
-    [class~="#{$prefix}2/6"],
-    [class~="#{$prefix}3/9"],
-    [class~="#{$prefix}4/12"]      { width: 33.3333333% !important; }
-    [class~="#{$prefix}2/3"],
-    [class~="#{$prefix}4/6"],
-    [class~="#{$prefix}6/9"],
-    [class~="#{$prefix}8/12"]      { width: 66.6666666% !important; }
+    [class~="1/3#{$sufix}"],
+    [class~="2/6#{$sufix}"],
+    [class~="3/9#{$sufix}"],
+    [class~="4/12#{$sufix}"]      { width: 33.3333333% !important; }
+    [class~="2/3#{$sufix}"],
+    [class~="4/6#{$sufix}"],
+    [class~="6/9#{$sufix}"],
+    [class~="8/12#{$sufix}"]      { width: 66.6666666% !important; }
     
     // Quarts
-    [class~="#{$prefix}1/4"],
-    [class~="#{$prefix}2/8"],
-    [class~="#{$prefix}3/12"]      { width: 25% !important; }
-    [class~="#{$prefix}3/4"],
-    [class~="#{$prefix}6/8"],
-    [class~="#{$prefix}9/12"]      { width: 75% !important; }
+    [class~="1/4#{$sufix}"],
+    [class~="2/8#{$sufix}"],
+    [class~="3/12#{$sufix}"]      { width: 25% !important; }
+    [class~="3/4#{$sufix}"],
+    [class~="6/8#{$sufix}"],
+    [class~="9/12#{$sufix}"]      { width: 75% !important; }
     
     // Cinquièmes
-    [class~="#{$prefix}1/5"],
-    [class~="#{$prefix}2/10"]      { width: 20% !important; }
-    [class~="#{$prefix}2/5"],
-    [class~="#{$prefix}4/10"]      { width: 40% !important; }
-    [class~="#{$prefix}3/5"],
-    [class~="#{$prefix}6/10"]      { width: 60% !important; }
-    [class~="#{$prefix}4/5"],
-    [class~="#{$prefix}8/10"]      { width: 80% !important; }
+    [class~="1/5#{$sufix}"],
+    [class~="2/10#{$sufix}"]      { width: 20% !important; }
+    [class~="2/5#{$sufix}"],
+    [class~="4/10#{$sufix}"]      { width: 40% !important; }
+    [class~="3/5#{$sufix}"],
+    [class~="6/10#{$sufix}"]      { width: 60% !important; }
+    [class~="4/5#{$sufix}"],
+    [class~="8/10#{$sufix}"]      { width: 80% !important; }
     
     // Sixièmes
-    [class~="#{$prefix}1/6"],
-    [class~="#{$prefix}2/12"]      { width: 16.6666666% !important; }
-    [class~="#{$prefix}5/6"],
-    [class~="#{$prefix}10/12"]     { width: 83.3333333% !important; }
+    [class~="1/6#{$sufix}"],
+    [class~="2/12#{$sufix}"]      { width: 16.6666666% !important; }
+    [class~="5/6#{$sufix}"],
+    [class~="10/12#{$sufix}"]     { width: 83.3333333% !important; }
 
     // Huitièmes
-    [class~="#{$prefix}1/8"]       { width: 12.5% !important; }
-    [class~="#{$prefix}3/8"]       { width: 37.5% !important; }
-    [class~="#{$prefix}5/8"]       { width: 62.5% !important; }
-    [class~="#{$prefix}7/8"]       { width: 87.5% !important; }
+    [class~="1/8#{$sufix}"]       { width: 12.5% !important; }
+    [class~="3/8#{$sufix}"]       { width: 37.5% !important; }
+    [class~="5/8#{$sufix}"]       { width: 62.5% !important; }
+    [class~="7/8#{$sufix}"]       { width: 87.5% !important; }
     
     // Neuvièmes
-    [class~="#{$prefix}1/9"]       { width: 11.1111111% !important; }
-    [class~="#{$prefix}2/9"]       { width: 22.2222222% !important; }
-    [class~="#{$prefix}4/9"]       { width: 44.4444444% !important; }
-    [class~="#{$prefix}5/9"]       { width: 55.5555555% !important; }
-    [class~="#{$prefix}7/9"]       { width: 77.7777777% !important; }
-    [class~="#{$prefix}8/9"]       { width: 88.8888888% !important; }
+    [class~="1/9#{$sufix}"]       { width: 11.1111111% !important; }
+    [class~="2/9#{$sufix}"]       { width: 22.2222222% !important; }
+    [class~="4/9#{$sufix}"]       { width: 44.4444444% !important; }
+    [class~="5/9#{$sufix}"]       { width: 55.5555555% !important; }
+    [class~="7/9#{$sufix}"]       { width: 77.7777777% !important; }
+    [class~="8/9#{$sufix}"]       { width: 88.8888888% !important; }
     
     // Dixièmes
-    [class~="#{$prefix}1/10"]      { width: 10% !important; }
-    [class~="#{$prefix}3/10"]      { width: 30% !important; }
-    [class~="#{$prefix}7/10"]      { width: 70% !important; }
-    [class~="#{$prefix}9/10"]      { width: 90% !important; }
+    [class~="1/10#{$sufix}"]      { width: 10% !important; }
+    [class~="3/10#{$sufix}"]      { width: 30% !important; }
+    [class~="7/10#{$sufix}"]      { width: 70% !important; }
+    [class~="9/10#{$sufix}"]      { width: 90% !important; }
     
     // Douzièmes
-    [class~="#{$prefix}1/12"]      { width:  8.3333333% !important; }
-    [class~="#{$prefix}5/12"]      { width: 41.6666666% !important; }
-    [class~="#{$prefix}7/12"]      { width: 58.3333333% !important; }
-    [class~="#{$prefix}11/12"]     { width: 91.6666666% !important; }
+    [class~="1/12#{$sufix}"]      { width:  8.3333333% !important; }
+    [class~="5/12#{$sufix}"]      { width: 41.6666666% !important; }
+    [class~="7/12#{$sufix}"]      { width: 58.3333333% !important; }
+    [class~="11/12#{$sufix}"]     { width: 91.6666666% !important; }
 }
 
 /**
  * Ecrit des classes de largeur fixe.
  * @param String $prefix : le préfixe à ajouter devant chaque classe
  */
-@mixin fixedWidth($size, $prefix:false) {
-    @if $prefix{
-        $prefix: "#{$prefix}-";
-    }
-    @else{
-        $prefix: "";
+@mixin fixedWidth($size, $breakpoint:false) {
+
+    $sufix: "";
+    @if $breakpoint{
+        $sufix: "@#{$breakpoint}";
     }
 
-    [class~="#{$prefix}#{$size}"] {
+    [class~="#{$size}#{$sufix}"] {
         width: $size !important;
     }
 
-    .grid__item + [class~="#{$prefix}#{$size}"] {
+    .grid__item + [class~="#{$size}#{$sufix}"] {
         width: $size + $gutter !important;
     }
 }
@@ -254,26 +264,26 @@ $usePull      : false !default;
 /**
  * Quelques classes de visibilité
  */
-@mixin hidden($prefix: false) {
-    @if $prefix{
-        $prefix: "#{$prefix}-";
+@mixin hidden($breakpoint: false) {
+
+    $sufix: "";
+    @if $breakpoint{
+        $sufix: "@#{$breakpoint}";
     }
-    @else{
-        $prefix: "";
-    }
-    .#{$prefix}hidden {
+
+    [class~="hidden#{$sufix}"] {
         display: none !important;
     }    
 }
 
-@mixin visible($prefix: false) {
-    @if $prefix{
-        $prefix: "#{$prefix}-";
+@mixin visible($breakpoint: false) {
+
+    $sufix: "";
+    @if $breakpoint{
+        $sufix: "@#{$breakpoint}";
     }
-    @else{
-        $prefix: "";
-    }
-    .#{$prefix}visible {
+
+    [class~="visible#{$sufix}"] {
         display: none !important;
     }    
 }

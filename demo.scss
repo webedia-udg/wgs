@@ -7,11 +7,19 @@ $breakpoints: (
 );
 
 
+
 // Import du WGS
 @import "wgs";
 
+.wrapper{
+    max-width: 990px;
+    margin: 0 auto;
 
+}
+.grid__item{
+    transition: width .2s ease-out;
 
+}
 // Simulation de contenu
 .bloc{
     position: relative;
@@ -26,6 +34,9 @@ $breakpoints: (
         font-size: 18px;
         color: #666;
         padding: 24px;
+    }
+    &--50{
+        height: 50px;
     }
     &--150{
         height: 150px;
