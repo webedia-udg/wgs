@@ -5,11 +5,11 @@ Webedia Grid System (WGS)
 
 --- 
 
-Ce projet est très fortement inspiré par le système de grille du framework inuit.css.
+Ce projet est très fortement inspiré par le système de grille du framework de Harry Roberts https://github.com/csswizardry/csswizardry-grids
 
-Ce projet est "mobile first", c'est à dire que les breakpoints sont à base de "min-width" (pas de max-width donc)
+Ce grid system est **mobile first**, c'est à dire que les valeurs proposées par défaut s'appliquent à toutes les tailles.
 
-http://csswizardry.com/csswizardry-grids/
+Si des breakpoints sont à prendre en compte, ils sont à base de ``min-width``.
 
 ### Pré-requis
 
@@ -20,11 +20,73 @@ http://csswizardry.com/csswizardry-grids/
 * git : ``git clone https://github.com/webedia-udg/wgs``
 * bower : ``bower install webedia-udg/wgs``
 
-### Options
+### Utilisation
 
-Les options sont des variables qui doivent être initialisées **avant** d'inclure le fichier ``_wgs.scss`` dans votre fichier.
+1. Inclure le fichier _wgs dans votre projet sass
+2. Lancer le setup
 
-**fixedWidths**
+
+```scss
+// style.scss
+
+// Import du WGS. Rien n'est écrit ici
+@import "wgs";
+
+// Setup du WGS. Écriture du code CSS
+@include wgsSetup(
+    $useFixedGrid: true,
+    $fixedWidths: 300px,
+    $gutter: 24px,
+    $breakpoints: (
+        tablet     : 480px,
+        big-tablet : 660px,
+        desk       : 990px
+    )
+);
+
+```
+
+```html
+<!-- index.html (exemple utilisant la conf du dessus) -->
+<div class="grid">
+    <div class="grid__item 1/1 1/2@big-tablet 1/4@desk">
+        CASE 1
+    </div><!--
+ --><div class="grid__item 1/1 1/2@big-tablet 1/4@desk">
+        CASE 2
+    </div><!--
+ --><div class="grid__item 1/1 1/2@tablet 1/3@desk">
+        CASE 3
+    </div><!--
+ --><div class="grid__item 1/1 1/2@tablet 1/3@desk">
+        CASE 4
+    </div>
+</div>
+```
+
+### Setup
+
+Inclure le wgs dans votre projet vous donne accès à **2 mixins** sass :
+
+**wgsSetup**
+
+```sass
+/**
+ * Ecrit les règles
+ * @param list $fixedWidths (false) : les tailles fixes à prendre en compte
+ * @param map $breakpoints (false) : les breakpoints à prendre en compte
+ * @param string $gutter (24px) : taille de la gouttière
+ * @param bool (false) : faut-il gérer les grilles à taille fixe
+ */
+@mixin wgsSetup(
+    $fixedWidths  : false,
+    $breakpoints  : false,
+    $gutter       : 24px,
+    $useFixedGrid : false
+);
+```
+
+``fixedWidths``
 
 Défaut à ``false`` : défini les tailles fixes disponibles. Ex : 
 
@@ -32,7 +94,7 @@ Défaut à ``false`` : défini les tailles fixes disponibles. Ex :
 $fixedWidths: 300px 400px 500px;
 ```
 
-**breakpoints**
+``breakpoints``
 
 Défaut à ``false`` : définit les breakpoints utilisables, tout en leur associant  un nom "humain". Ex :
 
@@ -50,7 +112,7 @@ $breakpoints: (
 );
 ```
 
-**gutter**
+``gutter``
 
 Défaut à ``24px`` : taille des gouttières. Ex : 
 
@@ -58,45 +120,49 @@ Défaut à ``24px`` : taille des gouttières. Ex :
 $gutter: 24px
 ```
 
-**useFixedGrid**
+``useFixedGrid``
 
 Défaut à ``false`` : faut-il inclure les règles liées aux tailles fixes
 
-### Utilisation
+**mq**
 
-
-```scss
-// style.scss
-
-// Options utilisées par wgs_.scss
-$useFixedGrid: true; // Faut-il inclure les règles dédiées aux tailles fixes
-$fixedWidths: 300px; // Quelles tailles fixes faut-il prendre en compte ?
-$breakpoints: (      // Quels breakpoints ? (noms et tailles minimales)
-    tablet     : 480px,
-    big-tablet : 660px,
-    desk       : 990px
-);
-
-
-// Import du WGS
-@import "wgs";
+```sass
+/**
+ * Mixin de media-query
+ *
+ * @param string $breakpoint : nom du breakpoint. Doit correspondre à l'un des
+ *                             éléments de $breakpoints transmis à wgsSetup()
+ * Ex : @include mq(desk){...}
+ */
+@mixin mq($breakpoint) { 
+    @if map-has-key($_wgsBreakpoints, $breakpoint) {
+        @media screen and (min-width: map-get($_wgsBreakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+}
 ```
 
-```html
-<!-- index.html -->
-<div class="grid big-tablet-grid--fixed">
-    <div class="grid__item big-tablet-300px">
-        <div class="bloc bloc--150">
-            <div class="bloc__content">Fixe 300px a partir de grosse tablette</div>
-        </div>
-    </div><!--
- --><div class="grid__item">
-        <div class="bloc bloc--150">
-            <div class="bloc__content">Variable</div>
-        </div>
-    </div>
-</div>
+Exemple 
+
+```sass
+@include mq(desk){
+    .element{
+        margin: 10px;
+    }
+}
 ```
+
+génère : 
+
+```css
+@media screen and (min-width: 990px){
+    .element{
+        margin: 10px;
+    }
+}
+```
+
 
 ### Demo
 
