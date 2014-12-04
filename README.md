@@ -68,13 +68,14 @@ Nommage à base de **BEM** et suffixe pour le breakpoint
 
 Ex :
 
-```
-1/3
-1/3@desk
+```html
+<div class="1/3"></div>
+<div class="1/2 1/3@desk"></div>
+<div class="1/2 300px@tablet"></div>
 
-grid
-grid--fixed
-grid--fixed@desk
+<div class="grid"></div>
+<div class="grid grid--fixed"></div>
+<div class="grid grid--fixed@desk"></div>
 
 ```
 
