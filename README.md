@@ -149,13 +149,7 @@ Défaut à ``false`` : faut-il inclure les règles liées aux tailles fixes
  *                             éléments de $breakpoints transmis à wgsSetup()
  * Ex : @include mq(desk){...}
  */
-@mixin mq($breakpoint) { 
-    @if map-has-key($_wgsBreakpoints, $breakpoint) {
-        @media screen and (min-width: map-get($_wgsBreakpoints, $breakpoint)) {
-            @content;
-        }
-    }
-}
+@mixin mq($breakpoint);
 ```
 
 Exemple 
