@@ -83,7 +83,7 @@ Ex :
 
 Inclure le wgs dans votre projet vous donne accès à **2 mixins** sass :
 
-**wgsSetup**
+### wgsSetup
 
 ```sass
 /**
@@ -139,7 +139,7 @@ $gutter: 24px
 
 Défaut à ``false`` : faut-il inclure les règles liées aux tailles fixes
 
-**mq**
+### mq
 
 ```sass
 /**
