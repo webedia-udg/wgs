@@ -33,7 +33,11 @@
  * Quelques classes de visibilité
  */
 /**
- * Ecriture des règles 
+ * Ecrit les règles
+ * @param list $fixedWidths (false) : les tailles fixes à prendre en compte
+ * @param map $breakpoints (false) : les breakpoints à prendre en compte
+ * @param string $gutter (24px) : taille de la gouttière
+ * @param bool (false) : faut-il gérer les grilles à taille fixe
  */
 html {
   -webkit-box-sizing: border-box;
