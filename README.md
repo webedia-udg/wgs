@@ -22,10 +22,6 @@ Si des breakpoints sont à prendre en compte, ils sont à base de ``min-width``.
 
 ### Utilisation
 
-1. Inclure le fichier _wgs dans votre projet sass
-2. Lancer le setup
-
-
 ```scss
 // style.scss
 
@@ -62,6 +58,24 @@ Si des breakpoints sont à prendre en compte, ils sont à base de ``min-width``.
         CASE 4
     </div>
 </div>
+```
+
+### Nomenclature des classes
+
+Nommage à base de **BEM** et suffixe pour le breakpoint
+
+``width[--modifier][@breakpoint]``
+
+Ex :
+
+```
+1/3
+1/3@desk
+
+grid
+grid--fixed
+grid--fixed@desk
+
 ```
 
 ### Setup
