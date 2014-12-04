@@ -39,7 +39,7 @@
  *
  * @param string $breakpoint (false) => Le préfixe.
  */
-@mixin grid($gutter, $useFixedGrid: false, $breakpoint:false) {
+@mixin wgsGrid($gutter, $useFixedGrid: false, $breakpoint:false) {
     $sufix: "";
     @if $breakpoint{
         $sufix: "@#{$breakpoint}";
@@ -123,7 +123,7 @@
  * 
  * @param String $breakpoint : le nom du breakpoint à prendre en compte
  */
-@mixin ratioWidths($breakpoint:false){
+@mixin wgsRatioWidths($breakpoint:false){
 
     $sufix: "";
     @if $breakpoint{
@@ -205,7 +205,7 @@
  * Ecrit des classes de largeur fixe.
  * @param String $prefix : le préfixe à ajouter devant chaque classe
  */
-@mixin fixedWidth($size, $gutter, $breakpoint:false) {
+@mixin wgsFixedWidth($size, $gutter, $breakpoint:false) {
 
     $sufix: "";
     @if $breakpoint{
@@ -225,7 +225,7 @@
 /**
  * Quelques classes de visibilité
  */
-@mixin hidden($breakpoint: false) {
+@mixin wgsHidden($breakpoint: false) {
 
     $sufix: "";
     @if $breakpoint{
@@ -237,7 +237,7 @@
     }    
 }
 
-@mixin visible($breakpoint: false) {
+@mixin wgsVisible($breakpoint: false) {
 
     $sufix: "";
     @if $breakpoint{
@@ -288,14 +288,14 @@
 
 
     // 2/ Ratios sans responsive
-    @include grid($gutter, $useFixedGrid);
-    @include ratioWidths;
+    @include wgsGrid($gutter, $useFixedGrid);
+    @include wgsRatioWidths;
 
 
     // 3/ Tailles fixes sans responsive
     @if $fixedWidths {
         @each $width in $fixedWidths {
-            @include fixedWidth($width, $gutter);
+            @include wgsFixedWidth($width, $gutter);
         }
     }
 
@@ -305,20 +305,20 @@
         
         @each $breakpoint, $size in $breakpoints {
             @include mq($breakpoint) {
-                @include grid($gutter, $useFixedGrid, $breakpoint);
-                @include ratioWidths($breakpoint);
-                @include hidden($breakpoint);
+                @include wgsGrid($gutter, $useFixedGrid, $breakpoint);
+                @include wgsRatioWidths($breakpoint);
+                @include wgsHidden($breakpoint);
 
 
                 @if $fixedWidths {
                     @each $width in $fixedWidths {
-                        @include fixedWidth($width, $gutter, $breakpoint);
+                        @include wgsFixedWidth($width, $gutter, $breakpoint);
                     }
                 }
             }
 
             @include mqUntil($breakpoint, $size){
-                @include visible($breakpoint);
+                @include wgsVisible($breakpoint);
             }
         }
     }
