@@ -1,11 +1,16 @@
 Webedia Grid System (WGS)
 ===
 
-####WGS est un système de grille responsive, avec largeurs fixes ou proportionnelles.
+####WGS est un système de grille responsive, avec largeurs fixes ou proportionnelles
 
 --- 
 
 Ce projet est très fortement inspiré par le système de grille du framework de Harry Roberts https://github.com/csswizardry/csswizardry-grids
+
+Il repose sur les 2 principes essentiels de l'[OOCSS](https://github.com/stubbornella/oocss/wiki) :
+
+* Séparation de la structure et de l'apparence
+* Separation du conteneur du contenu
 
 Ce grid system est **mobile first**, c'est à dire que les valeurs proposées par défaut s'appliquent à toutes les tailles.
 
