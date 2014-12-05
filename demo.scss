@@ -2,7 +2,7 @@
 @import "wgs";
 
 @include wgsSetup(
-    $fixedWidths : 300px,
+    $fixedWidths : 200px 300px,
     $gutter      : 12px,
     $breakpoints : (
         tablet     : 480px 16px,

@@ -222,6 +222,12 @@ html {
 [class~="11/12"] {
   width: 91.6666666% !important; }
 
+[class~="200px"] {
+  width: 200px !important; }
+
+.grid__item + [class~="200px"] {
+  width: 212px !important; }
+
 [class~="300px"] {
   width: 300px !important; }
 
@@ -409,6 +415,12 @@ html {
   [class~="hidden@tablet"] {
     display: none !important; }
 
+  [class~="200px@tablet"] {
+    width: 200px !important; }
+
+  .grid__item + [class~="200px@tablet"] {
+    width: 216px !important; }
+
   [class~="300px@tablet"] {
     width: 300px !important; }
 
@@ -433,6 +445,12 @@ html {
     .grid[class~="grid--fixed@tablet"] > .grid__item:first-child {
       padding-left: 0; } }
 @media screen and (min-width: 660px) {
+  [class~="200px@tablet"] {
+    width: 200px !important; }
+
+  .grid__item + [class~="200px@tablet"] {
+    width: 220px !important; } }
+@media screen and (min-width: 660px) {
   [class~="300px@tablet"] {
     width: 300px !important; }
 
@@ -453,6 +471,12 @@ html {
       padding-top: 0; }
     .grid[class~="grid--fixed@tablet"] > .grid__item:first-child {
       padding-left: 0; } }
+@media screen and (min-width: 990px) {
+  [class~="200px@tablet"] {
+    width: 200px !important; }
+
+  .grid__item + [class~="200px@tablet"] {
+    width: 224px !important; } }
 @media screen and (min-width: 990px) {
   [class~="300px@tablet"] {
     width: 300px !important; }
@@ -640,6 +664,12 @@ html {
   [class~="hidden@big-tablet"] {
     display: none !important; }
 
+  [class~="200px@big-tablet"] {
+    width: 200px !important; }
+
+  .grid__item + [class~="200px@big-tablet"] {
+    width: 220px !important; }
+
   [class~="300px@big-tablet"] {
     width: 300px !important; }
 
@@ -663,6 +693,12 @@ html {
       padding-top: 0; }
     .grid[class~="grid--fixed@big-tablet"] > .grid__item:first-child {
       padding-left: 0; } }
+@media screen and (min-width: 990px) {
+  [class~="200px@big-tablet"] {
+    width: 200px !important; }
+
+  .grid__item + [class~="200px@big-tablet"] {
+    width: 224px !important; } }
 @media screen and (min-width: 990px) {
   [class~="300px@big-tablet"] {
     width: 300px !important; }
@@ -849,6 +885,12 @@ html {
 
   [class~="hidden@desk"] {
     display: none !important; }
+
+  [class~="200px@desk"] {
+    width: 200px !important; }
+
+  .grid__item + [class~="200px@desk"] {
+    width: 224px !important; }
 
   [class~="300px@desk"] {
     width: 300px !important; }

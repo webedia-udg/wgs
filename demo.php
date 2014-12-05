@@ -32,7 +32,7 @@ function c(){
         <code>// Configuration
 
 @include wgsSetup(
-    $fixedWidths : 300px,
+    $fixedWidths : 200px 300px,
     $gutter      : 12px,
     $breakpoints : (
         tablet     : 480px 16px,
@@ -245,6 +245,28 @@ function c(){
     
          <div class="grid grid--fixed@big-tablet">
             <div class="grid__item 300px@big-tablet">
+                <div class="bloc bloc--150" style="background-color: <?php echo c() ?>">
+                    <div class="bloc__content">A[1]</div>
+                </div>
+
+            </div><!--
+         --><div class="grid__item">
+                <div class="bloc bloc--150" style="background-color: <?php echo c() ?>">
+                    <div class="bloc__content">A[2]</div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="title">Grille 3 colonnes en grande tablette, dont celles de gauche fixes à 200px et 300px</h3>
+    
+         <div class="grid grid--fixed@tablet">
+            <div class="grid__item 200px@tablet">
+                <div class="bloc bloc--150" style="background-color: <?php echo c() ?>">
+                    <div class="bloc__content">A[1]</div>
+                </div>
+
+            </div><!--
+         --><div class="grid__item 300px@big-tablet">
                 <div class="bloc bloc--150" style="background-color: <?php echo c() ?>">
                     <div class="bloc__content">A[1]</div>
                 </div>
