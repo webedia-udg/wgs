@@ -18,12 +18,12 @@
  * Ajoute les classes de grilles (.grid, .grid--fixed, .grid__item),
  * éventuellement préfixées. Gère les relations entre les .grid & .grid__item
  *
- * @param string $breakpoint (false) => Le préfixe.
+ * @param string $breakpointName (false) => Le préfixe.
  */
 /**
  * Ecrit des classes de largeur ratio.
  * 
- * @param String $breakpoint : le nom du breakpoint à prendre en compte
+ * @param String $breakpointName : le nom du breakpoint à prendre en compte
  */
 /**
  * Ecrit des classes de largeur fixe.
@@ -33,11 +33,10 @@
  * Quelques classes de visibilité
  */
 /**
- * Ecrit les règles
+ * Ecriture des règles
  * @param list $fixedWidths (false) : les tailles fixes à prendre en compte
  * @param map $breakpoints (false) : les breakpoints à prendre en compte
- * @param string $gutter (24px) : taille de la gouttière
- * @param bool (false) : faut-il gérer les grilles à taille fixe
+ * @param string $gutter (12px) : taille de la gouttière
  */
 html {
   -webkit-box-sizing: border-box;
@@ -52,16 +51,12 @@ html {
   box-sizing: border-box; }
 
 [class~="grid"] {
-  display: block;
-  margin-left: -24px;
-  margin-top: -24px; }
+  display: block; }
   [class~="grid"] + [class~="grid"] {
     margin-top: 0; }
   [class~="grid"] > .grid__item {
     display: inline-block;
     vertical-align: top;
-    padding-left: 24px;
-    padding-top: 24px;
     width: 100%;
     direction: ltr;
     text-align: left; }
@@ -84,17 +79,27 @@ html {
   width: 100%;
   display: table;
   table-layout: fixed;
-  margin-left: 0;
-  margin-top: 24px; }
+  margin-left: 0; }
   .grid .grid[class~="grid--fixed"] {
     margin-top: 0; }
   .grid[class~="grid--fixed"] > .grid__item {
     display: table-cell;
-    vertical-align: top;
-    padding-left: 0;
+    vertical-align: top; }
+
+[class~="grid"] {
+  margin-left: -12px;
+  margin-top: -12px; }
+  [class~="grid"] > .grid__item {
+    padding-left: 12px;
+    padding-top: 12px; }
+
+.grid[class~="grid--fixed"] {
+  margin-top: 12px; }
+  .grid[class~="grid--fixed"] > .grid__item {
+    padding-left: 12px;
     padding-top: 0; }
-    .grid[class~="grid--fixed"] > .grid__item + .grid__item {
-      padding-left: 24px; }
+  .grid[class~="grid--fixed"] > .grid__item:first-child {
+    padding-left: 0; }
 
 [class~="1/1"] {
   width: 100% !important; }
@@ -211,20 +216,16 @@ html {
   width: 300px !important; }
 
 .grid__item + [class~="300px"] {
-  width: 324px !important; }
+  width: 312px !important; }
 
 @media screen and (min-width: 480px) {
   [class~="grid@tablet"] {
-    display: block;
-    margin-left: -24px;
-    margin-top: -24px; }
+    display: block; }
     [class~="grid@tablet"] + [class~="grid@tablet"] {
       margin-top: 0; }
     [class~="grid@tablet"] > .grid__item {
       display: inline-block;
       vertical-align: top;
-      padding-left: 24px;
-      padding-top: 24px;
       width: 100%;
       direction: ltr;
       text-align: left; }
@@ -247,17 +248,42 @@ html {
     width: 100%;
     display: table;
     table-layout: fixed;
-    margin-left: 0;
-    margin-top: 24px; }
+    margin-left: 0; }
     .grid .grid[class~="grid--fixed@tablet"] {
       margin-top: 0; }
     .grid[class~="grid--fixed@tablet"] > .grid__item {
       display: table-cell;
-      vertical-align: top;
-      padding-left: 0;
+      vertical-align: top; }
+
+  [class~="grid"] {
+    margin-left: -16px;
+    margin-top: -16px; }
+    [class~="grid"] > .grid__item {
+      padding-left: 16px;
+      padding-top: 16px; }
+
+  .grid[class~="grid--fixed"] {
+    margin-top: 16px; }
+    .grid[class~="grid--fixed"] > .grid__item {
+      padding-left: 16px;
       padding-top: 0; }
-      .grid[class~="grid--fixed@tablet"] > .grid__item + .grid__item {
-        padding-left: 24px; }
+    .grid[class~="grid--fixed"] > .grid__item:first-child {
+      padding-left: 0; }
+
+  [class~="grid@tablet"] {
+    margin-left: -16px;
+    margin-top: -16px; }
+    [class~="grid@tablet"] > .grid__item {
+      padding-left: 16px;
+      padding-top: 16px; }
+
+  .grid[class~="grid--fixed@tablet"] {
+    margin-top: 16px; }
+    .grid[class~="grid--fixed@tablet"] > .grid__item {
+      padding-left: 16px;
+      padding-top: 0; }
+    .grid[class~="grid--fixed@tablet"] > .grid__item:first-child {
+      padding-left: 0; }
 
   [class~="1/1@tablet"] {
     width: 100% !important; }
@@ -377,22 +403,60 @@ html {
     width: 300px !important; }
 
   .grid__item + [class~="300px@tablet"] {
-    width: 324px !important; } }
+    width: 316px !important; } }
 @media screen and (max-width: 479px) {
   [class~="visible@tablet"] {
     display: none !important; } }
 @media screen and (min-width: 660px) {
-  [class~="grid@big-tablet"] {
-    display: block;
+  [class~="grid@tablet"] {
+    margin-left: -20px;
+    margin-top: -20px; }
+    [class~="grid@tablet"] > .grid__item {
+      padding-left: 20px;
+      padding-top: 20px; }
+
+  .grid[class~="grid--fixed@tablet"] {
+    margin-top: 20px; }
+    .grid[class~="grid--fixed@tablet"] > .grid__item {
+      padding-left: 20px;
+      padding-top: 0; }
+    .grid[class~="grid--fixed@tablet"] > .grid__item:first-child {
+      padding-left: 0; } }
+@media screen and (min-width: 660px) {
+  [class~="300px@tablet"] {
+    width: 300px !important; }
+
+  .grid__item + [class~="300px@tablet"] {
+    width: 320px !important; } }
+@media screen and (min-width: 990px) {
+  [class~="grid@tablet"] {
     margin-left: -24px;
     margin-top: -24px; }
+    [class~="grid@tablet"] > .grid__item {
+      padding-left: 24px;
+      padding-top: 24px; }
+
+  .grid[class~="grid--fixed@tablet"] {
+    margin-top: 24px; }
+    .grid[class~="grid--fixed@tablet"] > .grid__item {
+      padding-left: 24px;
+      padding-top: 0; }
+    .grid[class~="grid--fixed@tablet"] > .grid__item:first-child {
+      padding-left: 0; } }
+@media screen and (min-width: 990px) {
+  [class~="300px@tablet"] {
+    width: 300px !important; }
+
+  .grid__item + [class~="300px@tablet"] {
+    width: 324px !important; } }
+@media screen and (min-width: 660px) {
+  [class~="grid@big-tablet"] {
+    display: block; }
     [class~="grid@big-tablet"] + [class~="grid@big-tablet"] {
       margin-top: 0; }
     [class~="grid@big-tablet"] > .grid__item {
       display: inline-block;
       vertical-align: top;
-      padding-left: 24px;
-      padding-top: 24px;
       width: 100%;
       direction: ltr;
       text-align: left; }
@@ -415,17 +479,42 @@ html {
     width: 100%;
     display: table;
     table-layout: fixed;
-    margin-left: 0;
-    margin-top: 24px; }
+    margin-left: 0; }
     .grid .grid[class~="grid--fixed@big-tablet"] {
       margin-top: 0; }
     .grid[class~="grid--fixed@big-tablet"] > .grid__item {
       display: table-cell;
-      vertical-align: top;
-      padding-left: 0;
+      vertical-align: top; }
+
+  [class~="grid"] {
+    margin-left: -20px;
+    margin-top: -20px; }
+    [class~="grid"] > .grid__item {
+      padding-left: 20px;
+      padding-top: 20px; }
+
+  .grid[class~="grid--fixed"] {
+    margin-top: 20px; }
+    .grid[class~="grid--fixed"] > .grid__item {
+      padding-left: 20px;
       padding-top: 0; }
-      .grid[class~="grid--fixed@big-tablet"] > .grid__item + .grid__item {
-        padding-left: 24px; }
+    .grid[class~="grid--fixed"] > .grid__item:first-child {
+      padding-left: 0; }
+
+  [class~="grid@big-tablet"] {
+    margin-left: -20px;
+    margin-top: -20px; }
+    [class~="grid@big-tablet"] > .grid__item {
+      padding-left: 20px;
+      padding-top: 20px; }
+
+  .grid[class~="grid--fixed@big-tablet"] {
+    margin-top: 20px; }
+    .grid[class~="grid--fixed@big-tablet"] > .grid__item {
+      padding-left: 20px;
+      padding-top: 0; }
+    .grid[class~="grid--fixed@big-tablet"] > .grid__item:first-child {
+      padding-left: 0; }
 
   [class~="1/1@big-tablet"] {
     width: 100% !important; }
@@ -545,22 +634,39 @@ html {
     width: 300px !important; }
 
   .grid__item + [class~="300px@big-tablet"] {
-    width: 324px !important; } }
+    width: 320px !important; } }
 @media screen and (max-width: 659px) {
   [class~="visible@big-tablet"] {
     display: none !important; } }
 @media screen and (min-width: 990px) {
-  [class~="grid@desk"] {
-    display: block;
+  [class~="grid@big-tablet"] {
     margin-left: -24px;
     margin-top: -24px; }
+    [class~="grid@big-tablet"] > .grid__item {
+      padding-left: 24px;
+      padding-top: 24px; }
+
+  .grid[class~="grid--fixed@big-tablet"] {
+    margin-top: 24px; }
+    .grid[class~="grid--fixed@big-tablet"] > .grid__item {
+      padding-left: 24px;
+      padding-top: 0; }
+    .grid[class~="grid--fixed@big-tablet"] > .grid__item:first-child {
+      padding-left: 0; } }
+@media screen and (min-width: 990px) {
+  [class~="300px@big-tablet"] {
+    width: 300px !important; }
+
+  .grid__item + [class~="300px@big-tablet"] {
+    width: 324px !important; } }
+@media screen and (min-width: 990px) {
+  [class~="grid@desk"] {
+    display: block; }
     [class~="grid@desk"] + [class~="grid@desk"] {
       margin-top: 0; }
     [class~="grid@desk"] > .grid__item {
       display: inline-block;
       vertical-align: top;
-      padding-left: 24px;
-      padding-top: 24px;
       width: 100%;
       direction: ltr;
       text-align: left; }
@@ -583,17 +689,42 @@ html {
     width: 100%;
     display: table;
     table-layout: fixed;
-    margin-left: 0;
-    margin-top: 24px; }
+    margin-left: 0; }
     .grid .grid[class~="grid--fixed@desk"] {
       margin-top: 0; }
     .grid[class~="grid--fixed@desk"] > .grid__item {
       display: table-cell;
-      vertical-align: top;
-      padding-left: 0;
+      vertical-align: top; }
+
+  [class~="grid"] {
+    margin-left: -24px;
+    margin-top: -24px; }
+    [class~="grid"] > .grid__item {
+      padding-left: 24px;
+      padding-top: 24px; }
+
+  .grid[class~="grid--fixed"] {
+    margin-top: 24px; }
+    .grid[class~="grid--fixed"] > .grid__item {
+      padding-left: 24px;
       padding-top: 0; }
-      .grid[class~="grid--fixed@desk"] > .grid__item + .grid__item {
-        padding-left: 24px; }
+    .grid[class~="grid--fixed"] > .grid__item:first-child {
+      padding-left: 0; }
+
+  [class~="grid@desk"] {
+    margin-left: -24px;
+    margin-top: -24px; }
+    [class~="grid@desk"] > .grid__item {
+      padding-left: 24px;
+      padding-top: 24px; }
+
+  .grid[class~="grid--fixed@desk"] {
+    margin-top: 24px; }
+    .grid[class~="grid--fixed@desk"] > .grid__item {
+      padding-left: 24px;
+      padding-top: 0; }
+    .grid[class~="grid--fixed@desk"] > .grid__item:first-child {
+      padding-left: 0; }
 
   [class~="1/1@desk"] {
     width: 100% !important; }

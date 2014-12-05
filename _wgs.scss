@@ -14,17 +14,18 @@
  *                             éléments de $breakpoints transmis à wgsSetup()
  * Ex : @include mq(desk){...}
  */
-@mixin mq($breakpoint) { 
-    @if map-has-key($_wgsBreakpoints, $breakpoint) {
-        @media screen and (min-width: map-get($_wgsBreakpoints, $breakpoint)) {
+@mixin mq($breakpointName) { 
+    @if map-has-key($_wgsBreakpoints, $breakpointName) {
+        $size: nth(map-get($_wgsBreakpoints, $breakpointName),1);
+        @media screen and (min-width: $size) {
             @content;
         }
     }
 }
 
-@mixin mqUntil($breakpoint, $size) { 
-    @if map-has-key($_wgsBreakpoints, $breakpoint) {
-        $size: $size - 1px;
+@mixin mqUntil($breakpointName) { 
+    @if map-has-key($_wgsBreakpoints, $breakpointName) {
+        $size: nth(map-get($_wgsBreakpoints, $breakpointName),1) - 1px;
         @media screen and (max-width: $size ) {
             @content;
         }
@@ -37,20 +38,16 @@
  * Ajoute les classes de grilles (.grid, .grid--fixed, .grid__item),
  * éventuellement préfixées. Gère les relations entre les .grid & .grid__item
  *
- * @param string $breakpoint (false) => Le préfixe.
+ * @param string $breakpointName (false) => Le préfixe.
  */
-@mixin wgsGrid($gutter, $useFixedGrid: false, $breakpoint:false) {
+@mixin wgsGrid($fixedWidths: false, $breakpointName:false) {
     $sufix: "";
-    @if $breakpoint{
-        $sufix: "@#{$breakpoint}";
+    @if $breakpointName{
+        $sufix: "@#{$breakpointName}";
     }
 
     [class~="grid#{$sufix}"] {
         display: block;
-        margin-left: -$gutter;
-        margin-top: -$gutter;
-
-
 
         & + [class~="grid#{$sufix}"] {
             margin-top: 0;
@@ -59,8 +56,6 @@
         & > .grid__item {
             display: inline-block;
             vertical-align: top;
-            padding-left: $gutter;
-            padding-top: $gutter;
             width: 100%;
 
             // Pour remettre bien l'ordre au cas où la grille serait inversée
@@ -89,7 +84,7 @@
         }
     }
 
-    @if $useFixedGrid {
+    @if $fixedWidths {
 
         .grid[class~="grid--fixed#{$sufix}"] {
             width: 100%;
@@ -97,7 +92,7 @@
             table-layout: fixed;
             margin-left: 0;
 
-            margin-top: $gutter;
+            // Pas de margin top pour les grilles fixes dans une  autre grille
             .grid & {
                 margin-top: 0;
             }
@@ -106,28 +101,58 @@
             > .grid__item {
                 display: table-cell;
                 vertical-align: top;
-                padding-left: 0;
-                padding-top: 0;
-
-                & + .grid__item {
-                    padding-left: $gutter;
-                }
             }
         }
     }
+}
+
+@mixin wgsGridGutter($gutter, $fixedWidths: false, $breakpointName:false) {
+    $sufix: "";
+    @if $breakpointName{
+        $sufix: "@#{$breakpointName}";
+    }
+
+    [class~="grid#{$sufix}"] {
+        margin-left: -$gutter;
+        margin-top: -$gutter;
+
+        & > .grid__item {
+            padding-left: $gutter;
+            padding-top: $gutter;
+        }
+
+    }
+
+    @if $fixedWidths {
+
+        .grid[class~="grid--fixed#{$sufix}"] {
+            margin-top: $gutter;
+
+            > .grid__item {
+                padding-left: $gutter;
+                padding-top: 0;
+            }
+
+            > .grid__item:first-child {
+                padding-left: 0;
+            }
+
+        }
+    }
+
 }
 
 
 /**
  * Ecrit des classes de largeur ratio.
  * 
- * @param String $breakpoint : le nom du breakpoint à prendre en compte
+ * @param String $breakpointName : le nom du breakpoint à prendre en compte
  */
-@mixin wgsRatioWidths($breakpoint:false){
+@mixin wgsRatioWidths($breakpointName:false){
 
     $sufix: "";
-    @if $breakpoint{
-        $sufix: "@#{$breakpoint}";
+    @if $breakpointName{
+        $sufix: "@#{$breakpointName}";
     }
 
     [class~="1/1#{$sufix}"]       { width: 100% !important; }
@@ -205,11 +230,11 @@
  * Ecrit des classes de largeur fixe.
  * @param String $prefix : le préfixe à ajouter devant chaque classe
  */
-@mixin wgsFixedWidth($size, $gutter, $breakpoint:false) {
+@mixin wgsFixedWidth($size, $gutter, $breakpointName:false) {
 
     $sufix: "";
-    @if $breakpoint{
-        $sufix: "@#{$breakpoint}";
+    @if $breakpointName{
+        $sufix: "@#{$breakpointName}";
     }
 
     [class~="#{$size}#{$sufix}"] {
@@ -225,11 +250,11 @@
 /**
  * Quelques classes de visibilité
  */
-@mixin wgsHidden($breakpoint: false) {
+@mixin wgsHidden($breakpointName: false) {
 
     $sufix: "";
-    @if $breakpoint{
-        $sufix: "@#{$breakpoint}";
+    @if $breakpointName{
+        $sufix: "@#{$breakpointName}";
     }
 
     [class~="hidden#{$sufix}"] {
@@ -237,11 +262,11 @@
     }    
 }
 
-@mixin wgsVisible($breakpoint: false) {
+@mixin wgsVisible($breakpointName: false) {
 
     $sufix: "";
-    @if $breakpoint{
-        $sufix: "@#{$breakpoint}";
+    @if $breakpointName{
+        $sufix: "@#{$breakpointName}";
     }
 
     [class~="visible#{$sufix}"] {
@@ -250,17 +275,15 @@
 }
 
 /**
- * Ecrit les règles
+ * Ecriture des règles
  * @param list $fixedWidths (false) : les tailles fixes à prendre en compte
  * @param map $breakpoints (false) : les breakpoints à prendre en compte
- * @param string $gutter (24px) : taille de la gouttière
- * @param bool (false) : faut-il gérer les grilles à taille fixe
+ * @param string $gutter (12px) : taille de la gouttière
  */
 @mixin wgsSetup(
     $fixedWidths  : false,
     $breakpoints  : false,
-    $gutter       : 24px,
-    $useFixedGrid : false
+    $gutter       : 12px
 ){
     // Global namespaced variable, utilisée par @include mq() pour éviter 
     // d'avoir à lui filer le tableau à chaque fois
@@ -288,7 +311,8 @@
 
 
     // 2/ Ratios sans responsive
-    @include wgsGrid($gutter, $useFixedGrid);
+    @include wgsGrid($fixedWidths);
+    @include wgsGridGutter($gutter, $fixedWidths);
     @include wgsRatioWidths;
 
 
@@ -303,22 +327,61 @@
     // 4/ Gestion des ratios et tailles fixes en responsive
     @if $breakpoints {
         
-        @each $breakpoint, $size in $breakpoints {
-            @include mq($breakpoint) {
-                @include wgsGrid($gutter, $useFixedGrid, $breakpoint);
-                @include wgsRatioWidths($breakpoint);
-                @include wgsHidden($breakpoint);
+        @for $i from 1 through length($breakpoints) {
 
+            $breakpointData   : nth(map-values($breakpoints), $i);
+            $breakpointName   : nth(map-keys($breakpoints), $i);
+            $breakpointSize   : nth($breakpointData,1);
+            $breakpointGutter : nth($breakpointData,2);
+
+
+            @include mq($breakpointName) {
+                @include wgsGrid($fixedWidths, $breakpointName);
+                @include wgsGridGutter($breakpointGutter, $fixedWidths);
+                @include wgsGridGutter($breakpointGutter, $fixedWidths, $breakpointName);
+                @include wgsRatioWidths($breakpointName);
+                @include wgsHidden($breakpointName);
 
                 @if $fixedWidths {
                     @each $width in $fixedWidths {
-                        @include wgsFixedWidth($width, $gutter, $breakpoint);
+                        @include wgsFixedWidth($width, $breakpointGutter, $breakpointName);
                     }
                 }
             }
 
-            @include mqUntil($breakpoint, $size){
-                @include wgsVisible($breakpoint);
+            @include mqUntil($breakpointName){
+                @include wgsVisible($breakpointName);
+            }
+
+            // Pour chaque breakpoint, à cause des tailles fixes,
+            // on regarde les breakpoints supérieurs et on applique des valeurs
+            // spécifiques au breakpoint courant, valables pour les breakpoints
+            // supérieurs.
+            // 
+            // Ex : .300px@big-tablet
+            // avec un gutter de 18px en big-tablet, qui doit être de 24px en
+            // desktop, doit s'appliquer, même s'il n'y a pas la classe
+            // .300px@desk
+            @if $i + 1 <= length($breakpoints){
+                @for $j from $i + 1 through length($breakpoints) {
+                    $nextBreakpointData   : nth(map-values($breakpoints), $j);
+                    $nextBreakpointName   : nth(map-keys($breakpoints), $j);
+                    $nextBreakpointSize   : nth($nextBreakpointData,1);
+                    $nextBreakpointGutter : nth($nextBreakpointData,2);
+
+                    @include mq($nextBreakpointName) {
+                        @include wgsGridGutter($nextBreakpointGutter, $fixedWidths, $breakpointName);
+                    }
+
+                    @if $fixedWidths {
+                        @each $width in $fixedWidths {
+
+                            @include mq($nextBreakpointName) {
+                                @include wgsFixedWidth($width, $nextBreakpointGutter, $breakpointName);
+                            }
+                        }
+                    }
+                }
             }
         }
     }

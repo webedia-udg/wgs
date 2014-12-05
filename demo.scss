@@ -2,12 +2,12 @@
 @import "wgs";
 
 @include wgsSetup(
-    $useFixedGrid: true,
-    $fixedWidths: 300px,
-    $breakpoints: (
-        tablet     : 480px,
-        big-tablet : 660px,
-        desk       : 990px
+    $fixedWidths : 300px,
+    $gutter      : 12px,
+    $breakpoints : (
+        tablet     : 480px 16px,
+        big-tablet : 660px 20px,
+        desk       : 990px 24px
     )
 );
 
