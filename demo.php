@@ -29,16 +29,17 @@ function c(){
 
         
 
-        <code>
-            // Configuration<br/><br/>
-            $useFixedGrid: true;<br/>
-            $fixedWidths: 300px;<br/>
-            $breakpoints: (<br/>
-                tablet     : 480px,<br/>
-                big-tablet : 660px,<br/>
-                desk       : 990px<br/>
-            );<br/>
-        </code>
+        <code>// Configuration
+
+@include wgsSetup(
+    $fixedWidths : 300px,
+    $gutter      : 12px,
+    $breakpoints : (
+        tablet     : 480px 16px,
+        big-tablet : 660px 20px,
+        desk       : 990px 24px
+    )
+);</code>
 
         <h3 class="title">Grilles imbriquées avec ratios</h3>
 

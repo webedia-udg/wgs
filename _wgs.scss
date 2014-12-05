@@ -33,12 +33,12 @@
 }
 
 
-
 /**
  * Ajoute les classes de grilles (.grid, .grid--fixed, .grid__item),
  * éventuellement préfixées. Gère les relations entre les .grid & .grid__item
  *
- * @param string $breakpointName (false) => Le préfixe.
+ * @param list $fixedWidths (false) => Liste de tailles fixes à gérer
+ * @param string $breakpointName (false) => Le nom du breakpoint
  */
 @mixin wgsGrid($fixedWidths: false, $breakpointName:false) {
     $sufix: "";
@@ -106,6 +106,12 @@
     }
 }
 
+/**
+ * Gestion des gouttières
+ * @param string $gutter => Taille de la gouttière
+ * @param list $fixedWidths (false) => Liste de tailles fixes à gérer.
+ * @param string $breakpointName (false) => Le nom du breakpoint
+ */
 @mixin wgsGridGutter($gutter, $fixedWidths: false, $breakpointName:false) {
     $sufix: "";
     @if $breakpointName{
@@ -228,7 +234,9 @@
 
 /**
  * Ecrit des classes de largeur fixe.
- * @param String $prefix : le préfixe à ajouter devant chaque classe
+ * @param string $size => taille à géger. Ex : 300px
+ * @param string $gutter => Taille de la gouttière. Ex : 24px
+ * @param string $breakpointName (false) => Le nom du breakpoint
  */
 @mixin wgsFixedWidth($size, $gutter, $breakpointName:false) {
 
@@ -249,6 +257,7 @@
 
 /**
  * Quelques classes de visibilité
+ * @param string $breakpointName (false) => Le nom du breakpoint
  */
 @mixin wgsHidden($breakpointName: false) {
 
@@ -278,7 +287,7 @@
  * Ecriture des règles
  * @param list $fixedWidths (false) : les tailles fixes à prendre en compte
  * @param map $breakpoints (false) : les breakpoints à prendre en compte
- * @param string $gutter (12px) : taille de la gouttière
+ * @param string $gutter (12px) : taille de la gouttière par défaut
  */
 @mixin wgsSetup(
     $fixedWidths  : false,

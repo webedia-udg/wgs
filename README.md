@@ -30,13 +30,12 @@ Si des breakpoints sont à prendre en compte, ils sont à base de ``min-width``.
 
 // Setup du WGS. Écriture du code CSS
 @include wgsSetup(
-    $useFixedGrid: true,
     $fixedWidths: 300px,
-    $gutter: 24px,
+    $gutter: 12px,
     $breakpoints: (
-        tablet     : 480px,
-        big-tablet : 660px,
-        desk       : 990px
+        tablet     : 480px 12px,
+        big-tablet : 660px 18px,
+        desk       : 990px 24px
     )
 );
 
@@ -97,7 +96,6 @@ Inclure le wgs dans votre projet vous donne accès à **2 mixins** sass :
     $fixedWidths  : false,
     $breakpoints  : false,
     $gutter       : 24px,
-    $useFixedGrid : false
 );
 ```
 
@@ -116,28 +114,30 @@ Défaut à ``false`` : définit les breakpoints utilisables, tout en leur associ
 ```scss
 // 3 breakpoints
 $breakpoints: (
-    tablet     : 480px,
-    big-tablet : 660px,
-    desk       : 990px
+    tablet     : 480px 12px,
+    big-tablet : 660px 18px,
+    desk       : 990px 24px
 );
 
 // 1 breakpoint
 $breakpoints: (
-    desktop: 990px
+    desktop: 990px 24px
 );
 ```
 
+Pour chaque breakpoint
+
+* La clé est le nom du breakpoint qui sera utilisé pour le suffixe ``@breakpoint`` en fin de classe.
+* La valeur comporte deux valeurs. La première est la taille de début du breakpoint. Le second paramètre est la taille de la gouttière correspondante.
+
+
 ``gutter``
 
-Défaut à ``24px`` : taille des gouttières. Ex : 
+Défaut à ``24px`` : taille par défaut des gouttières. Ex : 
 
 ```scss
 $gutter: 24px
 ```
-
-``useFixedGrid``
-
-Défaut à ``false`` : faut-il inclure les règles liées aux tailles fixes
 
 ### mq
 
@@ -149,7 +149,7 @@ Défaut à ``false`` : faut-il inclure les règles liées aux tailles fixes
  *                             éléments de $breakpoints transmis à wgsSetup()
  * Ex : @include mq(desk){...}
  */
-@mixin mq($breakpoint);
+@mixin mq($breakpointName);
 ```
 
 Exemple 
