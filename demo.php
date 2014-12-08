@@ -24,9 +24,6 @@ function c(){
 
         <h1 class="main-title">Démonstration</h3>
 
-
-        
-
         <code>// Configuration
 
 @include wgsSetup(
@@ -38,6 +35,9 @@ function c(){
         desk       : 990px 24px
     )
 );</code>
+
+        <p><b>note :</b> Les .grid__item ne doivent avoir aucun espace entre eux, ou alors des espaces commentaires (méthode utilisée ici). Ce façon de faire est due à l'affichage en display-block de ces éléments.</p>
+
 
         <h3 class="title">Grilles imbriquées avec ratios</h3>
 
