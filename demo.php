@@ -18,8 +18,6 @@ function c(){
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="demo.css" media="screen"/>
-</head>
-
 <body>
 
     <div class="wrapper">
@@ -241,9 +239,89 @@ function c(){
         </div>
 
 
+        <code>&lt;div class="grid">
+
+    &lt;div class="grid__item 1/2@tablet">
+
+        &lt;div class="grid"> 
+            &lt;div class="grid__item">&lt;/div>
+            &lt;div class="grid__item 1/3@big-tablet">&lt;/div>
+            &lt;div class="grid__item 2/3@big-tablet">&lt;/div>
+        &lt;/div>
+
+    &lt;/div>
+
+    &lt;div class="grid__item 1/2@tablet">
+    
+        &lt;div class="grid">
+            &lt;div class="grid__item 1/2">&lt;/div>
+            &lt;div class="grid__item 1/2">&lt;/div>
+            &lt;div class="grid__item 1/2@tablet 1/3@big-tablet">&lt;/div>
+            &lt;div class="grid__item 1/2@tablet 1/3@big-tablet">&lt;/div>
+            &lt;div class="grid__item 1/3@big-tablet">&lt;/div>
+
+        &lt;/div>
+
+    &lt;/div>
+
+    &lt;div class="grid__item 1/3 1/2@tablet">&lt;/div>
+
+    &lt;div class="grid__item 2/3 1/2@tablet">
+
+        &lt;div class="grid  grid--rev">
+            &lt;div class="grid__item 1/2@tablet">&lt;/div>
+            &lt;div class="grid__item 1/2@tablet">&lt;/div>
+        &lt;/div>
+
+    &lt;/div>
+
+    &lt;div class="grid__item">
+
+        &lt;div class="grid  grid--full">
+            &lt;div class="grid__item 1/2 1/4@desk">&lt;/div>
+            &lt;div class="grid__item 1/2 1/4@desk">&lt;/div>
+            &lt;div class="grid__item 1/2 1/4@desk">&lt;/div>
+            &lt;div class="grid__item 1/2 1/4@desk">&lt;/div>
+        &lt;/div>
+
+    &lt;/div>
+
+    &lt;div class="grid__item">
+
+        &lt;div class="grid grid--rev@desk grid--full">
+            &lt;div class="grid__item 1/2 1/4@tablet">&lt;/div>
+            &lt;div class="grid__item 1/2 1/4@tablet">&lt;/div>
+            &lt;div class="grid__item 1/4@desk">&lt;/div>
+            &lt;div class="grid__item 1/4@desk">&lt;/div>
+        &lt;/div>
+
+    &lt;/div>
+
+    &lt;div class="grid__item">
+
+        &lt;div class="grid grid--center@tablet">
+            &lt;div class="grid__item 1/2 1/3@tablet">&lt;/div>
+            &lt;div class="grid__item 1/2 1/3@tablet">&lt;/div>
+        &lt;/div>
+
+    &lt;/div>
+
+    &lt;div class="grid__item">
+
+        &lt;div class="grid grid--right@tablet">
+            &lt;div class="grid__item 1/2 1/3@tablet">&lt;/div>
+            &lt;div class="grid__item 1/2 1/3@tablet">&lt;/div>
+        &lt;/div>
+
+    &lt;/div>
+
+&lt;/div></code>
+
+
+
         <h3 class="title">Grille 2 colonnes en grande tablette, dont celle de gauche fixe à 300px</h3>
     
-         <div class="grid grid--fixed@big-tablet">
+        <div class="grid grid--fixed@big-tablet">
             <div class="grid__item 300px@big-tablet">
                 <div class="bloc bloc--150" style="background-color: <?php echo c() ?>">
                     <div class="bloc__content">A[1]</div>
@@ -257,9 +335,14 @@ function c(){
             </div>
         </div>
 
+        <code>&lt;div class="grid grid--fixed@big-tablet">
+    &lt;div class="grid__item 300px@big-tablet">&lt;/div>
+    &lt;div class="grid__item">&lt;/div>
+&lt;/div></code>
+
         <h3 class="title">Grille 3 colonnes en grande tablette, dont celles de gauche fixes à 200px et 300px</h3>
-    
-         <div class="grid grid--fixed@tablet">
+
+        <div class="grid grid--fixed@tablet">
             <div class="grid__item 200px@tablet">
                 <div class="bloc bloc--150" style="background-color: <?php echo c() ?>">
                     <div class="bloc__content">A[1]</div>
@@ -279,6 +362,12 @@ function c(){
             </div>
         </div>
 
+        <code>&lt;div class="grid grid--fixed@tablet">
+    &lt;div class="grid__item 200px@tablet">&lt;/div>
+    &lt;div class="grid__item 300px@big-tablet">&lt;/div>
+    &lt;div class="grid__item">&lt;/div>
+&lt;/div></code>
+
         <h3 class="title">Grille 2 colonnes, dont celle de gauche fixe à 300px en grande tablette</h3>
 
         <div class="grid grid--fixed@big-tablet">
@@ -294,6 +383,11 @@ function c(){
             </div>
         </div>
 
+        <code>&lt;div class="grid grid--fixed@big-tablet">
+    &lt;div class="grid__item 1/2 300px@big-tablet">&lt;/div>
+    &lt;div class="grid__item 1/2 1/1@big-tablet">&lt;/div>
+&lt;/div></code>
+
         <h3 class="title">2 colonnes, celle de droite fixe à 300px ET <b>visible</b> à partir de grande tablette</h3>
 
         <div class="grid grid--fixed@big-tablet">
@@ -308,6 +402,11 @@ function c(){
                 </div>
             </div>
         </div>
+
+        <code>&lt;div class="grid grid--fixed@big-tablet">
+    &lt;div class="grid__item">&lt;/div>
+    &lt;div class="grid__item 300px@big-tablet visible@big-tablet">&lt;/div>
+&lt;/div></code>
 
         <h3 class="title">3 cases. Les 2 premières à 50% à partir de tablette, la 3eme fixe à partir de grande tablette</h3>
 
@@ -328,6 +427,12 @@ function c(){
                 </div>
             </div>
         </div>
+
+        <code>&lt;div class="grid grid--fixed@big-tablet">
+    &lt;div class="grid__item 1/2@tablet 1/1@big-tablet">&lt;/div>
+    &lt;div class="grid__item 1/2@tablet 1/1@big-tablet">&lt;/div>
+    &lt;div class="grid__item 1/1@desk 300px@big-tablet">&lt;/div>
+&lt;/div></code>
 
         <h3 class="title">1ère colonne fluide, avec grid imbriquée, la 2eme fixe à 300px à partir de grande tablette</h3>
 
@@ -361,10 +466,21 @@ function c(){
 
         </div>
 
+
+        <code>&lt;div class="grid grid--fixed@big-tablet">
+    &lt;div class="grid__item">
+        &lt;div class="grid">
+            &lt;div class="grid__item 1/2@tablet 1/1@big-tablet">&lt;/div>
+            &lt;div class="grid__item 1/2@tablet 1/1@big-tablet">&lt;/div>
+            &lt;div class="grid__item">&lt;/div>
+        &lt;/div>
+    &lt;/div>
+    &lt;div class="grid__item 300px@big-tablet">&lt;/div>
+&lt;/div></code>
+
         <h3 class="title">2ème colonne fixe à 300px à partir de grande tablette, 2ème colonne fluide avec grid imbriquée</h3>
 
         <div class="grid grid--fixed@big-tablet">
-
 
             <div class="grid__item 300px@big-tablet">
                 <div class="bloc bloc--300" style="background-color: <?php echo c() ?>">
@@ -393,7 +509,19 @@ function c(){
             </div>
         </div>
 
+        <code>&lt;div class="grid grid--fixed@big-tablet">
+    &lt;div class="grid__item 300px@big-tablet">&lt;/div>
+    &lt;div class="grid__item">
+        &lt;div class="grid">
+            &lt;div class="grid__item">&lt;/div>
+            &lt;div class="grid__item">&lt;/div>
+            &lt;div class="grid__item">&lt;/div>
+        &lt;/div>
+    &lt;/div>
+&lt;/div></code>
+
         <h3 class="title">Layout un peu compliqué, avec 1 colonne fixe, et 3ème colonne passant en dessous en petit écran</h3>
+
 
         <div class="grid">
             <div class="grid__item 2/3@desk">
@@ -440,13 +568,33 @@ function c(){
 
             </div>
 
-
-
         </div>
 
 
-        <h3 class="title">Élements cachés en fonction du breakpoint</h3>
+        <code>&lt;div class="grid">
+    &lt;div class="grid__item 2/3@desk">
+        &lt;div class="grid grid--fixed@tablet">
+            &lt;div class="grid__item 300px@tablet">&lt;/div>
+            &lt;div class="grid__item">
+                
+                &lt;div class="grid">
+                    &lt;div class="grid__item">&lt;/div>
+                    &lt;div class="grid__item">&lt;/div>
+                &lt;/div>
 
+            &lt;/div>
+        &lt;/div>
+    &lt;/div>
+    &lt;div class="grid__item 1/3@desk">
+        &lt;div class="grid">
+            &lt;div class="grid__item">&lt;/div>
+            &lt;div class="grid__item">&lt;/div>
+        &lt;/div>
+    &lt;/div>
+&lt;/div></code>
+
+
+        <h3 class="title">Élements cachés en fonction du breakpoint</h3>
 
         <div class="grid">
             <div class="grid__item 1/3 visible@tablet">
@@ -465,6 +613,13 @@ function c(){
                 </div>
             </div>
         </div>
+
+        <code>&lt;div class="grid">
+    &lt;div class="grid__item 1/3 visible@tablet">&lt;/div>
+    &lt;div class="grid__item 1/3 hidden@desk">&lt;/div>
+    &lt;div class="grid__item 1/3 visible@desk">&lt;/div>
+&lt;/div></code>
+
 
     </div>
 
