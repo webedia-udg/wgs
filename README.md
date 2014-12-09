@@ -95,7 +95,6 @@ Inclure le wgs dans votre projet vous donne accès à **2 mixins** sass :
  * @param list $fixedWidths (false) : les tailles fixes à prendre en compte
  * @param map $breakpoints (false) : les breakpoints à prendre en compte
  * @param string $gutter (24px) : taille de la gouttière
- * @param bool (false) : faut-il gérer les grilles à taille fixe
  */
 @mixin wgsSetup(
     $fixedWidths  : false,
