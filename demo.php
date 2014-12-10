@@ -22,7 +22,7 @@ function c(){
 
     <div class="wrapper">
 
-        <h1 class="main-title">Démonstration</h3>
+        <h1 class="main-title">Demo</h3>
 
         <code>// Configuration
 

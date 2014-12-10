@@ -91,13 +91,8 @@
             display: table;
             table-layout: fixed;
             margin-left: 0;
+            margin-top: 0;
 
-            // Pas de margin top pour les grilles fixes dans une  autre grille
-            .grid & {
-                margin-top: 0;
-            }
-            
-            
             > .grid__item {
                 display: table-cell;
                 vertical-align: top;

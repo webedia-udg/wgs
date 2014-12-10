@@ -89,7 +89,8 @@ html {
   width: 100%;
   display: table;
   table-layout: fixed;
-  margin-left: 0; }
+  margin-left: 0;
+  margin-top: 0; }
   .grid .grid[class~="grid--fixed"] {
     margin-top: 0; }
   .grid[class~="grid--fixed"] > .grid__item {
@@ -264,7 +265,8 @@ html {
     width: 100%;
     display: table;
     table-layout: fixed;
-    margin-left: 0; }
+    margin-left: 0;
+    margin-top: 0; }
     .grid .grid[class~="grid--fixed@tablet"] {
       margin-top: 0; }
     .grid[class~="grid--fixed@tablet"] > .grid__item {
@@ -513,7 +515,8 @@ html {
     width: 100%;
     display: table;
     table-layout: fixed;
-    margin-left: 0; }
+    margin-left: 0;
+    margin-top: 0; }
     .grid .grid[class~="grid--fixed@big-tablet"] {
       margin-top: 0; }
     .grid[class~="grid--fixed@big-tablet"] > .grid__item {
@@ -735,7 +738,8 @@ html {
     width: 100%;
     display: table;
     table-layout: fixed;
-    margin-left: 0; }
+    margin-left: 0;
+    margin-top: 0; }
     .grid .grid[class~="grid--fixed@desk"] {
       margin-top: 0; }
     .grid[class~="grid--fixed@desk"] > .grid__item {
