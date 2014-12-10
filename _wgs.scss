@@ -127,8 +127,6 @@
     @if $fixedWidths {
 
         .grid[class~="grid--fixed#{$sufix}"] {
-            margin-top: $gutter;
-
             > .grid__item {
                 padding-left: $gutter;
                 padding-top: 0;

@@ -91,8 +91,6 @@ html {
   table-layout: fixed;
   margin-left: 0;
   margin-top: 0; }
-  .grid .grid[class~="grid--fixed"] {
-    margin-top: 0; }
   .grid[class~="grid--fixed"] > .grid__item {
     display: table-cell;
     vertical-align: top; }
@@ -104,13 +102,11 @@ html {
     padding-left: 12px;
     padding-top: 12px; }
 
-.grid[class~="grid--fixed"] {
-  margin-top: 12px; }
-  .grid[class~="grid--fixed"] > .grid__item {
-    padding-left: 12px;
-    padding-top: 0; }
-  .grid[class~="grid--fixed"] > .grid__item:first-child {
-    padding-left: 0; }
+.grid[class~="grid--fixed"] > .grid__item {
+  padding-left: 12px;
+  padding-top: 0; }
+.grid[class~="grid--fixed"] > .grid__item:first-child {
+  padding-left: 0; }
 
 [class~="1/1"] {
   width: 100% !important; }
@@ -267,8 +263,6 @@ html {
     table-layout: fixed;
     margin-left: 0;
     margin-top: 0; }
-    .grid .grid[class~="grid--fixed@tablet"] {
-      margin-top: 0; }
     .grid[class~="grid--fixed@tablet"] > .grid__item {
       display: table-cell;
       vertical-align: top; }
@@ -280,13 +274,11 @@ html {
       padding-left: 16px;
       padding-top: 16px; }
 
-  .grid[class~="grid--fixed"] {
-    margin-top: 16px; }
-    .grid[class~="grid--fixed"] > .grid__item {
-      padding-left: 16px;
-      padding-top: 0; }
-    .grid[class~="grid--fixed"] > .grid__item:first-child {
-      padding-left: 0; }
+  .grid[class~="grid--fixed"] > .grid__item {
+    padding-left: 16px;
+    padding-top: 0; }
+  .grid[class~="grid--fixed"] > .grid__item:first-child {
+    padding-left: 0; }
 
   [class~="grid@tablet"] {
     margin-left: -16px;
@@ -295,13 +287,11 @@ html {
       padding-left: 16px;
       padding-top: 16px; }
 
-  .grid[class~="grid--fixed@tablet"] {
-    margin-top: 16px; }
-    .grid[class~="grid--fixed@tablet"] > .grid__item {
-      padding-left: 16px;
-      padding-top: 0; }
-    .grid[class~="grid--fixed@tablet"] > .grid__item:first-child {
-      padding-left: 0; }
+  .grid[class~="grid--fixed@tablet"] > .grid__item {
+    padding-left: 16px;
+    padding-top: 0; }
+  .grid[class~="grid--fixed@tablet"] > .grid__item:first-child {
+    padding-left: 0; }
 
   [class~="1/1@tablet"] {
     width: 100% !important; }
@@ -439,13 +429,11 @@ html {
       padding-left: 20px;
       padding-top: 20px; }
 
-  .grid[class~="grid--fixed@tablet"] {
-    margin-top: 20px; }
-    .grid[class~="grid--fixed@tablet"] > .grid__item {
-      padding-left: 20px;
-      padding-top: 0; }
-    .grid[class~="grid--fixed@tablet"] > .grid__item:first-child {
-      padding-left: 0; } }
+  .grid[class~="grid--fixed@tablet"] > .grid__item {
+    padding-left: 20px;
+    padding-top: 0; }
+  .grid[class~="grid--fixed@tablet"] > .grid__item:first-child {
+    padding-left: 0; } }
 @media screen and (min-width: 660px) {
   [class~="200px@tablet"] {
     width: 200px !important; }
@@ -466,13 +454,11 @@ html {
       padding-left: 24px;
       padding-top: 24px; }
 
-  .grid[class~="grid--fixed@tablet"] {
-    margin-top: 24px; }
-    .grid[class~="grid--fixed@tablet"] > .grid__item {
-      padding-left: 24px;
-      padding-top: 0; }
-    .grid[class~="grid--fixed@tablet"] > .grid__item:first-child {
-      padding-left: 0; } }
+  .grid[class~="grid--fixed@tablet"] > .grid__item {
+    padding-left: 24px;
+    padding-top: 0; }
+  .grid[class~="grid--fixed@tablet"] > .grid__item:first-child {
+    padding-left: 0; } }
 @media screen and (min-width: 990px) {
   [class~="200px@tablet"] {
     width: 200px !important; }
@@ -517,8 +503,6 @@ html {
     table-layout: fixed;
     margin-left: 0;
     margin-top: 0; }
-    .grid .grid[class~="grid--fixed@big-tablet"] {
-      margin-top: 0; }
     .grid[class~="grid--fixed@big-tablet"] > .grid__item {
       display: table-cell;
       vertical-align: top; }
@@ -530,13 +514,11 @@ html {
       padding-left: 20px;
       padding-top: 20px; }
 
-  .grid[class~="grid--fixed"] {
-    margin-top: 20px; }
-    .grid[class~="grid--fixed"] > .grid__item {
-      padding-left: 20px;
-      padding-top: 0; }
-    .grid[class~="grid--fixed"] > .grid__item:first-child {
-      padding-left: 0; }
+  .grid[class~="grid--fixed"] > .grid__item {
+    padding-left: 20px;
+    padding-top: 0; }
+  .grid[class~="grid--fixed"] > .grid__item:first-child {
+    padding-left: 0; }
 
   [class~="grid@big-tablet"] {
     margin-left: -20px;
@@ -545,13 +527,11 @@ html {
       padding-left: 20px;
       padding-top: 20px; }
 
-  .grid[class~="grid--fixed@big-tablet"] {
-    margin-top: 20px; }
-    .grid[class~="grid--fixed@big-tablet"] > .grid__item {
-      padding-left: 20px;
-      padding-top: 0; }
-    .grid[class~="grid--fixed@big-tablet"] > .grid__item:first-child {
-      padding-left: 0; }
+  .grid[class~="grid--fixed@big-tablet"] > .grid__item {
+    padding-left: 20px;
+    padding-top: 0; }
+  .grid[class~="grid--fixed@big-tablet"] > .grid__item:first-child {
+    padding-left: 0; }
 
   [class~="1/1@big-tablet"] {
     width: 100% !important; }
@@ -689,13 +669,11 @@ html {
       padding-left: 24px;
       padding-top: 24px; }
 
-  .grid[class~="grid--fixed@big-tablet"] {
-    margin-top: 24px; }
-    .grid[class~="grid--fixed@big-tablet"] > .grid__item {
-      padding-left: 24px;
-      padding-top: 0; }
-    .grid[class~="grid--fixed@big-tablet"] > .grid__item:first-child {
-      padding-left: 0; } }
+  .grid[class~="grid--fixed@big-tablet"] > .grid__item {
+    padding-left: 24px;
+    padding-top: 0; }
+  .grid[class~="grid--fixed@big-tablet"] > .grid__item:first-child {
+    padding-left: 0; } }
 @media screen and (min-width: 990px) {
   [class~="200px@big-tablet"] {
     width: 200px !important; }
@@ -740,8 +718,6 @@ html {
     table-layout: fixed;
     margin-left: 0;
     margin-top: 0; }
-    .grid .grid[class~="grid--fixed@desk"] {
-      margin-top: 0; }
     .grid[class~="grid--fixed@desk"] > .grid__item {
       display: table-cell;
       vertical-align: top; }
@@ -753,13 +729,11 @@ html {
       padding-left: 24px;
       padding-top: 24px; }
 
-  .grid[class~="grid--fixed"] {
-    margin-top: 24px; }
-    .grid[class~="grid--fixed"] > .grid__item {
-      padding-left: 24px;
-      padding-top: 0; }
-    .grid[class~="grid--fixed"] > .grid__item:first-child {
-      padding-left: 0; }
+  .grid[class~="grid--fixed"] > .grid__item {
+    padding-left: 24px;
+    padding-top: 0; }
+  .grid[class~="grid--fixed"] > .grid__item:first-child {
+    padding-left: 0; }
 
   [class~="grid@desk"] {
     margin-left: -24px;
@@ -768,13 +742,11 @@ html {
       padding-left: 24px;
       padding-top: 24px; }
 
-  .grid[class~="grid--fixed@desk"] {
-    margin-top: 24px; }
-    .grid[class~="grid--fixed@desk"] > .grid__item {
-      padding-left: 24px;
-      padding-top: 0; }
-    .grid[class~="grid--fixed@desk"] > .grid__item:first-child {
-      padding-left: 0; }
+  .grid[class~="grid--fixed@desk"] > .grid__item {
+    padding-left: 24px;
+    padding-top: 0; }
+  .grid[class~="grid--fixed@desk"] > .grid__item:first-child {
+    padding-left: 0; }
 
   [class~="1/1@desk"] {
     width: 100% !important; }
