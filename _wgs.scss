@@ -91,20 +91,13 @@
             display: table;
             table-layout: fixed;
             margin-left: 0;
-
             > .grid__item {
                 display: table-cell;
                 vertical-align: top;
-
-            }
-        }
-        @if $sufix == "" {  
-            .grid[class*="grid--fixed"] {
-                > .grid__item {
-                    &:first-child {
-                        padding-left: 0;
-                    }
+                &:first-child {
+                    padding-left: 0;
                 }
+
             }
         }
     }
