@@ -36,7 +36,7 @@ function c(){
     )
 );</code>
 
-        <p><b>note :</b> Les .grid__item ne doivent avoir aucun espace entre eux, ou alors des espaces commentaires (méthode utilisée ici). Ce façon de faire est due à l'affichage en display-block de ces éléments.</p>
+        <p><b>note :</b> Les .grid__item ne doivent avoir aucun espace entre eux, ou alors des espaces commentaires (méthode utilisée ici). Cette façon de faire est due à l'affichage en display: inline-block de ces éléments.</p>
 
 
         <h3 class="title">Grilles imbriquées avec ratios</h3>
@@ -609,7 +609,7 @@ function c(){
             </div><!--
          --><div class="grid__item 1/3 visible@desk">
                 <div class="bloc bloc--150" style="background-color: <?php echo c() ?>">
-                    <div class="bloc__content">Visible à partir dedesktop</div>
+                    <div class="bloc__content">Visible à partir desktop</div>
                 </div>
             </div>
         </div>
