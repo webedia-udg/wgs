@@ -146,7 +146,7 @@ $gutter: 24px
 
 ### mq
 
-```sass
+```scss
 /**
  * Mixin de media-query
  *
@@ -159,7 +159,7 @@ $gutter: 24px
 
 Exemple 
 
-```sass
+```scss
 @include mq(desk){
     .element{
         margin: 10px;
@@ -180,7 +180,7 @@ génère :
 
 ## Demo
 
-Le fichier demo.html présente quelques exemples d'utilisation, notamment pour les grilles fixes
+Le fichier demo.php présente quelques exemples d'utilisation, notamment pour les grilles fixes
 
 ## Roadmap
 

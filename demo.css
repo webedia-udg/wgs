@@ -818,6 +818,10 @@ html {
 @media screen and (max-width: 989px) {
   [class~="visible@desk"] {
     display: none !important; } }
+/* Styles uniquement pour la page de démo */
+body {
+  font: normal 18px/24px Arial, sans-serif; }
+
 .wrapper {
   max-width: 990px;
   margin: 0 auto; }
@@ -845,15 +849,19 @@ html {
   margin-bottom: 30px; }
 
 code {
-  display: block;
+  display: inline-block;
   background-color: #fafafa;
   border: 1px solid #dadada;
-  padding: 10px;
   line-height: 24px;
   font-size: 16px;
   white-space: pre;
   overflow: auto;
-  margin-top: 24px; }
+  padding: 0 5px;
+  vertical-align: middle; }
+  .wrapper > code {
+    display: block;
+    padding: 10px;
+    margin-top: 24px; }
 
 .bloc {
   position: relative;
@@ -865,7 +873,6 @@ code {
     font-family: courier;
     transform: translateY(-50%);
     font-size: 18px;
-    color: #666;
     padding: 24px; }
   .bloc--50 {
     height: 50px; }

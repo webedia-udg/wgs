@@ -11,7 +11,10 @@
     )
 );
 
-
+/* Styles uniquement pour la page de démo */
+body {
+    font: normal 18px/24px Arial, sans-serif;
+}
 .wrapper{
     max-width: 990px;
     margin: 0 auto;
@@ -42,16 +45,21 @@
     margin-bottom: 30px;
 }
 
-code{
-    display: block;
+code {
+    display: inline-block;
     background-color: #fafafa;
     border: 1px solid #dadada;
-    padding: 10px;
     line-height: 24px;
     font-size: 16px;
     white-space: pre;
     overflow: auto;
-    margin-top: 24px;
+    padding: 0 5px;
+    vertical-align: middle;
+    .wrapper > & {
+        display: block;
+        padding: 10px;
+        margin-top: 24px;
+    }
 }
 
 // Simulation de contenu
@@ -66,29 +74,12 @@ code{
         font-family: courier;
         transform: translateY(-50%);
         font-size: 18px;
-        color: #666;
         padding: 24px;
     }
-    &--50{
-        height: 50px;
-    }
-    &--100{
-        height: 100px;
-    }
-    &--150{
-        height: 150px;
-    }
-
-    &--300{
-        height: 300px;
-    }
-
-    &--600{
-        height: 600px;
-    }
-
-    &--1000{
-        height: 1000px;
+    @each $size in (50,100,150,300,600,1000) {
+        &--#{$size} {
+            height: #{$size}px;
+        }
     }
 }
 
