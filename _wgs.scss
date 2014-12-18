@@ -46,28 +46,28 @@
         $sufix: "@#{$breakpointName}";
     }
 
-    [class~="grid#{$sufix}"] {
-        display: block;
+    @if $sufix == "" {
+        .grid {
+            display: block;
+            & > .grid__item {
+                display: inline-block;
+                vertical-align: top;
+                width: 100%;
 
-        & + [class~="grid#{$sufix}"] {
-            margin-top: 0;
-        }
-
-        & > .grid__item {
-            display: inline-block;
-            vertical-align: top;
-            width: 100%;
-
-            // Pour remettre bien l'ordre au cas où la grille serait inversée
-            direction:ltr;
-            text-align:left;
+                // Pour remettre bien l'ordre au cas où la grille serait inversée
+                direction: ltr;
+                text-align:left;
+            }
+            & + .grid {
+                margin-top: 0;  
+            }
         }
     }
 
 
     [class~="grid--rev#{$sufix}"] {
-        direction:rtl;
-        text-align:left;
+        direction: rtl;
+        text-align: left;
     }
 
     [class~="grid--center#{$sufix}"] {
