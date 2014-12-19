@@ -67,21 +67,14 @@
 
     [class~="grid--rev#{$sufix}"] {
         direction: rtl;
-        text-align: left;
     }
 
     [class~="grid--center#{$sufix}"] {
         text-align: center;
-        & > .grid__item {
-            text-align: left;
-        }
     }
 
     [class~="grid--right#{$sufix}"] {
         text-align: right;
-        & > .grid__item {
-            text-align: left;
-        }
     }
 
     @if $fixedWidths {
