@@ -28,15 +28,25 @@ function c(){
 
         <code>// Sample configuration
 
+@import "wgs";
+
 @include wgsSetup(
-    $fixedWidths : 200px 300px,
     $breakpoints : (
         tablet     : 480px,
         big-tablet : 660px,
         desk       : 990px
     ),
-    $gutters : 12px 16px 18px 22px
+    $gutters : 12px 16px 18px 22px,
+    $fixedWidths : 200px 300px
 );</code>
+
+        <p>What does this sample config mean:</p>
+        <ul>
+            <li>Enable the use of three named breakpoints. The first one starts at 480px, and is named "tablet". The second one starts at 660px and is named "tablet". Guess the third one :)</li>
+            <li>Enable the use of gutters widths and spacings classes, with breakpoint sufixes: .grid--12px, .grid--22px@desk, .padding--12px, .padding-top--22px@desk...</li>
+            <li>Enable the use of 200px and 300px fixed widths. We can use .200px and .300px classes, with sufixes provided in $breakpoints parameter: .200px@tablet, 300px@desk...</li>
+
+        </ul>
 
         <h3 class="title">Example 1</h3>
         <p>Various nested grids with ratios widths</p>
@@ -588,7 +598,11 @@ function c(){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <script>
-        $(".js-display-code").each(function(i, element){
+        $("iframe.js-display-code").each(function(i, iframe){
+            $(iframe).attr("srcdoc", $(iframe).html());
+
+        });
+        $(".ajs-display-code").each(function(i, element){
             var $this = $(this);
 
             var $html = $this.clone();
