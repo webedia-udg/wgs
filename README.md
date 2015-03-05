@@ -1,22 +1,28 @@
-Webedia Grid System (WGS)
+Whatever Grid System (WGS)
 ===
 
-####WGS est un système de grille responsive, avec largeurs fixes ou proportionnelles
+####WGS is a library allowing the generation of a set of OOCSS classes. Theses classes are heavily oriented toward the creation responsive webpage structures.
+
+It contains :
+
+* grid classes, with ratio and **fixed widths**.
+* spacing classes
+* visibility classes
+
+Thoses classes follow the BEM convention, augmented with a new paradigm : **the "@breakpoint" sufix.**
+
+This system est highly customisable : gutters, widths, spaces, breakpoint names.
 
 --- 
 
-Ce projet est très fortement inspiré par le système de grille du framework de Harry Roberts https://github.com/csswizardry/csswizardry-grids
+This project fully [OOCSS](https://github.com/stubbornella/oocss/wiki) :
 
-Il repose sur les 2 principes essentiels de l'[OOCSS](https://github.com/stubbornella/oocss/wiki) :
+* Separate structure and skin
+* Separate container and content
 
-* Séparation de la structure et de l'apparence
-* Separation du conteneur du contenu
+This grid system has a **mobile first** approach. It means you create base structures, and improve them when the screen size grows.
 
-Ce grid system est **mobile first**, c'est à dire que les valeurs proposées par défaut s'appliquent à toutes les tailles.
-
-Si des breakpoints sont à prendre en compte, ils sont à base de ``min-width``.
-
-## Pré-requis
+## Prerequisites
 
 * sass > 3.4
 
@@ -25,23 +31,23 @@ Si des breakpoints sont à prendre en compte, ils sont à base de ``min-width``.
 * git : ``git clone https://github.com/webedia-udg/wgs``
 * bower : ``bower install webedia-udg/wgs``
 
-## Utilisation
+## Usage
 
 ```scss
-// style.scss
+// your-file.scss
 
-// Import du WGS. Rien n'est écrit ici
+// Import the library
 @import "wgs";
 
-// Setup du WGS. Écriture du code CSS
+// Setup and write classes
 @include wgsSetup(
-    $fixedWidths: 300px,
-    $gutter: 12px,
-    $breakpoints: (
-        tablet     : 480px 12px,
-        big-tablet : 660px 18px,
-        desk       : 990px 24px
-    )
+    $fixedWidths : 200px 300px,
+    $breakpoints : (
+        tablet     : 480px,
+        big-tablet : 660px,
+        desk       : 990px
+    ),
+    $gutters : 12px 16px 18px 22px
 );
 
 ```
@@ -49,132 +55,87 @@ Si des breakpoints sont à prendre en compte, ils sont à base de ``min-width``.
 ```html
 <!-- index.html (exemple utilisant la conf du dessus) -->
 <div class="grid">
-    <div class="grid__item 1/1 1/2@big-tablet 1/4@desk">
-        CASE 1
-    </div><!--
- --><div class="grid__item 1/1 1/2@big-tablet 1/4@desk">
-        CASE 2
-    </div><!--
- --><div class="grid__item 1/1 1/2@tablet 1/3@desk">
-        CASE 3
-    </div><!--
- --><div class="grid__item 1/1 1/2@tablet 1/3@desk">
-        CASE 4
-    </div>
+    <div class="grid__item 1/2@big-tablet 1/3@desk"></div>
+    <div class="grid__item 1/2@big-tablet 1/3@desk"></div>
+    <div class="grid__item 1/3@desk"></div>
 </div>
+<div class="grid grid--fixed@desk grid--12px grid--22px@desk">
+    <div class="grid__item 1/2@tablet 300px@desk"></div>
+    <div class="grid__item 1/2@tablet 1/1@desk"></div>
+</div>
+<div class="padding-top--12px padding-top--22px@desk"></div>
 ```
 
-## Nomenclature des classes
+## Classes naming
 
-Nommage à base de **BEM** et suffixe pour le breakpoint
 
-``width[--modifier][@breakpoint]``
+``class[__element][--modifier][@breakpoint]``
 
 Ex :
 
-```html
-<div class="1/3"></div>
-<div class="1/2 1/3@desk"></div>
-<div class="1/2 300px@tablet"></div>
-
-<div class="grid"></div>
-<div class="grid grid--fixed"></div>
-<div class="grid grid--fixed@desk"></div>
-
+```
+.1/3
+.1/3@desk
+.300px@tablet
+.grid
+.grid__item
+.grid--fixed@tablet
+.padding--22px
+.padding--22px@desk
+.padding--0@desk
+.padding-top--22px
+.padding-top--0@desk
 ```
 
 ## Setup
 
-Inclure le wgs dans votre projet vous donne accès à **2 mixins** sass :
+Including _wgs.scss in your sass project gives you access to **two sass mixins**:
 
 ### wgsSetup
 
-```sass
-/**
- * Ecrit les règles
- * @param list $fixedWidths (false) : les tailles fixes à prendre en compte
- * @param map $breakpoints (false) : les breakpoints à prendre en compte
- * @param string $gutter (24px) : taille de la gouttière
- */
+```scss
+/// @access public
+/// @param {list} $fixedWidths [()] - fixed sizes to handle
+/// @param {map} $breakpoints [()] - breakpoints
+/// @param {list} $gutters [()] - gutters to handle
+/// @param {boolean} $mobileFirst [()] - mobile first ? (or desktop first)
+/// @example
+///   @include wgsSetup(
+///       $fixedWidths : 200px 300px,
+///       $breakpoints : (
+///           tablet     : 480px,
+///           big-tablet : 660px,
+///           desk       : 990px
+///       ),
+///       $gutters : 12px 16px 18px 22px
+///   );
 @mixin wgsSetup(
-    $fixedWidths  : false,
-    $breakpoints  : false,
-    $gutter       : 24px,
-);
+    $fixedWidths  : (),
+    $breakpoints  : (),
+    $gutters      : (),
+    $mobileFirst  : true
+){ /*...*/ }
 ```
 
-``fixedWidths``
-
-Défaut à ``false`` : défini les tailles fixes disponibles. Ex : 
+### wgsSetup
 
 ```scss
-$fixedWidths: 300px 400px 500px;
+/// @access public
+/// @param {string} $breakpoint - Breakpoint name. Must match one of wgsSetup() $breakpoints param
+/// @example
+///   .selector{
+///       color: pink;
+///       @include mq(tablet)  { color: blue; }
+///       @include mq(desktop) { color: red;  }
+///   }
+@mixin mq($breakpointName){ /*...*/ }
+
 ```
 
-``breakpoints``
+## Tribute
 
-Défaut à ``false`` : définit les breakpoints utilisables, tout en leur associant  un nom "humain". Ex :
+This project was heavily inspired by [Harry Roberts grid system](https://github.com/csswizardry/csswizardry-grids)
 
-```scss
-// 3 breakpoints
-$breakpoints: (
-    tablet     : 480px 12px,
-    big-tablet : 660px 18px,
-    desk       : 990px 24px
-);
-
-// 1 breakpoint
-$breakpoints: (
-    desktop: 990px 24px
-);
-```
-
-Pour chaque breakpoint
-
-* La clé est le nom du breakpoint qui sera utilisé pour le suffixe ``@breakpoint`` en fin de classe.
-* La valeur comporte deux valeurs. La première est la taille de début du breakpoint. Le second paramètre est la taille de la gouttière correspondante.
-
-
-``gutter``
-
-Défaut à ``24px`` : taille par défaut des gouttières. Ex : 
-
-```scss
-$gutter: 24px
-```
-
-### mq
-
-```scss
-/**
- * Mixin de media-query
- *
- * @param string $breakpoint : nom du breakpoint. Doit correspondre à l'un des
- *                             éléments de $breakpoints transmis à wgsSetup()
- * Ex : @include mq(desk){...}
- */
-@mixin mq($breakpointName);
-```
-
-Exemple 
-
-```scss
-@include mq(desk){
-    .element{
-        margin: 10px;
-    }
-}
-```
-
-génère : 
-
-```css
-@media screen and (min-width: 990px){
-    .element{
-        margin: 10px;
-    }
-}
-```
 
 
 ## Demo
