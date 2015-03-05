@@ -26,16 +26,16 @@ function c(){
 
         <h1 class="main-title">Demo</h3>
 
-        <code>// Configuration
+        <code>// Sample configuration
 
 @include wgsSetup(
     $fixedWidths : 200px 300px,
-    $gutter      : 12px,
     $breakpoints : (
-        tablet     : 480px 16px,
-        big-tablet : 660px 20px,
-        desk       : 990px 22px
-    )
+        tablet     : 480px,
+        big-tablet : 660px,
+        desk       : 990px
+    ),
+    $gutters : 12px 16px 18px 22px
 );</code>
 
         <h3 class="title">Example 1</h3>
@@ -211,17 +211,17 @@ function c(){
             <div class="grid">
                 <div class="grid__item 1/3">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">A</div>
                     </div>
                 </div>
                 <div class="grid__item 1/3">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">B</div>
                     </div>
                 </div>
                 <div class="grid__item 1/3">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">C</div>
                     </div>
                 </div>
             </div>
@@ -233,17 +233,17 @@ function c(){
             <div class="grid grid--12px">
                 <div class="grid__item 1/3">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">A</div>
                     </div>
                 </div>
                 <div class="grid__item 1/3">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">B</div>
                     </div>
                 </div>
                 <div class="grid__item 1/3">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">C</div>
                     </div>
                 </div>
             </div>
@@ -255,17 +255,17 @@ function c(){
             <div class="grid grid--22px">
                 <div class="grid__item 1/3">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">A</div>
                     </div>
                 </div>
                 <div class="grid__item 1/3">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">B</div>
                     </div>
                 </div>
                 <div class="grid__item 1/3">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">C</div>
                     </div>
                 </div>
             </div>
@@ -277,17 +277,17 @@ function c(){
             <div class="grid grid--22px@desk">
                 <div class="grid__item 1/3">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">A</div>
                     </div>
                 </div>
                 <div class="grid__item 1/3">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">B</div>
                     </div>
                 </div>
                 <div class="grid__item 1/3">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">C</div>
                     </div>
                 </div>
             </div>
@@ -299,17 +299,17 @@ function c(){
             <div class="grid grid--12px grid--0@desk">
                 <div class="grid__item 1/3">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">A</div>
                     </div>
                 </div>
                 <div class="grid__item 1/3">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">B</div>
                     </div>
                 </div>
                 <div class="grid__item 1/3">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">C</div>
                     </div>
                 </div>
             </div>
@@ -324,12 +324,12 @@ function c(){
             <div class="grid grid--18px grid--fixed@big-tablet">
                 <div class="grid__item 300px@big-tablet">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">A</div>
                     </div>
                 </div>
                 <div class="grid__item">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[2]</div>
+                        <div class="bloc__content">B</div>
                     </div>
                 </div>
             </div>
@@ -344,12 +344,12 @@ function c(){
             <div class="grid grid--18px grid--fixed@big-tablet">
                 <div class="grid__item 1/2 300px@big-tablet">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">A</div>
                     </div>
                 </div>
                 <div class="grid__item 1/2 1/1@big-tablet">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[2]</div>
+                        <div class="bloc__content">B</div>
                     </div>
                 </div>
             </div>
@@ -365,12 +365,12 @@ function c(){
             <div class="grid grid--18px grid--fixed@big-tablet">
                 <div class="grid__item">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">A</div>
                     </div>
                 </div>
                 <div class="grid__item 300px@big-tablet visible@big-tablet">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[2]</div>
+                        <div class="bloc__content">B</div>
                     </div>
                 </div>
             </div>
@@ -392,17 +392,17 @@ function c(){
             <div class="grid grid--fixed@tablet grid--22px">
                 <div class="grid__item 1/2 200px@tablet 300px@desk">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">A</div>
                     </div>
                 </div>
                 <div class="grid__item 1/2 300px@big-tablet">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">B</div>
                     </div>
                 </div>
                 <div class="grid__item 1/1 1/2@tablet">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[2]</div>
+                        <div class="bloc__content">C</div>
                     </div>
                 </div>
             </div>
@@ -418,17 +418,17 @@ function c(){
             <div class="grid grid--18px grid--fixed@big-tablet">
                 <div class="grid__item 1/2@tablet 1/1@big-tablet">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[1]</div>
+                        <div class="bloc__content">A</div>
                     </div>
                 </div>
                 <div class="grid__item 1/2@tablet 1/1@big-tablet">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[2]</div>
+                        <div class="bloc__content">B</div>
                     </div>
                 </div>
                 <div class="grid__item 300px@big-tablet 1/1@desk">
                     <div class="bloc bloc--150" <?php echo c() ?>>
-                        <div class="bloc__content">A[3]</div>
+                        <div class="bloc__content">C</div>
                     </div>
                 </div>
             </div>
@@ -593,7 +593,9 @@ function c(){
 
             var $html = $this.clone();
 
-            $html.find(".bloc").remove();
+            $html.find(".bloc").each(function(j, element){
+                $(element).replaceWith($.trim($(element).text()));
+            });
 
             var content = $html.html();
             console.log(content);
