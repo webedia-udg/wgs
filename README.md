@@ -1,7 +1,9 @@
 Whatever Grid System (WGS)
 ===
 
-####WGS is a library allowing the generation of a set of OOCSS classes. Theses classes are heavily oriented toward the creation responsive webpage structures.
+####WGS is a library allowing the generating of a set of OOCSS classes. Theses classes are heavily oriented toward the creation responsive webpage structures.
+
+This library est highly customisable : gutters, widths, spaces, breakpoint names.
 
 It contains :
 
@@ -10,8 +12,6 @@ It contains :
 * visibility classes
 
 Thoses classes follow the BEM convention, augmented with a new paradigm : **the "@breakpoint" sufix.**
-
-This system est highly customisable : gutters, widths, spaces, breakpoint names.
 
 --- 
 
@@ -53,7 +53,7 @@ This grid system has a **mobile first** approach. It means you create base struc
 ```
 
 ```html
-<!-- index.html (exemple utilisant la conf du dessus) -->
+<!-- template.html -->
 <div class="grid">
     <div class="grid__item 1/2@big-tablet 1/3@desk"></div>
     <div class="grid__item 1/2@big-tablet 1/3@desk"></div>
@@ -89,9 +89,9 @@ Ex :
 
 ## Setup
 
-Including _wgs.scss in your sass project gives you access to **two sass mixins**:
+Including ``_wgs.scss`` in your sass project gives you access to **two sass mixins**:
 
-### wgsSetup
+### wgsSetup()
 
 ```scss
 /// @access public
@@ -117,7 +117,7 @@ Including _wgs.scss in your sass project gives you access to **two sass mixins**
 ){ /*...*/ }
 ```
 
-### wgsSetup
+### mq()
 
 ```scss
 /// @access public
@@ -134,7 +134,7 @@ Including _wgs.scss in your sass project gives you access to **two sass mixins**
 
 ## Tribute
 
-This project was heavily inspired by [Harry Roberts grid system](https://github.com/csswizardry/csswizardry-grids)
+This project was heavily inspired by [Harry Roberts grid system](https://github.com/csswizardry/csswizardry-grids) for the grid part, and [sass-mq](https://github.com/sass-mq/sass-mq) for the modulable mq() mixin.
 
 
 
