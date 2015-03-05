@@ -3,7 +3,7 @@ Whatever Grid System (WGS)
 
 ####WGS is a library allowing the generating of a set of OOCSS classes. Theses classes are heavily oriented toward the creation responsive webpage structures.
 
-This library est highly customisable : gutters, widths, spaces, breakpoint names.
+This library est highly customisable : gutters, widths, spaces, breakpoint names, mobile first.
 
 It contains :
 
@@ -13,14 +13,7 @@ It contains :
 
 Thoses classes follow the BEM convention, augmented with a new paradigm : **the "@breakpoint" sufix.**
 
---- 
-
 This project fully [OOCSS](https://github.com/stubbornella/oocss/wiki) :
-
-* Separate structure and skin
-* Separate container and content
-
-This grid system has a **mobile first** approach. It means you create base structures, and improve them when the screen size grows.
 
 ## Prerequisites
 
@@ -120,16 +113,22 @@ Including ``_wgs.scss`` in your sass project gives you access to **two sass mixi
 ### mq()
 
 ```scss
+/// Media Query mixin
+/// 
 /// @access public
-/// @param {string} $breakpoint - Breakpoint name. Must match one of wgsSetup() $breakpoints param
+/// @param {string} $from [false] - Breakpoint name from witch rules sould be added
+/// @param {string} $until [false] - Breakpoint name until witch rules sould be added
+/// @param {string} $and [false] - Additional media query parameters
 /// @example
-///   .selector{
-///       color: pink;
-///       @include mq(tablet)  { color: blue; }
-///       @include mq(desktop) { color: red;  }
-///   }
-@mixin mq($breakpointName){ /*...*/ }
-
+///   @include mq(tablet){ color: red }; // Results depends of the mobile first approach
+///   @include mq($from: tablet){ color: red };
+///   @include mq($until: desktop){ color: red };
+/// 
+@mixin mq(
+    $from: false,
+    $until: false,
+    $and: false
+) { /*...*/ }
 ```
 
 ## Tribute
