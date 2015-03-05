@@ -7,13 +7,20 @@
  *
  */
 
-/**
- * Mixin de media-query
- *
- * @param string $breakpoint : nom du breakpoint. Doit correspondre à l'un des
- *                             éléments de $breakpoints transmis à wgsSetup()
- * Ex : @include mq(desk){...}
- */
+// Global variable use to store breakpoints names
+$_wgsBreakpoints: ();
+$_wgsMobileFirst: true;
+
+/// min-width based media-query mixin
+/// 
+/// @access public
+/// @param {string} $breakpoint - Breakpoint name. Must match one of wgsSetup() $breakpoints param
+/// @example
+///   .selector{
+///       color: pink;
+///       @include mq(tablet)  { color: blue; }
+///       @include mq(desktop) { color: red;  }
+///   }
 @mixin mq($breakpointName) { 
     @if map-has-key($_wgsBreakpoints, $breakpointName) {
         $size: nth(map-get($_wgsBreakpoints, $breakpointName),1);
@@ -23,6 +30,15 @@
     }
 }
 
+
+/// max-width based media-query mixin
+///
+/// @access public
+/// @param {string} $breakpoint - Breakpoint name. Must match one of wgsSetup() $breakpoints param
+/// @example
+///  @include mqUntil(desk){
+///    color: red;
+///  }
 @mixin mqUntil($breakpointName) { 
     @if map-has-key($_wgsBreakpoints, $breakpointName) {
         $size: nth(map-get($_wgsBreakpoints, $breakpointName),1) - 1px;
@@ -32,100 +48,128 @@
     }
 }
 
-
-/**
- * Ajoute les classes de grilles (.grid, .grid--fixed, .grid__item),
- * éventuellement préfixées. Gère les relations entre les .grid & .grid__item
- *
- * @param list $fixedWidths (false) => Liste de tailles fixes à gérer
- * @param string $breakpointName (false) => Le nom du breakpoint
- */
-@mixin wgsGrid($fixedWidths: false, $breakpointName:false) {
+/// Writes grid classes (.grid & its modifiers, .grid__item), eventually suffixed with breakpoint
+/// Handles relations between .grid & .grid__item
+/// 
+/// @access private
+/// @param {list} $gutters [()] - List of gutter sizes to handle
+/// @param {list} $fixedWidths [()] - List of fixed sizes to handle
+/// @param {string} $breakpointName [false] - Breakpoint name
+/// @example
+///   @include wgsGrid(
+///     $gutters        : 12px 20px,
+///     $fixedWidths    : 200px 300px,
+///     $breakpointName : desktop
+///   );
+/// 
+@mixin wgsGrid($gutters: (), $fixedWidths: (), $breakpointName:false) {
     $sufix: "";
     @if $breakpointName{
         $sufix: "@#{$breakpointName}";
     }
 
-    @if $sufix == "" {
-        .grid {
-            display: block;
-            & > .grid__item {
-                display: inline-block;
-                vertical-align: top;
-                width: 100%;
-
-                // Pour remettre bien l'ordre au cas où la grille serait inversée
-                direction: ltr;
-                text-align:left;
-            }
-            & + .grid {
-                margin-top: 0;  
-            }
+    // 1/ Box sizing for this breakpoint on grid
+    [class~="grid#{$sufix}"],
+    [class~="grid__item#{$sufix}"] {
+        &,
+        &:before,
+        &:after{
+            box-sizing: border-box !important;
         }
     }
 
+    // 2/ Base style for this breakpoint's grid
+    [class~="grid#{$sufix}"]{
+        display: block;
+        font-size: 0;
+        & > .grid__item {
+            display: inline-block;
+            vertical-align: top;
+            width: 100%;
+            font-size: medium;
 
+            // Pour remettre bien l'ordre au cas où la grille serait inversée
+            direction: ltr;
+            text-align:left;
+        }
+        & + .grid {
+            margin-top: 0;  
+        }
+    }
+
+    // 3/ Grid's modifiers :
+
+    // a/ reversed order
     [class~="grid--rev#{$sufix}"] {
         direction: rtl;
     }
 
+    // b/ centered grid
     [class~="grid--center#{$sufix}"] {
         text-align: center;
     }
 
+    // c/ right aligned grid
     [class~="grid--right#{$sufix}"] {
         text-align: right;
     }
 
-    @if $fixedWidths {
+    // d/ fixed grid (no more box-sizing: border-box)
+    .grid[class~="grid--fixed#{$sufix}"] {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+        margin-left: 0;
 
-        .grid[class~="grid--fixed#{$sufix}"] {
-            width: 100%;
-            display: table;
-            table-layout: fixed;
-            margin-left: 0;
-            > .grid__item {
-                display: table-cell;
-                vertical-align: top;
-                &:first-child {
-                    padding-left: 0;
-                }
 
+        > .grid__item {
+            display: table-cell;
+            vertical-align: top;
+            box-sizing: content-box !important;
+            &:first-child {
+                padding-left: 0;
             }
+
+        }
+    }
+
+    // e/ paddings (grid gutters)
+    @each $gutter in $gutters {
+
+        [class~="grid--#{$gutter}#{$sufix}"] {
+            margin-left: -$gutter;
+            margin-top: -$gutter;
+
+            & > .grid__item {
+                padding-left: $gutter;
+                padding-top: $gutter;
+            }
+
+        }
+    }
+
+    @if length($gutters){
+        [class~="grid--0#{$sufix}"] {
+            margin-left: 0;
+            margin-top: 0;
+
+            & > .grid__item {
+                padding-left: 0;
+                padding-top: 0;
+            }
+
         }
     }
 }
 
-/**
- * Gestion des gouttières
- * @param string $gutter => Taille de la gouttière
- * @param list $fixedWidths (false) => Liste de tailles fixes à gérer.
- * @param string $breakpointName (false) => Le nom du breakpoint
- */
-@mixin wgsGridGutter($gutter, $fixedWidths: false, $breakpointName:false) {
-    $sufix: "";
-    @if $breakpointName{
-        $sufix: "@#{$breakpointName}";
-    }
 
-    [class~="grid#{$sufix}"] {
-        margin-left: -$gutter;
-        margin-top: -$gutter;
-
-        & > .grid__item {
-            padding-left: $gutter;
-            padding-top: $gutter;
-        }
-
-    }
-}
-
-
-/**
- * Ecrit des classes de largeur ratio.
- * 
- * @param String $breakpointName : le nom du breakpoint à prendre en compte
- */
+/// Writes ratio classes (1/2, 1/3, etc), eventually suffixed with breakpoint name
+/// 
+/// @access private
+/// @param {string} $breakpointName - Name of the breakpoint to handle
+/// @example
+///   @include wgsRatioWidths();
+///   @include wgsRatioWidths(desktop);
 @mixin wgsRatioWidths($breakpointName:false){
 
     $sufix: "";
@@ -204,13 +248,18 @@
     [class~="11/12#{$sufix}"]     { width: 91.6666666% !important; }
 }
 
-/**
- * Ecrit des classes de largeur fixe.
- * @param string $size => taille à géger. Ex : 300px
- * @param string $gutter => Taille de la gouttière. Ex : 24px
- * @param string $breakpointName (false) => Le nom du breakpoint
- */
-@mixin wgsFixedWidth($size, $gutter, $breakpointName:false) {
+
+/// Writes fixed widths
+///
+/// @access private
+/// @param {string} $size - Size to handle
+/// @param {string} $breakpointName [false] - Breakpoint name
+/// @example
+///   @include wgsFixedWidth(200px);
+///   @include wgsFixedWidth(300px, desktop);
+@mixin wgsFixedWidth($size, $breakpointName:false) {
+
+    $gutter: 0;
 
     $sufix: "";
     @if $breakpointName{
@@ -227,10 +276,13 @@
 }
 
 
-/**
- * Quelques classes de visibilité
- * @param string $breakpointName (false) => Le nom du breakpoint
- */
+/// Writes some visibility classes: .hidden@[breakpointName]
+///
+/// @access private
+/// @param {string} $breakpointName [false] - breakpoint name
+/// @example
+///   @include wgsHidden();
+///   @include wgsHidden(desktop);
 @mixin wgsHidden($breakpointName: false) {
 
     $sufix: "";
@@ -243,6 +295,12 @@
     }    
 }
 
+/// Writes some visibility classes: .visible@[breakpointName]
+///
+/// @access private
+/// @example
+///   @include wgsVisible();
+///   @include wgsVisible(desktop);
 @mixin wgsVisible($breakpointName: false) {
 
     $sufix: "";
@@ -255,113 +313,174 @@
     }    
 }
 
-/**
- * Ecriture des règles
- * @param list $fixedWidths (false) : les tailles fixes à prendre en compte
- * @param map $breakpoints (false) : les breakpoints à prendre en compte
- * @param string $gutter (12px) : taille de la gouttière par défaut
- */
+/// writes OO spacing classes
+///
+/// @access private
+/// @example
+///   @include wgsSpacing(18px 22px);
+///   @include wgsSpacing(18px 22px, desktop);
+@mixin wgsSpacing($gutters: (), $breakpointName: false) {
+    $sufix: "";
+    @if $breakpointName{
+        $sufix: "@#{$breakpointName}";
+    }
+
+    @each $gutter in $gutters {
+
+        [class~="padding-top--#{$gutter}#{$sufix}"]{
+            padding-top: $gutter;
+        }
+        [class~="padding-right--#{$gutter}#{$sufix}"]{
+            padding-right: $gutter;
+        }
+        [class~="padding-bottom--#{$gutter}#{$sufix}"]{
+            padding-bottom: $gutter;
+        }
+        [class~="padding-left--#{$gutter}#{$sufix}"]{
+            padding-left: $gutter;
+        }
+
+        [class~="padding-hori--#{$gutter}#{$sufix}"]{
+            @extend [class~="padding-right--#{$gutter}#{$sufix}"];
+            @extend [class~="padding-left--#{$gutter}#{$sufix}"];
+        }   
+
+        [class~="padding-vert--#{$gutter}#{$sufix}"]{
+            @extend [class~="padding-top--#{$gutter}#{$sufix}"];
+            @extend [class~="padding-bottom--#{$gutter}#{$sufix}"];
+        }
+
+        [class~="padding--#{$gutter}#{$sufix}"]{
+            @extend [class~="padding-hori--#{$gutter}#{$sufix}"];
+            @extend [class~="padding-vert--#{$gutter}#{$sufix}"];
+        }
+    }
+    @if length($gutters){
+        [class~="padding-top--0#{$sufix}"]{
+            padding-top: 0;
+        }
+        [class~="padding-right--0#{$sufix}"]{
+            padding-right: 0;
+        }
+        [class~="padding-bottom--0#{$sufix}"]{
+            padding-bottom: 0;
+        }
+        [class~="padding-left--0#{$sufix}"]{
+            padding-left: 0;
+        }
+        [class~="padding-hori--0#{$sufix}"]{
+            @extend [class~="padding-right--0#{$sufix}"];
+            @extend [class~="padding-left--0#{$sufix}"];
+        }
+        [class~="padding-vert--0#{$sufix}"]{
+            @extend [class~="padding-top--0#{$sufix}"];
+            @extend [class~="padding-bottom--0#{$sufix}"];
+        }
+
+        [class~="padding--0#{$sufix}"]{
+            @extend [class~="padding-top--0#{$sufix}"];
+            @extend [class~="padding-right--0#{$sufix}"];
+            @extend [class~="padding-bottom--0#{$sufix}"];
+            @extend [class~="padding-left--0#{$sufix}"];
+        }        
+    }
+}
+
+
+/// Main function. has to be called with wanted fixed widths, breakpoints definition and gutter widths to handle
+///
+/// @access public
+/// @param {list} $fixedWidths [()] - fixed sizes to handle
+/// @param {map} $breakpoints [()] - breakpoints
+/// @param {list} $gutters [()] - gutters to handle
+/// @param {boolean} $mobileFirst [()] - mobile first ? (or desktop first)
+/// @example
+///   @include wgsSetup(
+///       $fixedWidths : 200px 300px,
+///       $breakpoints : (
+///           tablet     : 480px,
+///           big-tablet : 660px,
+///           desk       : 990px
+///       ),
+///       $gutters : 12px 16px 18px 22px
+///   );
 @mixin wgsSetup(
-    $fixedWidths  : false,
-    $breakpoints  : false,
-    $gutter       : 12px
-){
-    // Global namespaced variable, utilisée par @include mq() pour éviter 
-    // d'avoir à lui filer le tableau à chaque fois
+    $fixedWidths  : (),
+    $breakpoints  : (),
+    $gutters      : (),
+    $mobileFirst  : true
+) {
+    // Global namespaced variable holding breakpoint definitio, used by mq() and mqUntil()
     $_wgsBreakpoints : $breakpoints !global;
 
-    // 1/ Borderbox pour tout le monde !
-    // css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
-    // paulirish.com/2012/box-sizing-border-box-ftw
-    html {
-        -webkit-box-sizing: border-box;
-           -moz-box-sizing: border-box;
-                box-sizing: border-box;
-    }
-    * {
-        &,
-        &:before,
-        &:after{
-            -webkit-box-sizing: inherit;
-               -moz-box-sizing: inherit;
-                    box-sizing: inherit;
-        }
-    }
+    // Global setting
+    $_wgsMobileFirst : $mobileFirst !global;
 
+    // 1/ Grid class & grid modifiers
+    @include wgsGrid($gutters, $fixedWidths);
 
-    // 2/ Ratios sans responsive
-    @include wgsGrid($fixedWidths);
-    @include wgsGridGutter($gutter, $fixedWidths);
+    // 2/ Ratio widths
     @include wgsRatioWidths;
 
+    // 3/ Fixed widths
+    @each $width in $fixedWidths {
+        @include wgsFixedWidth($width);
+    }
 
-    // 3/ Tailles fixes sans responsive
-    @if $fixedWidths {
-        @each $width in $fixedWidths {
-            @include wgsFixedWidth($width, $gutter);
+    @include wgsSpacing($gutters);
+
+    // 4/ Same, but in a breakpoint
+    @each $breakpointName, $breakpointSize in $breakpoints {
+
+        // 
+        @include mq($breakpointName) {
+            @include wgsGrid($gutters, $fixedWidths, $breakpointName);
+            @include wgsRatioWidths($breakpointName);
+            @include wgsHidden($breakpointName);
+
+            @each $width in $fixedWidths {
+                @include wgsFixedWidth($width, $breakpointName);
+            }
+
+            @include wgsSpacing($gutters, $breakpointName);
+
         }
+
+        @include mqUntil($breakpointName) {
+            @include wgsVisible($breakpointName);
+        }
+
+        // Pour chaque breakpoint, à cause des tailles fixes,
+        // on regarde les breakpoints supérieurs et on applique des valeurs
+        // spécifiques au breakpoint courant, valables pour les breakpoints
+        // supérieurs.
+        // 
+        // Ex : .300px@big-tablet
+        // avec un gutter de 18px en big-tablet, qui doit être de 24px en
+        // desktop, doit s'appliquer, même s'il n'y a pas la classe
+        // .300px@desk
+        // @if $i + 1 <= length($breakpoints){
+        //     @for $j from $i + 1 through length($breakpoints) {
+        //         $nextBreakpointData   : nth(map-values($breakpoints), $j);
+        //         $nextBreakpointName   : nth(map-keys($breakpoints), $j);
+        //         $nextBreakpointSize   : nth($nextBreakpointData,1);
+        //         $nextBreakpointGutter : nth($nextBreakpointData,2);
+
+        //         @include mq($nextBreakpointName) {
+        //             //@include wgsGridGutter($nextBreakpointGutter, $fixedWidths, $breakpointName);
+        //         }
+
+        //         @if $fixedWidths {
+        //             @each $width in $fixedWidths {
+
+        //                 @include mq($nextBreakpointName) {
+        //                     @include wgsFixedWidth($width, $nextBreakpointGutter, $breakpointName);
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
     }
 
 
-    // 4/ Gestion des ratios et tailles fixes en responsive
-    @if $breakpoints {
-        
-        @for $i from 1 through length($breakpoints) {
-
-            $breakpointData   : nth(map-values($breakpoints), $i);
-            $breakpointName   : nth(map-keys($breakpoints), $i);
-            $breakpointSize   : nth($breakpointData,1);
-            $breakpointGutter : nth($breakpointData,2);
-
-
-            @include mq($breakpointName) {
-                @include wgsGrid($fixedWidths, $breakpointName);
-                @include wgsGridGutter($breakpointGutter, $fixedWidths);
-                @include wgsGridGutter($breakpointGutter, $fixedWidths, $breakpointName);
-                @include wgsRatioWidths($breakpointName);
-                @include wgsHidden($breakpointName);
-
-                @if $fixedWidths {
-                    @each $width in $fixedWidths {
-                        @include wgsFixedWidth($width, $breakpointGutter, $breakpointName);
-                    }
-                }
-            }
-
-            @include mqUntil($breakpointName){
-                @include wgsVisible($breakpointName);
-            }
-
-            // Pour chaque breakpoint, à cause des tailles fixes,
-            // on regarde les breakpoints supérieurs et on applique des valeurs
-            // spécifiques au breakpoint courant, valables pour les breakpoints
-            // supérieurs.
-            // 
-            // Ex : .300px@big-tablet
-            // avec un gutter de 18px en big-tablet, qui doit être de 24px en
-            // desktop, doit s'appliquer, même s'il n'y a pas la classe
-            // .300px@desk
-            @if $i + 1 <= length($breakpoints){
-                @for $j from $i + 1 through length($breakpoints) {
-                    $nextBreakpointData   : nth(map-values($breakpoints), $j);
-                    $nextBreakpointName   : nth(map-keys($breakpoints), $j);
-                    $nextBreakpointSize   : nth($nextBreakpointData,1);
-                    $nextBreakpointGutter : nth($nextBreakpointData,2);
-
-                    @include mq($nextBreakpointName) {
-                        @include wgsGridGutter($nextBreakpointGutter, $fixedWidths, $breakpointName);
-                    }
-
-                    @if $fixedWidths {
-                        @each $width in $fixedWidths {
-
-                            @include mq($nextBreakpointName) {
-                                @include wgsFixedWidth($width, $nextBreakpointGutter, $breakpointName);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
