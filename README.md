@@ -17,7 +17,7 @@ This project fully [OOCSS](https://github.com/stubbornella/oocss/wiki) :
 
 ## Demo
 
-https://jsfiddle.net/6x1th0n1/embedded/result/
+https://jsfiddle.net/6x1th0n1/2/embedded/result/
 
 ## Prerequisites
 
