@@ -15,6 +15,10 @@ Thoses classes follow the BEM convention, augmented with a new paradigm : **the 
 
 This project fully [OOCSS](https://github.com/stubbornella/oocss/wiki) :
 
+## Demo
+
+https://jsfiddle.net/6x1th0n1/embedded/result/
+
 ## Prerequisites
 
 * sass > 3.4
@@ -136,14 +140,5 @@ Including ``_wgs.scss`` in your sass project gives you access to **two sass mixi
 This project was heavily inspired by [Harry Roberts grid system](https://github.com/csswizardry/csswizardry-grids) for the grid part, and [sass-mq](https://github.com/sass-mq/sass-mq) for the modulable mq() mixin.
 
 
-
-## Demo
-
-Le fichier demo.php présente quelques exemples d'utilisation, notamment pour les grilles fixes
-
-## Roadmap
-
-- Documentation
-- Push et pull
 
 
