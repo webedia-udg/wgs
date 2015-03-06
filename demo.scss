@@ -14,11 +14,33 @@
 
 /* Styles uniquement pour la page de démo */
 body {
+    padding: 0;
+    margin: 0;
     font: normal 18px/30px Arial, sans-serif;
 }
 iframe{
     width: 100%;
-    resize: both;
+    height: 100%;
+    overflow: hidden;
+}
+.iframe-wrapper{
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    padding-bottom: 30px;
+    &__handle{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 30px;
+        height: 30px;
+        border: 1px solid #dadada;
+        background: #f1f1f1 url(http://png-1.findicons.com/files/icons/2534/aroma/24/resize_width.png) no-repeat 50% 50%;
+        user-select: none;
+        &:hover{
+            cursor: col-resize;
+        }
+    }
 }
 .wrapper{
     max-width: 990px;
@@ -39,6 +61,15 @@ iframe{
     padding-bottom: 12px;
     margin-top: 60px;
 }
+.secondary-title{
+    color: #444;
+    font-size: 24px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-align: center;
+    padding-bottom: 12px;
+    margin-top: 60px;
+}
+
 .title{
     color: #444;
     text-transform: uppercase;

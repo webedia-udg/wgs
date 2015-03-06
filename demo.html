@@ -17,7 +17,10 @@
 
     <div class="wrapper">
 
-        <h1 class="main-title">Demo</h3>
+        <h1 class="main-title">WGS Demo</h3>
+
+        <h2 class="secondary-title">WGS is a library allowing the generating of a set of OOCSS classes. Theses classes are heavily oriented toward the creation responsive webpage structures.</h2>
+        <p>Source code available on <a href="https://github.com/webedia-udg/wgs">github</a></p>
 
         <code>// Sample configuration
 
@@ -41,7 +44,7 @@
 
         </ul>
 
-        <h3 class="title">Example 1</h3>
+        <h3 class="title">Example 1: ratios widths</h3>
         <p>Various nested grids with ratios widths</p>
 
 
@@ -206,7 +209,7 @@
             </div>
         </div>
 
-        <h3 class="title">Example 2</h3>
+        <h3 class="title">Example 2: gutters</h3>
 
         <p>Grid without gutter</p>
 
@@ -318,7 +321,7 @@
             </div>
         </div>
 
-        <h3 class="title">Example 3</h3>
+        <h3 class="title">Example 3: grid example with fixed width cell</h3>
 
         <p>2 columns grid. Default layout has 2 rows with one cell 100% wide per row.<br/>
             At "tablet" breakpoint, the layout becomes "fixed" on one row with first cell 300px wide</p>
@@ -338,7 +341,7 @@
             </div>
         </div>
 
-        <h3 class="title">Example 4</h3>
+        <h3 class="title">Example 4: grid example with fixed width cell</h3>
 
         <p>2 columns grid, 50% wide. First cell becomes 300px wide at "tablet" breakpoint</p>
 
@@ -359,7 +362,7 @@
         </div>
 
 
-        <h3 class="title">Example 5</h3>
+        <h3 class="title">Example 5: grid example with fixed width cell and visibility class</h3>
 
         <p>2 colonnes grid. The right one is 300px wide AND <b>visible</b> from "big-tablet" breakpoint</p>
 
@@ -379,9 +382,7 @@
             </div>
         </div>
 
-        <h3 class="title">Example 5</h3>
-
-        <p>Kind of complicated grid : </p>
+        <h3 class="title">Example 5: kind of complicated grid</h3>
 
         <ul>
             <li>"base" breakpoint (default) : layout has 2 rows. Two cells 50% wide on first row, one cell 100% wide on second row</li>
@@ -412,7 +413,7 @@
         </div>
 
 
-        <h3 class="title">Example 6</h3>
+        <h3 class="title">Example 6: another grid with fixed width</h3>
 
         <p>3 cells layout. First two cells 50% wide from "tablet" breakpoint, third one 300px wide from "big-tablet" breakpoint</p>
 
@@ -438,7 +439,7 @@
         </div>
 
 
-        <h3 class="title">Example 7</h3>
+        <h3 class="title">Example 7: nested grids</h3>
 
         <p>2 cells grid. First cell contains another grid with its own behaviour.<br/>
             Second cell is hidden and becomes visible and 300px wide from "big-tablet" breakpoint.</p>
@@ -474,7 +475,7 @@
         </div>
 
 
-        <h3 class="title">Example 8</h3>
+        <h3 class="title">Example 8: another nester grid</h3>
 
         <p>2 cells grid. First cell becomes 300px wide from "big-tablet" breakpoint. Second cells gets remaining space, and contains another grid with its own behaviour</p>
 
@@ -510,9 +511,7 @@
 
 
 
-        <h3 class="title">Example 9</h3>
-
-        <p>Kind of complicayed grid :</p>
+        <h3 class="title">Example 9: complicated nested grid</h3>
 
         <ul>
             <li>base grid has 2 cells</li>
@@ -567,9 +566,7 @@
 
 
 
-        <h3 class="title">Example 10</h3>
-
-        <p>Some visibility classes</p>
+        <h3 class="title">Example 10: visibility classes</h3>
 
         <div class="js-display-code">
             <div class="grid grid--18px">
@@ -591,7 +588,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <script>
-    
+
         // Returns true/false id a color is dark or not
         function isDarkColor(color){
             var r = (color >> 16) & 0xff;  // extract red
@@ -634,6 +631,53 @@
             $("<code></code>").text(content).insertAfter($this);
 
         });
+
+        $.when($.get("demo.css"))
+        .done(function(style) {
+
+            $(".js-display-code").each(function(i, element){
+
+                var $this    = $(this);
+                var $iframe  = $('<iframe frameborder="0"></iframe>');
+                var $handle  = $('<div class="iframe-wrapper__handle"></div>');
+
+                $this.wrap('<div class="iframe-wrapper"></div>');
+                var $wrapper = $this.parent();
+
+                $wrapper.append($handle);
+                
+                var content = '<style>' + style + '</style>' + $this.html();
+
+
+
+                $this.after($iframe);
+                $iframe[0].contentWindow.document.write(content);
+                $this.remove();
+
+
+                setTimeout(function(){
+                    $wrapper.height(($iframe[0].contentWindow.document.body.offsetHeight + 10) + 'px');
+                },1000);
+                
+
+                $handle.on("mousedown", function(e){
+                    startX = e.clientX;
+                    startWidth = parseInt(document.defaultView.getComputedStyle($wrapper[0]).width, 10);
+                    $(document).on('mousemove', doDrag);
+                    $(document).on('mouseup', stopDrag);
+                });
+
+                function doDrag(e) {
+                   $wrapper[0].style.width = (startWidth + e.clientX - startX) + 'px';
+                }
+
+                function stopDrag(e) {
+                    $(document).off('mousemove', doDrag);
+                    $(document).off('mouseup', stopDrag);
+                }
+            });
+        });
+
 
     </script>
 
