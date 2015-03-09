@@ -163,6 +163,19 @@ $_wgsBreakpoints: ();
     }
 }
 
+/// Escapes a ratio with a sufix
+/// @example
+///   #{wgsRatio(1 , 2, "tablet")}
+///   // => .\31 \/2\@tablet witch means [class~="1/2@tablet"]
+@function wgsRatio($a, $b, $breakpointName: false){
+
+    $sufix: "";
+    @if $breakpointName{
+        $sufix: "\@#{$breakpointName}";
+    }
+
+    @return ".\3" + $a + " \/" + $b + $sufix;
+}
 
 /// Writes ratio classes (1/2, 1/3, etc), eventually suffixed with breakpoint name
 /// 
@@ -173,80 +186,76 @@ $_wgsBreakpoints: ();
 ///   @include wgsRatioWidths(desktop);
 @mixin wgsRatioWidths($breakpointName:false){
 
-    $sufix: "";
-    @if $breakpointName{
-        $sufix: "@#{$breakpointName}";
-    }
+    // Whole
+    #{wgsRatio(1 ,1, $breakpointName)}       { width: 100% !important; }
 
-    [class~="1/1#{$sufix}"]       { width: 100% !important; }
-    
     // Halves
-    [class~="1/2#{$sufix}"],
-    [class~="2/4#{$sufix}"],
-    [class~="3/6#{$sufix}"],
-    [class~="4/8#{$sufix}"],
-    [class~="5/10#{$sufix}"],
-    [class~="6/12#{$sufix}"]      { width: 50% !important; }
+    #{wgsRatio(1 , 2, $breakpointName)},
+    #{wgsRatio(2 , 4, $breakpointName)},
+    #{wgsRatio(3 , 6, $breakpointName)},
+    #{wgsRatio(4 , 8, $breakpointName)},
+    #{wgsRatio(5 ,10, $breakpointName)},
+    #{wgsRatio(6 ,12, $breakpointName)}      { width: 50% !important; }
     
     // Thirds
-    [class~="1/3#{$sufix}"],
-    [class~="2/6#{$sufix}"],
-    [class~="3/9#{$sufix}"],
-    [class~="4/12#{$sufix}"]      { width: 33.3333333% !important; }
-    [class~="2/3#{$sufix}"],
-    [class~="4/6#{$sufix}"],
-    [class~="6/9#{$sufix}"],
-    [class~="8/12#{$sufix}"]      { width: 66.6666666% !important; }
-    
+    #{wgsRatio(1 , 3, $breakpointName)},
+    #{wgsRatio(2 , 6, $breakpointName)},
+    #{wgsRatio(3 , 9, $breakpointName)},
+    #{wgsRatio(4 ,12, $breakpointName)}      { width: 33.3333333% !important; }
+    #{wgsRatio(2 , 3, $breakpointName)},
+    #{wgsRatio(4 , 6, $breakpointName)},
+    #{wgsRatio(6 , 9, $breakpointName)},
+    #{wgsRatio(8 ,12, $breakpointName)}      { width: 66.6666666% !important; }
+
     // Quarters
-    [class~="1/4#{$sufix}"],
-    [class~="2/8#{$sufix}"],
-    [class~="3/12#{$sufix}"]      { width: 25% !important; }
-    [class~="3/4#{$sufix}"],
-    [class~="6/8#{$sufix}"],
-    [class~="9/12#{$sufix}"]      { width: 75% !important; }
-    
+    #{wgsRatio(1 , 4, $breakpointName)},
+    #{wgsRatio(2 , 8, $breakpointName)},
+    #{wgsRatio(3 ,12, $breakpointName)}      { width: 25% !important; }
+    #{wgsRatio(3 , 4, $breakpointName)},
+    #{wgsRatio(6 , 8, $breakpointName)},
+    #{wgsRatio(9 ,12, $breakpointName)}      { width: 75% !important; }
+
     // Fifths
-    [class~="1/5#{$sufix}"],
-    [class~="2/10#{$sufix}"]      { width: 20% !important; }
-    [class~="2/5#{$sufix}"],
-    [class~="4/10#{$sufix}"]      { width: 40% !important; }
-    [class~="3/5#{$sufix}"],
-    [class~="6/10#{$sufix}"]      { width: 60% !important; }
-    [class~="4/5#{$sufix}"],
-    [class~="8/10#{$sufix}"]      { width: 80% !important; }
-    
+    #{wgsRatio(1 , 5, $breakpointName)},
+    #{wgsRatio(2 ,10, $breakpointName)}      { width: 20% !important; }
+    #{wgsRatio(2 , 5, $breakpointName)},
+    #{wgsRatio(4 ,10, $breakpointName)}      { width: 40% !important; }
+    #{wgsRatio(3 , 5, $breakpointName)},
+    #{wgsRatio(6 ,10, $breakpointName)}      { width: 60% !important; }
+    #{wgsRatio(4 , 5, $breakpointName)},
+    #{wgsRatio(8 ,10, $breakpointName)}      { width: 80% !important; }
+
     // Sixths
-    [class~="1/6#{$sufix}"],
-    [class~="2/12#{$sufix}"]      { width: 16.6666666% !important; }
-    [class~="5/6#{$sufix}"],
-    [class~="10/12#{$sufix}"]     { width: 83.3333333% !important; }
+    #{wgsRatio(1 , 6, $breakpointName)},
+    #{wgsRatio(2 ,12, $breakpointName)}      { width: 16.6666666% !important; }
+    #{wgsRatio(5 , 6, $breakpointName)},
+    #{wgsRatio(10,12, $breakpointName)}      { width: 83.3333333% !important; }
 
     // Eighths
-    [class~="1/8#{$sufix}"]       { width: 12.5% !important; }
-    [class~="3/8#{$sufix}"]       { width: 37.5% !important; }
-    [class~="5/8#{$sufix}"]       { width: 62.5% !important; }
-    [class~="7/8#{$sufix}"]       { width: 87.5% !important; }
-    
+    #{wgsRatio(1 , 8, $breakpointName)}      { width: 12.5% !important; }
+    #{wgsRatio(3 , 8, $breakpointName)}      { width: 37.5% !important; }
+    #{wgsRatio(5 , 8, $breakpointName)}      { width: 62.5% !important; }
+    #{wgsRatio(7 , 8, $breakpointName)}      { width: 87.5% !important; }
+
     // Ninths
-    [class~="1/9#{$sufix}"]       { width: 11.1111111% !important; }
-    [class~="2/9#{$sufix}"]       { width: 22.2222222% !important; }
-    [class~="4/9#{$sufix}"]       { width: 44.4444444% !important; }
-    [class~="5/9#{$sufix}"]       { width: 55.5555555% !important; }
-    [class~="7/9#{$sufix}"]       { width: 77.7777777% !important; }
-    [class~="8/9#{$sufix}"]       { width: 88.8888888% !important; }
-    
+    #{wgsRatio(1 , 9, $breakpointName)}      { width: 11.1111111% !important; }
+    #{wgsRatio(2 , 9, $breakpointName)}      { width: 11.1111111% !important; }
+    #{wgsRatio(4 , 9, $breakpointName)}      { width: 44.4444444% !important; }
+    #{wgsRatio(5 , 9, $breakpointName)}      { width: 55.5555555% !important; }
+    #{wgsRatio(7 , 9, $breakpointName)}      { width: 77.7777777% !important; }
+    #{wgsRatio(8 , 9, $breakpointName)}      { width: 88.8888888% !important; }
+
     // Tenths
-    [class~="1/10#{$sufix}"]      { width: 10% !important; }
-    [class~="3/10#{$sufix}"]      { width: 30% !important; }
-    [class~="7/10#{$sufix}"]      { width: 70% !important; }
-    [class~="9/10#{$sufix}"]      { width: 90% !important; }
-    
+    #{wgsRatio(1 ,10, $breakpointName)}      { width: 10% !important; }
+    #{wgsRatio(3 ,10, $breakpointName)}      { width: 30% !important; }
+    #{wgsRatio(7 ,10, $breakpointName)}      { width: 70% !important; }
+    #{wgsRatio(9 ,10, $breakpointName)}      { width: 90% !important; }
+
     // Twelves
-    [class~="1/12#{$sufix}"]      { width:  8.3333333% !important; }
-    [class~="5/12#{$sufix}"]      { width: 41.6666666% !important; }
-    [class~="7/12#{$sufix}"]      { width: 58.3333333% !important; }
-    [class~="11/12#{$sufix}"]     { width: 91.6666666% !important; }
+    #{wgsRatio(1 ,12, $breakpointName)}      { width:  8.3333333% !important; }
+    #{wgsRatio(5 ,12, $breakpointName)}      { width: 41.6666666% !important; }
+    #{wgsRatio(7 ,12, $breakpointName)}      { width: 58.3333333% !important; }
+    #{wgsRatio(11,12, $breakpointName)}      { width: 91.6666666% !important; }
 }
 
 

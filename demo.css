@@ -79,94 +79,94 @@
     padding-left: 0;
     padding-top: 0; }
 
-[class~="1/1"] {
+.\31 \/1 {
   width: 100% !important; }
 
-[class~="1/2"], [class~="2/4"], [class~="3/6"], [class~="4/8"], [class~="5/10"], [class~="6/12"] {
+.\31 \/2, .\32 \/4, .\33 \/6, .\34 \/8, .\35 \/10, .\36 \/12 {
   width: 50% !important; }
 
-[class~="1/3"], [class~="2/6"], [class~="3/9"], [class~="4/12"] {
+.\31 \/3, .\32 \/6, .\33 \/9, .\34 \/12 {
   width: 33.3333333% !important; }
 
-[class~="2/3"], [class~="4/6"], [class~="6/9"], [class~="8/12"] {
+.\32 \/3, .\34 \/6, .\36 \/9, .\38 \/12 {
   width: 66.6666666% !important; }
 
-[class~="1/4"], [class~="2/8"], [class~="3/12"] {
+.\31 \/4, .\32 \/8, .\33 \/12 {
   width: 25% !important; }
 
-[class~="3/4"], [class~="6/8"], [class~="9/12"] {
+.\33 \/4, .\36 \/8, .\39 \/12 {
   width: 75% !important; }
 
-[class~="1/5"], [class~="2/10"] {
+.\31 \/5, .\32 \/10 {
   width: 20% !important; }
 
-[class~="2/5"], [class~="4/10"] {
+.\32 \/5, .\34 \/10 {
   width: 40% !important; }
 
-[class~="3/5"], [class~="6/10"] {
+.\33 \/5, .\36 \/10 {
   width: 60% !important; }
 
-[class~="4/5"], [class~="8/10"] {
+.\34 \/5, .\38 \/10 {
   width: 80% !important; }
 
-[class~="1/6"], [class~="2/12"] {
+.\31 \/6, .\32 \/12 {
   width: 16.6666666% !important; }
 
-[class~="5/6"], [class~="10/12"] {
+.\35 \/6, .\310 \/12 {
   width: 83.3333333% !important; }
 
-[class~="1/8"] {
+.\31 \/8 {
   width: 12.5% !important; }
 
-[class~="3/8"] {
+.\33 \/8 {
   width: 37.5% !important; }
 
-[class~="5/8"] {
+.\35 \/8 {
   width: 62.5% !important; }
 
-[class~="7/8"] {
+.\37 \/8 {
   width: 87.5% !important; }
 
-[class~="1/9"] {
+.\31 \/9 {
   width: 11.1111111% !important; }
 
-[class~="2/9"] {
-  width: 22.2222222% !important; }
+.\32 \/9 {
+  width: 11.1111111% !important; }
 
-[class~="4/9"] {
+.\34 \/9 {
   width: 44.4444444% !important; }
 
-[class~="5/9"] {
+.\35 \/9 {
   width: 55.5555555% !important; }
 
-[class~="7/9"] {
+.\37 \/9 {
   width: 77.7777777% !important; }
 
-[class~="8/9"] {
+.\38 \/9 {
   width: 88.8888888% !important; }
 
-[class~="1/10"] {
+.\31 \/10 {
   width: 10% !important; }
 
-[class~="3/10"] {
+.\33 \/10 {
   width: 30% !important; }
 
-[class~="7/10"] {
+.\37 \/10 {
   width: 70% !important; }
 
-[class~="9/10"] {
+.\39 \/10 {
   width: 90% !important; }
 
-[class~="1/12"] {
+.\31 \/12 {
   width: 8.3333333% !important; }
 
-[class~="5/12"] {
+.\35 \/12 {
   width: 41.6666666% !important; }
 
-[class~="7/12"] {
+.\37 \/12 {
   width: 58.3333333% !important; }
 
-[class~="11/12"] {
+.\311 \/12 {
   width: 91.6666666% !important; }
 
 [class~="200px"] {
@@ -303,65 +303,65 @@
     .grid--0\@tablet > .grid__item {
       padding-left: 0;
       padding-top: 0; }
-  [class~="1/1@tablet"] {
+  .\31 \/1\@tablet {
     width: 100% !important; }
-  [class~="1/2@tablet"], [class~="2/4@tablet"], [class~="3/6@tablet"], [class~="4/8@tablet"], [class~="5/10@tablet"], [class~="6/12@tablet"] {
+  .\31 \/2\@tablet, .\32 \/4\@tablet, .\33 \/6\@tablet, .\34 \/8\@tablet, .\35 \/10\@tablet, .\36 \/12\@tablet {
     width: 50% !important; }
-  [class~="1/3@tablet"], [class~="2/6@tablet"], [class~="3/9@tablet"], [class~="4/12@tablet"] {
+  .\31 \/3\@tablet, .\32 \/6\@tablet, .\33 \/9\@tablet, .\34 \/12\@tablet {
     width: 33.3333333% !important; }
-  [class~="2/3@tablet"], [class~="4/6@tablet"], [class~="6/9@tablet"], [class~="8/12@tablet"] {
+  .\32 \/3\@tablet, .\34 \/6\@tablet, .\36 \/9\@tablet, .\38 \/12\@tablet {
     width: 66.6666666% !important; }
-  [class~="1/4@tablet"], [class~="2/8@tablet"], [class~="3/12@tablet"] {
+  .\31 \/4\@tablet, .\32 \/8\@tablet, .\33 \/12\@tablet {
     width: 25% !important; }
-  [class~="3/4@tablet"], [class~="6/8@tablet"], [class~="9/12@tablet"] {
+  .\33 \/4\@tablet, .\36 \/8\@tablet, .\39 \/12\@tablet {
     width: 75% !important; }
-  [class~="1/5@tablet"], [class~="2/10@tablet"] {
+  .\31 \/5\@tablet, .\32 \/10\@tablet {
     width: 20% !important; }
-  [class~="2/5@tablet"], [class~="4/10@tablet"] {
+  .\32 \/5\@tablet, .\34 \/10\@tablet {
     width: 40% !important; }
-  [class~="3/5@tablet"], [class~="6/10@tablet"] {
+  .\33 \/5\@tablet, .\36 \/10\@tablet {
     width: 60% !important; }
-  [class~="4/5@tablet"], [class~="8/10@tablet"] {
+  .\34 \/5\@tablet, .\38 \/10\@tablet {
     width: 80% !important; }
-  [class~="1/6@tablet"], [class~="2/12@tablet"] {
+  .\31 \/6\@tablet, .\32 \/12\@tablet {
     width: 16.6666666% !important; }
-  [class~="5/6@tablet"], [class~="10/12@tablet"] {
+  .\35 \/6\@tablet, .\310 \/12\@tablet {
     width: 83.3333333% !important; }
-  [class~="1/8@tablet"] {
+  .\31 \/8\@tablet {
     width: 12.5% !important; }
-  [class~="3/8@tablet"] {
+  .\33 \/8\@tablet {
     width: 37.5% !important; }
-  [class~="5/8@tablet"] {
+  .\35 \/8\@tablet {
     width: 62.5% !important; }
-  [class~="7/8@tablet"] {
+  .\37 \/8\@tablet {
     width: 87.5% !important; }
-  [class~="1/9@tablet"] {
+  .\31 \/9\@tablet {
     width: 11.1111111% !important; }
-  [class~="2/9@tablet"] {
-    width: 22.2222222% !important; }
-  [class~="4/9@tablet"] {
+  .\32 \/9\@tablet {
+    width: 11.1111111% !important; }
+  .\34 \/9\@tablet {
     width: 44.4444444% !important; }
-  [class~="5/9@tablet"] {
+  .\35 \/9\@tablet {
     width: 55.5555555% !important; }
-  [class~="7/9@tablet"] {
+  .\37 \/9\@tablet {
     width: 77.7777777% !important; }
-  [class~="8/9@tablet"] {
+  .\38 \/9\@tablet {
     width: 88.8888888% !important; }
-  [class~="1/10@tablet"] {
+  .\31 \/10\@tablet {
     width: 10% !important; }
-  [class~="3/10@tablet"] {
+  .\33 \/10\@tablet {
     width: 30% !important; }
-  [class~="7/10@tablet"] {
+  .\37 \/10\@tablet {
     width: 70% !important; }
-  [class~="9/10@tablet"] {
+  .\39 \/10\@tablet {
     width: 90% !important; }
-  [class~="1/12@tablet"] {
+  .\31 \/12\@tablet {
     width: 8.3333333% !important; }
-  [class~="5/12@tablet"] {
+  .\35 \/12\@tablet {
     width: 41.6666666% !important; }
-  [class~="7/12@tablet"] {
+  .\37 \/12\@tablet {
     width: 58.3333333% !important; }
-  [class~="11/12@tablet"] {
+  .\311 \/12\@tablet {
     width: 91.6666666% !important; }
   .hidden\@tablet {
     display: none !important; }
@@ -480,65 +480,65 @@
     .grid--0\@big-tablet > .grid__item {
       padding-left: 0;
       padding-top: 0; }
-  [class~="1/1@big-tablet"] {
+  .\31 \/1\@big-tablet {
     width: 100% !important; }
-  [class~="1/2@big-tablet"], [class~="2/4@big-tablet"], [class~="3/6@big-tablet"], [class~="4/8@big-tablet"], [class~="5/10@big-tablet"], [class~="6/12@big-tablet"] {
+  .\31 \/2\@big-tablet, .\32 \/4\@big-tablet, .\33 \/6\@big-tablet, .\34 \/8\@big-tablet, .\35 \/10\@big-tablet, .\36 \/12\@big-tablet {
     width: 50% !important; }
-  [class~="1/3@big-tablet"], [class~="2/6@big-tablet"], [class~="3/9@big-tablet"], [class~="4/12@big-tablet"] {
+  .\31 \/3\@big-tablet, .\32 \/6\@big-tablet, .\33 \/9\@big-tablet, .\34 \/12\@big-tablet {
     width: 33.3333333% !important; }
-  [class~="2/3@big-tablet"], [class~="4/6@big-tablet"], [class~="6/9@big-tablet"], [class~="8/12@big-tablet"] {
+  .\32 \/3\@big-tablet, .\34 \/6\@big-tablet, .\36 \/9\@big-tablet, .\38 \/12\@big-tablet {
     width: 66.6666666% !important; }
-  [class~="1/4@big-tablet"], [class~="2/8@big-tablet"], [class~="3/12@big-tablet"] {
+  .\31 \/4\@big-tablet, .\32 \/8\@big-tablet, .\33 \/12\@big-tablet {
     width: 25% !important; }
-  [class~="3/4@big-tablet"], [class~="6/8@big-tablet"], [class~="9/12@big-tablet"] {
+  .\33 \/4\@big-tablet, .\36 \/8\@big-tablet, .\39 \/12\@big-tablet {
     width: 75% !important; }
-  [class~="1/5@big-tablet"], [class~="2/10@big-tablet"] {
+  .\31 \/5\@big-tablet, .\32 \/10\@big-tablet {
     width: 20% !important; }
-  [class~="2/5@big-tablet"], [class~="4/10@big-tablet"] {
+  .\32 \/5\@big-tablet, .\34 \/10\@big-tablet {
     width: 40% !important; }
-  [class~="3/5@big-tablet"], [class~="6/10@big-tablet"] {
+  .\33 \/5\@big-tablet, .\36 \/10\@big-tablet {
     width: 60% !important; }
-  [class~="4/5@big-tablet"], [class~="8/10@big-tablet"] {
+  .\34 \/5\@big-tablet, .\38 \/10\@big-tablet {
     width: 80% !important; }
-  [class~="1/6@big-tablet"], [class~="2/12@big-tablet"] {
+  .\31 \/6\@big-tablet, .\32 \/12\@big-tablet {
     width: 16.6666666% !important; }
-  [class~="5/6@big-tablet"], [class~="10/12@big-tablet"] {
+  .\35 \/6\@big-tablet, .\310 \/12\@big-tablet {
     width: 83.3333333% !important; }
-  [class~="1/8@big-tablet"] {
+  .\31 \/8\@big-tablet {
     width: 12.5% !important; }
-  [class~="3/8@big-tablet"] {
+  .\33 \/8\@big-tablet {
     width: 37.5% !important; }
-  [class~="5/8@big-tablet"] {
+  .\35 \/8\@big-tablet {
     width: 62.5% !important; }
-  [class~="7/8@big-tablet"] {
+  .\37 \/8\@big-tablet {
     width: 87.5% !important; }
-  [class~="1/9@big-tablet"] {
+  .\31 \/9\@big-tablet {
     width: 11.1111111% !important; }
-  [class~="2/9@big-tablet"] {
-    width: 22.2222222% !important; }
-  [class~="4/9@big-tablet"] {
+  .\32 \/9\@big-tablet {
+    width: 11.1111111% !important; }
+  .\34 \/9\@big-tablet {
     width: 44.4444444% !important; }
-  [class~="5/9@big-tablet"] {
+  .\35 \/9\@big-tablet {
     width: 55.5555555% !important; }
-  [class~="7/9@big-tablet"] {
+  .\37 \/9\@big-tablet {
     width: 77.7777777% !important; }
-  [class~="8/9@big-tablet"] {
+  .\38 \/9\@big-tablet {
     width: 88.8888888% !important; }
-  [class~="1/10@big-tablet"] {
+  .\31 \/10\@big-tablet {
     width: 10% !important; }
-  [class~="3/10@big-tablet"] {
+  .\33 \/10\@big-tablet {
     width: 30% !important; }
-  [class~="7/10@big-tablet"] {
+  .\37 \/10\@big-tablet {
     width: 70% !important; }
-  [class~="9/10@big-tablet"] {
+  .\39 \/10\@big-tablet {
     width: 90% !important; }
-  [class~="1/12@big-tablet"] {
+  .\31 \/12\@big-tablet {
     width: 8.3333333% !important; }
-  [class~="5/12@big-tablet"] {
+  .\35 \/12\@big-tablet {
     width: 41.6666666% !important; }
-  [class~="7/12@big-tablet"] {
+  .\37 \/12\@big-tablet {
     width: 58.3333333% !important; }
-  [class~="11/12@big-tablet"] {
+  .\311 \/12\@big-tablet {
     width: 91.6666666% !important; }
   .hidden\@big-tablet {
     display: none !important; }
@@ -657,65 +657,65 @@
     .grid--0\@desk > .grid__item {
       padding-left: 0;
       padding-top: 0; }
-  [class~="1/1@desk"] {
+  .\31 \/1\@desk {
     width: 100% !important; }
-  [class~="1/2@desk"], [class~="2/4@desk"], [class~="3/6@desk"], [class~="4/8@desk"], [class~="5/10@desk"], [class~="6/12@desk"] {
+  .\31 \/2\@desk, .\32 \/4\@desk, .\33 \/6\@desk, .\34 \/8\@desk, .\35 \/10\@desk, .\36 \/12\@desk {
     width: 50% !important; }
-  [class~="1/3@desk"], [class~="2/6@desk"], [class~="3/9@desk"], [class~="4/12@desk"] {
+  .\31 \/3\@desk, .\32 \/6\@desk, .\33 \/9\@desk, .\34 \/12\@desk {
     width: 33.3333333% !important; }
-  [class~="2/3@desk"], [class~="4/6@desk"], [class~="6/9@desk"], [class~="8/12@desk"] {
+  .\32 \/3\@desk, .\34 \/6\@desk, .\36 \/9\@desk, .\38 \/12\@desk {
     width: 66.6666666% !important; }
-  [class~="1/4@desk"], [class~="2/8@desk"], [class~="3/12@desk"] {
+  .\31 \/4\@desk, .\32 \/8\@desk, .\33 \/12\@desk {
     width: 25% !important; }
-  [class~="3/4@desk"], [class~="6/8@desk"], [class~="9/12@desk"] {
+  .\33 \/4\@desk, .\36 \/8\@desk, .\39 \/12\@desk {
     width: 75% !important; }
-  [class~="1/5@desk"], [class~="2/10@desk"] {
+  .\31 \/5\@desk, .\32 \/10\@desk {
     width: 20% !important; }
-  [class~="2/5@desk"], [class~="4/10@desk"] {
+  .\32 \/5\@desk, .\34 \/10\@desk {
     width: 40% !important; }
-  [class~="3/5@desk"], [class~="6/10@desk"] {
+  .\33 \/5\@desk, .\36 \/10\@desk {
     width: 60% !important; }
-  [class~="4/5@desk"], [class~="8/10@desk"] {
+  .\34 \/5\@desk, .\38 \/10\@desk {
     width: 80% !important; }
-  [class~="1/6@desk"], [class~="2/12@desk"] {
+  .\31 \/6\@desk, .\32 \/12\@desk {
     width: 16.6666666% !important; }
-  [class~="5/6@desk"], [class~="10/12@desk"] {
+  .\35 \/6\@desk, .\310 \/12\@desk {
     width: 83.3333333% !important; }
-  [class~="1/8@desk"] {
+  .\31 \/8\@desk {
     width: 12.5% !important; }
-  [class~="3/8@desk"] {
+  .\33 \/8\@desk {
     width: 37.5% !important; }
-  [class~="5/8@desk"] {
+  .\35 \/8\@desk {
     width: 62.5% !important; }
-  [class~="7/8@desk"] {
+  .\37 \/8\@desk {
     width: 87.5% !important; }
-  [class~="1/9@desk"] {
+  .\31 \/9\@desk {
     width: 11.1111111% !important; }
-  [class~="2/9@desk"] {
-    width: 22.2222222% !important; }
-  [class~="4/9@desk"] {
+  .\32 \/9\@desk {
+    width: 11.1111111% !important; }
+  .\34 \/9\@desk {
     width: 44.4444444% !important; }
-  [class~="5/9@desk"] {
+  .\35 \/9\@desk {
     width: 55.5555555% !important; }
-  [class~="7/9@desk"] {
+  .\37 \/9\@desk {
     width: 77.7777777% !important; }
-  [class~="8/9@desk"] {
+  .\38 \/9\@desk {
     width: 88.8888888% !important; }
-  [class~="1/10@desk"] {
+  .\31 \/10\@desk {
     width: 10% !important; }
-  [class~="3/10@desk"] {
+  .\33 \/10\@desk {
     width: 30% !important; }
-  [class~="7/10@desk"] {
+  .\37 \/10\@desk {
     width: 70% !important; }
-  [class~="9/10@desk"] {
+  .\39 \/10\@desk {
     width: 90% !important; }
-  [class~="1/12@desk"] {
+  .\31 \/12\@desk {
     width: 8.3333333% !important; }
-  [class~="5/12@desk"] {
+  .\35 \/12\@desk {
     width: 41.6666666% !important; }
-  [class~="7/12@desk"] {
+  .\37 \/12\@desk {
     width: 58.3333333% !important; }
-  [class~="11/12@desk"] {
+  .\311 \/12\@desk {
     width: 91.6666666% !important; }
   .hidden\@desk {
     display: none !important; }
