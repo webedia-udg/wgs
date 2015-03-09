@@ -66,12 +66,12 @@ $_wgsBreakpoints: ();
 @mixin wgsGrid($gutters: (), $fixedWidths: (), $breakpointName:false) {
     $sufix: "";
     @if $breakpointName{
-        $sufix: "@#{$breakpointName}";
+        $sufix: "\@#{$breakpointName}";
     }
 
     // 1/ Box sizing for this breakpoint on grid
-    [class~="grid#{$sufix}"],
-    [class~="grid__item#{$sufix}"] {
+    .grid#{$sufix},
+    .grid__item#{$sufix} {
         &,
         &:before,
         &:after{
@@ -80,7 +80,7 @@ $_wgsBreakpoints: ();
     }
 
     // 2/ Base style for this breakpoint's grid
-    [class~="grid#{$sufix}"]{
+    .grid#{$sufix} {
         display: block;
         font-size: 0;
         & > .grid__item {
@@ -101,22 +101,22 @@ $_wgsBreakpoints: ();
     // 3/ Grid's modifiers :
 
     // a/ reversed order
-    [class~="grid--rev#{$sufix}"] {
+    .grid--rev#{$sufix} {
         direction: rtl;
     }
 
     // b/ centered grid
-    [class~="grid--center#{$sufix}"] {
+    .grid--center#{$sufix} {
         text-align: center;
     }
 
     // c/ right aligned grid
-    [class~="grid--right#{$sufix}"] {
+    .grid--right#{$sufix} {
         text-align: right;
     }
 
     // d/ fixed grid (no more box-sizing: border-box)
-    .grid[class~="grid--fixed#{$sufix}"] {
+    .grid.grid--fixed#{$sufix} {
         width: 100%;
         display: table;
         table-layout: fixed;
@@ -137,7 +137,7 @@ $_wgsBreakpoints: ();
     // e/ paddings (grid gutters)
     @each $gutter in $gutters {
 
-        [class~="grid--#{$gutter}#{$sufix}"] {
+        .grid--#{$gutter}#{$sufix} {
             margin-left: -$gutter;
             margin-top: -$gutter;
 
@@ -150,7 +150,7 @@ $_wgsBreakpoints: ();
     }
 
     @if length($gutters){
-        [class~="grid--0#{$sufix}"] {
+        .grid--0#{$sufix} {
             margin-left: 0;
             margin-top: 0;
 
@@ -288,10 +288,10 @@ $_wgsBreakpoints: ();
 
     $sufix: "";
     @if $breakpointName{
-        $sufix: "@#{$breakpointName}";
+        $sufix: "\@#{$breakpointName}";
     }
 
-    [class~="hidden#{$sufix}"] {
+    .hidden#{$sufix} {
         display: none !important;
     }    
 }
@@ -306,10 +306,10 @@ $_wgsBreakpoints: ();
 
     $sufix: "";
     @if $breakpointName{
-        $sufix: "@#{$breakpointName}";
+        $sufix: "\@#{$breakpointName}";
     }
 
-    [class~="visible#{$sufix}"] {
+    .visible#{$sufix} {
         display: none !important;
     }    
 }
@@ -323,66 +323,66 @@ $_wgsBreakpoints: ();
 @mixin wgsSpacing($gutters: (), $breakpointName: false) {
     $sufix: "";
     @if $breakpointName{
-        $sufix: "@#{$breakpointName}";
+        $sufix: "\@#{$breakpointName}";
     }
 
     @each $gutter in $gutters {
 
-        [class~="padding-top--#{$gutter}#{$sufix}"]{
+        .padding-top--#{$gutter}#{$sufix} {
             padding-top: $gutter;
         }
-        [class~="padding-right--#{$gutter}#{$sufix}"]{
+        .padding-right--#{$gutter}#{$sufix} {
             padding-right: $gutter;
         }
-        [class~="padding-bottom--#{$gutter}#{$sufix}"]{
+        .padding-bottom--#{$gutter}#{$sufix} {
             padding-bottom: $gutter;
         }
-        [class~="padding-left--#{$gutter}#{$sufix}"]{
+        .padding-left--#{$gutter}#{$sufix} {
             padding-left: $gutter;
         }
 
-        [class~="padding-hori--#{$gutter}#{$sufix}"]{
-            @extend [class~="padding-right--#{$gutter}#{$sufix}"];
-            @extend [class~="padding-left--#{$gutter}#{$sufix}"];
+        .padding-hori--#{$gutter}#{$sufix} {
+            @extend .padding-right--#{$gutter}#{$sufix};
+            @extend .padding-left--#{$gutter}#{$sufix};
         }   
 
-        [class~="padding-vert--#{$gutter}#{$sufix}"]{
-            @extend [class~="padding-top--#{$gutter}#{$sufix}"];
-            @extend [class~="padding-bottom--#{$gutter}#{$sufix}"];
+        .padding-vert--#{$gutter}#{$sufix} {
+            @extend .padding-top--#{$gutter}#{$sufix};
+            @extend .padding-bottom--#{$gutter}#{$sufix};
         }
 
-        [class~="padding--#{$gutter}#{$sufix}"]{
-            @extend [class~="padding-hori--#{$gutter}#{$sufix}"];
-            @extend [class~="padding-vert--#{$gutter}#{$sufix}"];
+        .padding--#{$gutter}#{$sufix} {
+            @extend .padding-hori--#{$gutter}#{$sufix};
+            @extend .padding-vert--#{$gutter}#{$sufix};
         }
     }
     @if length($gutters){
-        [class~="padding-top--0#{$sufix}"]{
+        .padding-top--0#{$sufix} {
             padding-top: 0;
         }
-        [class~="padding-right--0#{$sufix}"]{
+        .padding-right--0#{$sufix} {
             padding-right: 0;
         }
-        [class~="padding-bottom--0#{$sufix}"]{
+        .padding-bottom--0#{$sufix} {
             padding-bottom: 0;
         }
-        [class~="padding-left--0#{$sufix}"]{
+        .padding-left--0#{$sufix} {
             padding-left: 0;
         }
-        [class~="padding-hori--0#{$sufix}"]{
-            @extend [class~="padding-right--0#{$sufix}"];
-            @extend [class~="padding-left--0#{$sufix}"];
+        .padding-hori--0#{$sufix} {
+            @extend .padding-right--0#{$sufix};
+            @extend .padding-left--0#{$sufix};
         }
-        [class~="padding-vert--0#{$sufix}"]{
-            @extend [class~="padding-top--0#{$sufix}"];
-            @extend [class~="padding-bottom--0#{$sufix}"];
+        .padding-vert--0#{$sufix} {
+            @extend .padding-top--0#{$sufix};
+            @extend .padding-bottom--0#{$sufix};
         }
 
-        [class~="padding--0#{$sufix}"]{
-            @extend [class~="padding-top--0#{$sufix}"];
-            @extend [class~="padding-right--0#{$sufix}"];
-            @extend [class~="padding-bottom--0#{$sufix}"];
-            @extend [class~="padding-left--0#{$sufix}"];
+        .padding--0#{$sufix} {
+            @extend .padding-top--0#{$sufix};
+            @extend .padding-right--0#{$sufix};
+            @extend .padding-bottom--0#{$sufix};
+            @extend .padding-left--0#{$sufix};
         }        
     }
 }

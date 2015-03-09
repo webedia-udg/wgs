@@ -11,6 +11,10 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
     <meta http-equiv="cleartype" content="on">
 
+    <style type="text/css">
+        <?php include "demo.css" ?>
+    </style>
+
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="demo.css" media="screen"/>
 <body>
@@ -601,7 +605,7 @@
 
         }
 
-        // Have .bloc random colors for a better reading 
+        // Random colors for .bloc (better reading)
         $(".bloc").each(function(i, element){
             var randomColor     = Math.round(Math.random() * 0xFFFFFF);
             var textColor       = isDarkColor(randomColor) ? '#ffffff' : '#000000';
@@ -632,50 +636,49 @@
 
         });
 
-        $.when($.get("demo.css"))
-        .done(function(style) {
 
-            $(".js-display-code").each(function(i, element){
+        var cssRules = $("head style").eq(0).text();
+        // Generate fake iframes with resize handles
+        $(".js-display-code").each(function(i, element){
 
-                var $this    = $(this);
-                var $iframe  = $('<iframe frameborder="0"></iframe>');
-                var $handle  = $('<div class="iframe-wrapper__handle"></div>');
+            var $this    = $(this);
+            var $iframe  = $('<iframe frameborder="0"></iframe>');
+            var $handle  = $('<div class="iframe-wrapper__handle"></div>');
 
-                $this.wrap('<div class="iframe-wrapper"></div>');
-                var $wrapper = $this.parent();
+            $this.wrap('<div class="iframe-wrapper"></div>');
+            var $wrapper = $this.parent();
 
-                $wrapper.append($handle);
-                
-                var content = '<style>' + style + '</style>' + $this.html();
-
-
-
-                $this.after($iframe);
-                $iframe[0].contentWindow.document.write(content);
-                $this.remove();
+            $wrapper.append($handle);
+            
+            var content = '<style>' + cssRules + '</style>' + $this.html();
 
 
-                setTimeout(function(){
-                    $wrapper.height(($iframe[0].contentWindow.document.body.offsetHeight + 10) + 'px');
-                },1000);
-                
 
-                $handle.on("mousedown", function(e){
-                    startX = e.clientX;
-                    startWidth = parseInt(document.defaultView.getComputedStyle($wrapper[0]).width, 10);
-                    $(document).on('mousemove', doDrag);
-                    $(document).on('mouseup', stopDrag);
-                });
+            $this.after($iframe);
+            $iframe[0].contentWindow.document.write(content);
+            $this.remove();
 
-                function doDrag(e) {
-                   $wrapper[0].style.width = (startWidth + e.clientX - startX) + 'px';
-                }
 
-                function stopDrag(e) {
-                    $(document).off('mousemove', doDrag);
-                    $(document).off('mouseup', stopDrag);
-                }
+            setTimeout(function(){
+                $wrapper.height(($iframe[0].contentWindow.document.body.offsetHeight + 10) + 'px');
+            },1000);
+            
+
+            $handle.on("mousedown", function(e){
+                startX = e.clientX;
+                startWidth = parseInt(document.defaultView.getComputedStyle($wrapper[0]).width, 10);
+                $(document).on('mousemove', doDrag);
+                $(document).on('mouseup', stopDrag);
             });
+
+            function doDrag(e) {
+               $wrapper[0].style.width = (startWidth + e.clientX - startX) + 'px';
+            }
+
+            function stopDrag(e) {
+                $(document).off('mousemove', doDrag);
+                $(document).off('mouseup', stopDrag);
+            }
         });
 
 
