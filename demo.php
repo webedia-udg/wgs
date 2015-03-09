@@ -27,27 +27,25 @@
         <h2 class="secondary-title">WGS is a library allowing the generating of a set of OOCSS classes. Theses classes are heavily oriented toward the creation responsive webpage structures.</h2>
         <p>Source code available on <a href="https://github.com/webedia-udg/wgs">github</a></p>
 
-        <code>// Sample configuration
+        <code>@import "wgs";
 
-@import "wgs";
-
+// Sample configuration:
+// [1] Enable the use of three named breakpoints.
+//     The first one starts at 480px, and is named "tablet".
+//     The second one starts at 660px and is named "tablet". Guess the third one :)
+// [2] Enable the use of gutters widths and spacings classes, with breakpoint sufixes:
+//     .grid--12px, .grid--22px@desk, .padding--12px, .padding-top--22px@desk...
+// [3] Enable the use of 200px and 300px fixed widths. We can use .200px and .300px classes,
+//     with sufixes provided in $breakpoints parameter: .200px@tablet, 300px@desk...
 @include wgsSetup(
-    $breakpoints : (
+    $breakpoints : (                // [1]
         tablet     : 480px,
         big-tablet : 660px,
         desk       : 990px
     ),
-    $gutters : 12px 16px 18px 22px,
-    $fixedWidths : 200px 300px
+    $gutters : 12px 16px 18px 22px, // [2]
+    $fixedWidths : 200px 300px      // [3]
 );</code>
-
-        <p>What does this sample config mean:</p>
-        <ul>
-            <li>Enable the use of three named breakpoints. The first one starts at 480px, and is named "tablet". The second one starts at 660px and is named "tablet". Guess the third one :)</li>
-            <li>Enable the use of gutters widths and spacings classes, with breakpoint sufixes: .grid--12px, .grid--22px@desk, .padding--12px, .padding-top--22px@desk...</li>
-            <li>Enable the use of 200px and 300px fixed widths. We can use .200px and .300px classes, with sufixes provided in $breakpoints parameter: .200px@tablet, 300px@desk...</li>
-
-        </ul>
 
         <h3 class="title">Example 1: ratios widths</h3>
         <p>Various nested grids with ratios widths</p>
