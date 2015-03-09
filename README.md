@@ -8,6 +8,7 @@ This library est highly customisable : gutters, widths, spaces, breakpoint names
 It contains :
 
 * grid classes, with ratio and **fixed widths**.
+* gutter classes
 * spacing classes
 * visibility classes
 
@@ -17,7 +18,7 @@ This project fully [OOCSS](https://github.com/stubbornella/oocss/wiki) :
 
 ## Demo
 
-https://jsfiddle.net/6x1th0n1/2/embedded/result/
+https://fiddle.jshell.net/6x1th0n1/3/show/light/
 
 ## Prerequisites
 
