@@ -49,8 +49,8 @@ $_wgsBreakpoints: ();
     }
 }
 
-/// Writes grid classes (.grid & its modifiers, .grid__item), eventually suffixed with breakpoint
-/// Handles relations between .grid & .grid__item
+/// Writes grid classes (.grid & its modifiers), eventually suffixed with breakpoint
+/// Handles relations between .grid and its cells
 /// 
 /// @access private
 /// @param {list} $gutters [()] - List of gutter sizes to handle
@@ -71,7 +71,7 @@ $_wgsBreakpoints: ();
 
     // 1/ Box sizing for this breakpoint on grid
     .grid#{$sufix},
-    .grid__item#{$sufix} {
+    .grid#{$sufix} > * {
         &,
         &:before,
         &:after{
@@ -83,7 +83,7 @@ $_wgsBreakpoints: ();
     .grid#{$sufix} {
         display: block;
         font-size: 0;
-        & > .grid__item {
+        & > * {
             display: inline-block;
             vertical-align: top;
             width: 100%;
@@ -116,6 +116,7 @@ $_wgsBreakpoints: ();
     }
 
     // d/ fixed grid (no more box-sizing: border-box)
+    // overload of main grid properties
     .grid.grid--fixed#{$sufix} {
         width: 100%;
         display: table;
@@ -123,7 +124,7 @@ $_wgsBreakpoints: ();
         margin-left: 0;
 
 
-        > .grid__item {
+        > * {
             display: table-cell;
             vertical-align: top;
             box-sizing: content-box !important;
@@ -141,7 +142,7 @@ $_wgsBreakpoints: ();
             margin-left: -$gutter;
             margin-top: -$gutter;
 
-            & > .grid__item {
+            & > * {
                 padding-left: $gutter;
                 padding-top: $gutter;
             }
@@ -154,7 +155,7 @@ $_wgsBreakpoints: ();
             margin-left: 0;
             margin-top: 0;
 
-            & > .grid__item {
+            & > * {
                 padding-left: 0;
                 padding-top: 0;
             }
@@ -258,6 +259,9 @@ $_wgsBreakpoints: ();
     #{wgsRatio(11,12, $breakpointName)}      { width: 91.6666666% !important; }
 }
 
+@function strip-units($value) {
+    @return $value / ($value * 0 + 1);
+}
 
 /// Writes fixed widths
 ///
@@ -269,19 +273,21 @@ $_wgsBreakpoints: ();
 ///   @include wgsFixedWidth(300px, desktop);
 @mixin wgsFixedWidth($size, $breakpointName:false) {
 
+    $sizeValue: strip-units($size);
+    $sizeUnit: unit($size);
+
     $gutter: 0;
 
     $sufix: "";
     @if $breakpointName{
-        $sufix: "@#{$breakpointName}";
+        $sufix: "\@#{$breakpointName}";
     }
-
+    // Fixme : pure escaping wont work
+    // .\3#{$sizeValue} #{$sizeUnit}#{$sufix}{
+    //     width: $size !important;        
+    // }
     [class~="#{$size}#{$sufix}"] {
         width: $size !important;
-    }
-
-    .grid__item + [class~="#{$size}#{$sufix}"] {
-        width: $size + $gutter !important;
     }
 }
 

@@ -16,6 +16,7 @@
     </style>
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="demo.css" media="screen"/>
 <body>
 
@@ -54,19 +55,19 @@
 
         <div class="js-display-code">
             <div class="grid grid--22px">
-                <div class="grid__item 1/2@tablet">
+                <div class="1/2@tablet">
                     <div class="grid"> 
-                        <div class="grid__item">
+                        <div>
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">A[1]</div>
                             </div>
                         </div>
-                        <div class="grid__item 1/3@big-tablet">
+                        <div class="1/3@big-tablet">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">A[2]</div>
                             </div>
                         </div>
-                        <div class="grid__item 2/3@big-tablet">
+                        <div class="2/3@big-tablet">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">A[3]</div>
                             </div>
@@ -74,29 +75,29 @@
                     </div>
                 </div>
 
-                <div class="grid__item 1/2@tablet">
+                <div class="1/2@tablet">
                     <div class="grid">
-                        <div class="grid__item 1/2">
+                        <div class="1/2">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">B[1]</div>
                             </div>
                         </div>
-                        <div class="grid__item 1/2">
+                        <div class="1/2">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">B[2]</div>
                             </div>
                         </div>
-                        <div class="grid__item 1/2@tablet  1/3@big-tablet">
+                        <div class="1/2@tablet  1/3@big-tablet">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">B[3]</div>
                             </div>
                         </div>
-                        <div class="grid__item  1/2@tablet  1/3@big-tablet">
+                        <div class="1/2@tablet  1/3@big-tablet">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">B[4]</div>
                             </div>
                         </div>
-                        <div class="grid__item  1/3@big-tablet">
+                        <div class="1/3@big-tablet">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">B[5]</div>
                             </div>
@@ -106,21 +107,21 @@
 
                 </div>
 
-                <div class="grid__item 1/3@tablet">
+                <div class="1/3@tablet">
                     <div class="bloc bloc--50">
                         <div class="bloc__content">C</div>
                     </div>
                 </div>
 
-                <div class="grid__item 2/3@tablet">
+                <div class="2/3@tablet">
 
                     <div class="grid grid--rev">
-                        <div class="grid__item 1/2@tablet">
+                        <div class="1/2@tablet">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">D[1]</div>
                             </div>
                         </div>
-                        <div class="grid__item 1/2@tablet">
+                        <div class="1/2@tablet">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">D[2]</div>
                             </div>
@@ -130,24 +131,24 @@
 
                 </div>
 
-                <div class="grid__item">
+                <div>
                     <div class="grid">
-                        <div class="grid__item 1/2 1/4@desk">
+                        <div class="1/2 1/4@desk">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">E[1]</div>
                             </div>
                         </div>
-                        <div class="grid__item 1/2 1/4@desk">
+                        <div class="1/2 1/4@desk">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">E[2]</div>
                             </div>
                         </div>
-                        <div class="grid__item 1/2 1/4@desk">
+                        <div class="1/2 1/4@desk">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">E[3]</div>
                             </div>
                         </div>
-                        <div class="grid__item 1/2 1/4@desk">
+                        <div class="1/2 1/4@desk">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">E[4]</div>
                             </div>
@@ -155,24 +156,24 @@
                     </div>
                 </div>
 
-                <div class="grid__item">
+                <div>
                     <div class="grid grid--rev@desk">
-                        <div class="grid__item 1/2 1/2@tablet 1/4@desk">
+                        <div class="1/2 1/2@tablet 1/4@desk">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">F[1]</div>
                             </div>
                         </div>
-                        <div class="grid__item 1/2 1/2@tablet 1/4@desk">
+                        <div class="1/2 1/2@tablet 1/4@desk">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">F[2]</div>
                             </div>
                         </div>
-                        <div class="grid__item 1/4@desk">
+                        <div class="1/4@desk">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">F[3]</div>
                             </div>
                         </div>
-                        <div class="grid__item 1/4@desk">
+                        <div class="1/4@desk">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">F[4]</div>
                             </div>
@@ -180,14 +181,14 @@
                     </div>
                 </div>
 
-                <div class="grid__item">
+                <div>
                     <div class="grid grid--center@tablet">
-                        <div class="grid__item 1/2 1/3@tablet">
+                        <div class="1/2 1/3@tablet">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">G[1]</div>
                             </div>
                         </div>
-                        <div class="grid__item 1/2 1/3@tablet">
+                        <div class="1/2 1/3@tablet">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">G[2]</div>
                             </div>
@@ -195,14 +196,14 @@
                     </div>
                 </div>
 
-                <div class="grid__item">
+                <div>
                     <div class="grid grid--right@tablet">
-                        <div class="grid__item 1/2 1/3@tablet">
+                        <div class="1/2 1/3@tablet">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">H[1]</div>
                             </div>
                         </div>
-                        <div class="grid__item 1/2 1/3@tablet">
+                        <div class="1/2 1/3@tablet">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">H[2]</div>
                             </div>
@@ -219,17 +220,17 @@
 
         <div class="js-display-code">
             <div class="grid">
-                <div class="grid__item 1/3">
+                <div class="1/3">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">A</div>
                     </div>
                 </div>
-                <div class="grid__item 1/3">
+                <div class="1/3">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">B</div>
                     </div>
                 </div>
-                <div class="grid__item 1/3">
+                <div class="1/3">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">C</div>
                     </div>
@@ -241,17 +242,17 @@
 
         <div class="js-display-code">
             <div class="grid grid--12px">
-                <div class="grid__item 1/3">
+                <div class="1/3">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">A</div>
                     </div>
                 </div>
-                <div class="grid__item 1/3">
+                <div class="1/3">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">B</div>
                     </div>
                 </div>
-                <div class="grid__item 1/3">
+                <div class="1/3">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">C</div>
                     </div>
@@ -263,17 +264,17 @@
 
         <div class="js-display-code">
             <div class="grid grid--22px">
-                <div class="grid__item 1/3">
+                <div class="1/3">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">A</div>
                     </div>
                 </div>
-                <div class="grid__item 1/3">
+                <div class="1/3">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">B</div>
                     </div>
                 </div>
-                <div class="grid__item 1/3">
+                <div class="1/3">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">C</div>
                     </div>
@@ -285,17 +286,17 @@
 
         <div class="js-display-code">
             <div class="grid grid--22px@desk">
-                <div class="grid__item 1/3">
+                <div class="1/3">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">A</div>
                     </div>
                 </div>
-                <div class="grid__item 1/3">
+                <div class="1/3">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">B</div>
                     </div>
                 </div>
-                <div class="grid__item 1/3">
+                <div class="1/3">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">C</div>
                     </div>
@@ -307,17 +308,17 @@
 
         <div class="js-display-code">
             <div class="grid grid--12px grid--0@desk">
-                <div class="grid__item 1/3">
+                <div class="1/3">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">A</div>
                     </div>
                 </div>
-                <div class="grid__item 1/3">
+                <div class="1/3">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">B</div>
                     </div>
                 </div>
-                <div class="grid__item 1/3">
+                <div class="1/3">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">C</div>
                     </div>
@@ -332,12 +333,12 @@
     
         <div class="js-display-code">
             <div class="grid grid--18px grid--fixed@big-tablet">
-                <div class="grid__item 300px@big-tablet">
+                <div class="300px@big-tablet">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">A</div>
                     </div>
                 </div>
-                <div class="grid__item">
+                <div>
                     <div class="bloc bloc--150">
                         <div class="bloc__content">B</div>
                     </div>
@@ -352,12 +353,12 @@
 
         <div class="js-display-code">
             <div class="grid grid--18px grid--fixed@big-tablet">
-                <div class="grid__item 1/2 300px@big-tablet">
+                <div class="1/2 300px@big-tablet">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">A</div>
                     </div>
                 </div>
-                <div class="grid__item 1/2 1/1@big-tablet">
+                <div class="1/2 1/1@big-tablet">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">B</div>
                     </div>
@@ -373,12 +374,12 @@
         <div class="js-display-code">
 
             <div class="grid grid--18px grid--fixed@big-tablet">
-                <div class="grid__item">
+                <div>
                     <div class="bloc bloc--150">
                         <div class="bloc__content">A</div>
                     </div>
                 </div>
-                <div class="grid__item 300px@big-tablet visible@big-tablet">
+                <div class="300px@big-tablet visible@big-tablet">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">B</div>
                     </div>
@@ -398,17 +399,17 @@
 
         <div class="js-display-code">
             <div class="grid grid--fixed@tablet grid--22px">
-                <div class="grid__item 1/2 200px@tablet 300px@desk">
+                <div class="1/2 200px@tablet 300px@desk">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">A</div>
                     </div>
                 </div>
-                <div class="grid__item 1/2 300px@big-tablet">
+                <div class="1/2 300px@big-tablet">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">B</div>
                     </div>
                 </div>
-                <div class="grid__item 1/1 1/2@tablet">
+                <div class="1/1 1/2@tablet">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">C</div>
                     </div>
@@ -424,17 +425,17 @@
         <div class="js-display-code">
 
             <div class="grid grid--18px grid--fixed@big-tablet">
-                <div class="grid__item 1/2@tablet 1/1@big-tablet">
+                <div class="1/2@tablet 1/1@big-tablet">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">A</div>
                     </div>
                 </div>
-                <div class="grid__item 1/2@tablet 1/1@big-tablet">
+                <div class="1/2@tablet 1/1@big-tablet">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">B</div>
                     </div>
                 </div>
-                <div class="grid__item 300px@big-tablet 1/1@desk">
+                <div class="300px@big-tablet 1/1@desk">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">C</div>
                     </div>
@@ -450,26 +451,26 @@
 
         <div class="js-display-code">
             <div class="grid grid--18px grid--fixed@big-tablet">
-                <div class="grid__item">
+                <div>
                     <div class="grid">
-                        <div class="grid__item 1/2@tablet 1/1@big-tablet">
+                        <div class="1/2@tablet 1/1@big-tablet">
                             <div class="bloc bloc--100">
                                 <div class="bloc__content">A[1]</div>
                             </div>
                         </div>
-                        <div class="grid__item 1/2@tablet 1/1@big-tablet">
+                        <div class="1/2@tablet 1/1@big-tablet">
                             <div class="bloc bloc--100">
                                 <div class="bloc__content">A[2]</div>
                             </div>
                         </div>
-                        <div class="grid__item">
+                        <div>
                             <div class="bloc bloc--100">
                                 <div class="bloc__content">A[3]</div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="grid__item 300px@big-tablet">
+                <div class="300px@big-tablet">
                     <div class="bloc bloc--300">
                         <div class="bloc__content">B</div>
                     </div>
@@ -486,24 +487,24 @@
 
         <div class="js-display-code">
             <div class="grid grid--18px grid--fixed@big-tablet">
-                <div class="grid__item 300px@big-tablet">
+                <div class="300px@big-tablet">
                     <div class="bloc bloc--300">
                         <div class="bloc__content">A</div>
                     </div>
                 </div>
-                <div class="grid__item">
+                <div>
                     <div class="grid">
-                        <div class="grid__item">
+                        <div>
                             <div class="bloc bloc--100">
                                 <div class="bloc__content">B[1]</div>
                             </div>
                         </div>
-                        <div class="grid__item">
+                        <div>
                             <div class="bloc bloc--100">
                                 <div class="bloc__content">B[2]</div>
                             </div>
                         </div>
-                        <div class="grid__item">
+                        <div>
                             <div class="bloc bloc--100">
                                 <div class="bloc__content">B[3]</div>
                             </div>
@@ -528,21 +529,21 @@
         <div class="js-display-code">
 
             <div class="grid grid--22px">
-                <div class="grid__item 2/3@desk">
+                <div class="2/3@desk">
                     <div class="grid grid--22px grid--fixed@tablet">
-                        <div class="grid__item 300px@tablet">
+                        <div class="300px@tablet">
                             <div class="bloc bloc--300">
                                 <div class="bloc__content">A</div>
                             </div>
                         </div>
-                        <div class="grid__item">
+                        <div>
                             <div class="grid">
-                                <div class="grid__item">
+                                <div>
                                     <div class="bloc bloc--150">
                                         <div class="bloc__content">B[1]</div>
                                     </div>
                                 </div>
-                                <div class="grid__item">
+                                <div>
                                     <div class="bloc bloc--150">
                                         <div class="bloc__content">B[2]</div>
                                     </div>
@@ -551,14 +552,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid__item 1/3@desk">
+                <div class="1/3@desk">
                     <div class="grid">
-                        <div class="grid__item">
+                        <div>
                             <div class="bloc bloc--150">
                                 <div class="bloc__content">C[1]</div>
                             </div>
                         </div>
-                        <div class="grid__item">
+                        <div>
                             <div class="bloc bloc--150">
                                 <div class="bloc__content">C[2]</div>
                             </div>
@@ -574,12 +575,12 @@
 
         <div class="js-display-code">
             <div class="grid grid--18px">
-                <div class="grid__item visible@big-tablet">
+                <div class="visible@big-tablet">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">Visible from "big-tablet" beakpoint (so hidden before)</div>
                     </div>
                 </div>
-                <div class="grid__item hidden@big-tablet">
+                <div class="hidden@big-tablet">
                     <div class="bloc bloc--150">
                         <div class="bloc__content">Hidden from "big-tablet" breakpoint (so visible before)</div>
                     </div>
@@ -625,12 +626,12 @@
             var $html = $this.clone();
 
             $html.find(".bloc").each(function(j, element){
-                $(element).replaceWith($.trim($(element).text()));
+                $(element).parent().empty().append($.trim($(element).text()));
             });
 
             var content = $html.html();
             content = $.trim(content);
-            content = content.replace(/(<div class="grid__item[^"]*">)\s+(<\/div>)/g, "$1$2");
+            //content = content.replace(/(<div class="grid__item[^"]*">)\s+(<\/div>)/g, "$1$2");
             content = content.replace(/^\s{12,12}/gm, "");
             $("<code></code>").text(content).insertAfter($this);
 

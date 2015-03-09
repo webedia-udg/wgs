@@ -7,13 +7,13 @@
  * https://github.com/webedia-udg/wgs
  *
  */
-.grid, .grid:before, .grid:after, .grid__item, .grid__item:before, .grid__item:after {
+.grid, .grid:before, .grid:after, .grid > *, .grid > *:before, .grid > *:after {
   box-sizing: border-box !important; }
 
 .grid {
   display: block;
   font-size: 0; }
-  .grid > .grid__item {
+  .grid > * {
     display: inline-block;
     vertical-align: top;
     width: 100%;
@@ -37,45 +37,45 @@
   display: table;
   table-layout: fixed;
   margin-left: 0; }
-  .grid.grid--fixed > .grid__item {
+  .grid.grid--fixed > * {
     display: table-cell;
     vertical-align: top;
     box-sizing: content-box !important; }
-    .grid.grid--fixed > .grid__item:first-child {
+    .grid.grid--fixed > *:first-child {
       padding-left: 0; }
 
 .grid--12px {
   margin-left: -12px;
   margin-top: -12px; }
-  .grid--12px > .grid__item {
+  .grid--12px > * {
     padding-left: 12px;
     padding-top: 12px; }
 
 .grid--16px {
   margin-left: -16px;
   margin-top: -16px; }
-  .grid--16px > .grid__item {
+  .grid--16px > * {
     padding-left: 16px;
     padding-top: 16px; }
 
 .grid--18px {
   margin-left: -18px;
   margin-top: -18px; }
-  .grid--18px > .grid__item {
+  .grid--18px > * {
     padding-left: 18px;
     padding-top: 18px; }
 
 .grid--22px {
   margin-left: -22px;
   margin-top: -22px; }
-  .grid--22px > .grid__item {
+  .grid--22px > * {
     padding-left: 22px;
     padding-top: 22px; }
 
 .grid--0 {
   margin-left: 0;
   margin-top: 0; }
-  .grid--0 > .grid__item {
+  .grid--0 > * {
     padding-left: 0;
     padding-top: 0; }
 
@@ -172,13 +172,7 @@
 [class~="200px"] {
   width: 200px !important; }
 
-.grid__item + [class~="200px"] {
-  width: 200px !important; }
-
 [class~="300px"] {
-  width: 300px !important; }
-
-.grid__item + [class~="300px"] {
   width: 300px !important; }
 
 .padding-top--12px, .padding-vert--12px, .padding--12px {
@@ -242,12 +236,12 @@
   padding-left: 0; }
 
 @media screen and (min-width: 480px) {
-  .grid\@tablet, .grid\@tablet:before, .grid\@tablet:after, .grid__item\@tablet, .grid__item\@tablet:before, .grid__item\@tablet:after {
+  .grid\@tablet, .grid\@tablet:before, .grid\@tablet:after, .grid\@tablet > *, .grid\@tablet > *:before, .grid\@tablet > *:after {
     box-sizing: border-box !important; }
   .grid\@tablet {
     display: block;
     font-size: 0; }
-    .grid\@tablet > .grid__item {
+    .grid\@tablet > * {
       display: inline-block;
       vertical-align: top;
       width: 100%;
@@ -267,40 +261,40 @@
     display: table;
     table-layout: fixed;
     margin-left: 0; }
-    .grid.grid--fixed\@tablet > .grid__item {
+    .grid.grid--fixed\@tablet > * {
       display: table-cell;
       vertical-align: top;
       box-sizing: content-box !important; }
-      .grid.grid--fixed\@tablet > .grid__item:first-child {
+      .grid.grid--fixed\@tablet > *:first-child {
         padding-left: 0; }
   .grid--12px\@tablet {
     margin-left: -12px;
     margin-top: -12px; }
-    .grid--12px\@tablet > .grid__item {
+    .grid--12px\@tablet > * {
       padding-left: 12px;
       padding-top: 12px; }
   .grid--16px\@tablet {
     margin-left: -16px;
     margin-top: -16px; }
-    .grid--16px\@tablet > .grid__item {
+    .grid--16px\@tablet > * {
       padding-left: 16px;
       padding-top: 16px; }
   .grid--18px\@tablet {
     margin-left: -18px;
     margin-top: -18px; }
-    .grid--18px\@tablet > .grid__item {
+    .grid--18px\@tablet > * {
       padding-left: 18px;
       padding-top: 18px; }
   .grid--22px\@tablet {
     margin-left: -22px;
     margin-top: -22px; }
-    .grid--22px\@tablet > .grid__item {
+    .grid--22px\@tablet > * {
       padding-left: 22px;
       padding-top: 22px; }
   .grid--0\@tablet {
     margin-left: 0;
     margin-top: 0; }
-    .grid--0\@tablet > .grid__item {
+    .grid--0\@tablet > * {
       padding-left: 0;
       padding-top: 0; }
   .\31 \/1\@tablet {
@@ -365,13 +359,9 @@
     width: 91.6666666% !important; }
   .hidden\@tablet {
     display: none !important; }
-  [class~="200px@tablet"] {
+  [class~="200px\@tablet"] {
     width: 200px !important; }
-  .grid__item + [class~="200px@tablet"] {
-    width: 200px !important; }
-  [class~="300px@tablet"] {
-    width: 300px !important; }
-  .grid__item + [class~="300px@tablet"] {
+  [class~="300px\@tablet"] {
     width: 300px !important; }
   .padding-top--12px\@tablet, .padding-vert--12px\@tablet, .padding--12px\@tablet {
     padding-top: 12px; }
@@ -419,12 +409,12 @@
     display: none !important; } }
 
 @media screen and (min-width: 660px) {
-  .grid\@big-tablet, .grid\@big-tablet:before, .grid\@big-tablet:after, .grid__item\@big-tablet, .grid__item\@big-tablet:before, .grid__item\@big-tablet:after {
+  .grid\@big-tablet, .grid\@big-tablet:before, .grid\@big-tablet:after, .grid\@big-tablet > *, .grid\@big-tablet > *:before, .grid\@big-tablet > *:after {
     box-sizing: border-box !important; }
   .grid\@big-tablet {
     display: block;
     font-size: 0; }
-    .grid\@big-tablet > .grid__item {
+    .grid\@big-tablet > * {
       display: inline-block;
       vertical-align: top;
       width: 100%;
@@ -444,40 +434,40 @@
     display: table;
     table-layout: fixed;
     margin-left: 0; }
-    .grid.grid--fixed\@big-tablet > .grid__item {
+    .grid.grid--fixed\@big-tablet > * {
       display: table-cell;
       vertical-align: top;
       box-sizing: content-box !important; }
-      .grid.grid--fixed\@big-tablet > .grid__item:first-child {
+      .grid.grid--fixed\@big-tablet > *:first-child {
         padding-left: 0; }
   .grid--12px\@big-tablet {
     margin-left: -12px;
     margin-top: -12px; }
-    .grid--12px\@big-tablet > .grid__item {
+    .grid--12px\@big-tablet > * {
       padding-left: 12px;
       padding-top: 12px; }
   .grid--16px\@big-tablet {
     margin-left: -16px;
     margin-top: -16px; }
-    .grid--16px\@big-tablet > .grid__item {
+    .grid--16px\@big-tablet > * {
       padding-left: 16px;
       padding-top: 16px; }
   .grid--18px\@big-tablet {
     margin-left: -18px;
     margin-top: -18px; }
-    .grid--18px\@big-tablet > .grid__item {
+    .grid--18px\@big-tablet > * {
       padding-left: 18px;
       padding-top: 18px; }
   .grid--22px\@big-tablet {
     margin-left: -22px;
     margin-top: -22px; }
-    .grid--22px\@big-tablet > .grid__item {
+    .grid--22px\@big-tablet > * {
       padding-left: 22px;
       padding-top: 22px; }
   .grid--0\@big-tablet {
     margin-left: 0;
     margin-top: 0; }
-    .grid--0\@big-tablet > .grid__item {
+    .grid--0\@big-tablet > * {
       padding-left: 0;
       padding-top: 0; }
   .\31 \/1\@big-tablet {
@@ -542,13 +532,9 @@
     width: 91.6666666% !important; }
   .hidden\@big-tablet {
     display: none !important; }
-  [class~="200px@big-tablet"] {
+  [class~="200px\@big-tablet"] {
     width: 200px !important; }
-  .grid__item + [class~="200px@big-tablet"] {
-    width: 200px !important; }
-  [class~="300px@big-tablet"] {
-    width: 300px !important; }
-  .grid__item + [class~="300px@big-tablet"] {
+  [class~="300px\@big-tablet"] {
     width: 300px !important; }
   .padding-top--12px\@big-tablet, .padding-vert--12px\@big-tablet, .padding--12px\@big-tablet {
     padding-top: 12px; }
@@ -596,12 +582,12 @@
     display: none !important; } }
 
 @media screen and (min-width: 990px) {
-  .grid\@desk, .grid\@desk:before, .grid\@desk:after, .grid__item\@desk, .grid__item\@desk:before, .grid__item\@desk:after {
+  .grid\@desk, .grid\@desk:before, .grid\@desk:after, .grid\@desk > *, .grid\@desk > *:before, .grid\@desk > *:after {
     box-sizing: border-box !important; }
   .grid\@desk {
     display: block;
     font-size: 0; }
-    .grid\@desk > .grid__item {
+    .grid\@desk > * {
       display: inline-block;
       vertical-align: top;
       width: 100%;
@@ -621,40 +607,40 @@
     display: table;
     table-layout: fixed;
     margin-left: 0; }
-    .grid.grid--fixed\@desk > .grid__item {
+    .grid.grid--fixed\@desk > * {
       display: table-cell;
       vertical-align: top;
       box-sizing: content-box !important; }
-      .grid.grid--fixed\@desk > .grid__item:first-child {
+      .grid.grid--fixed\@desk > *:first-child {
         padding-left: 0; }
   .grid--12px\@desk {
     margin-left: -12px;
     margin-top: -12px; }
-    .grid--12px\@desk > .grid__item {
+    .grid--12px\@desk > * {
       padding-left: 12px;
       padding-top: 12px; }
   .grid--16px\@desk {
     margin-left: -16px;
     margin-top: -16px; }
-    .grid--16px\@desk > .grid__item {
+    .grid--16px\@desk > * {
       padding-left: 16px;
       padding-top: 16px; }
   .grid--18px\@desk {
     margin-left: -18px;
     margin-top: -18px; }
-    .grid--18px\@desk > .grid__item {
+    .grid--18px\@desk > * {
       padding-left: 18px;
       padding-top: 18px; }
   .grid--22px\@desk {
     margin-left: -22px;
     margin-top: -22px; }
-    .grid--22px\@desk > .grid__item {
+    .grid--22px\@desk > * {
       padding-left: 22px;
       padding-top: 22px; }
   .grid--0\@desk {
     margin-left: 0;
     margin-top: 0; }
-    .grid--0\@desk > .grid__item {
+    .grid--0\@desk > * {
       padding-left: 0;
       padding-top: 0; }
   .\31 \/1\@desk {
@@ -719,13 +705,9 @@
     width: 91.6666666% !important; }
   .hidden\@desk {
     display: none !important; }
-  [class~="200px@desk"] {
+  [class~="200px\@desk"] {
     width: 200px !important; }
-  .grid__item + [class~="200px@desk"] {
-    width: 200px !important; }
-  [class~="300px@desk"] {
-    width: 300px !important; }
-  .grid__item + [class~="300px@desk"] {
+  [class~="300px\@desk"] {
     width: 300px !important; }
   .padding-top--12px\@desk, .padding-vert--12px\@desk, .padding--12px\@desk {
     padding-top: 12px; }
@@ -776,7 +758,9 @@
 body {
   padding: 0;
   margin: 0;
-  font: normal 18px/30px Arial, sans-serif; }
+  font: 400 1em/1.4 'Open Sans', sans-serif;
+  text-rendering: optimizelegibility;
+  color: 404040; }
 
 iframe {
   width: 100%;
@@ -805,13 +789,14 @@ iframe {
 
 .wrapper {
   max-width: 990px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  padding: 0 12px; }
 
 .grid__item {
   transition: width .2s ease-out; }
 
 .main-title {
-  color: #444;
+  color: #404040;
   text-transform: uppercase;
   font-size: 36px;
   font-family: 'Open Sans Condensed', sans-serif;
@@ -820,7 +805,7 @@ iframe {
   margin-top: 60px; }
 
 .secondary-title {
-  color: #444;
+  color: #404040;
   font-size: 24px;
   font-family: 'Open Sans Condensed', sans-serif;
   text-align: center;
@@ -828,7 +813,7 @@ iframe {
   margin-top: 60px; }
 
 .title {
-  color: #444;
+  color: #404040;
   text-transform: uppercase;
   font-size: 20px;
   font-family: 'Open Sans Condensed', sans-serif;
@@ -881,3 +866,6 @@ code {
 hr {
   margin-top: 40px;
   margin-bottom: 40px; }
+
+ul {
+  list-style-type: square; }
