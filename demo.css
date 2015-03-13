@@ -760,7 +760,7 @@ body {
   margin: 0;
   font: 400 1em/1.4 'Open Sans', sans-serif;
   text-rendering: optimizelegibility;
-  color: 404040; }
+  color: #404040; }
 
 iframe {
   width: 100%;
@@ -783,9 +783,20 @@ iframe {
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
-            user-select: none; }
-    .iframe-wrapper__handle:hover {
-      cursor: col-resize; }
+            user-select: none;
+    cursor: col-resize; }
+    .iframe-wrapper__handle:before {
+      content: attr(data-width) ' px';
+      display: block;
+      background: #fafafa;
+      top: -1px;
+      right: 100%;
+      line-height: 30px;
+      padding: 0 5px;
+      font-size: 14px;
+      border: 1px solid #dadada;
+      position: absolute;
+      white-space: nowrap; }
 
 .wrapper {
   max-width: 990px;

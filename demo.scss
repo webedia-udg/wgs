@@ -18,7 +18,7 @@ body {
     margin: 0;
     font: 400 1em/1.4 'Open Sans', sans-serif;
     text-rendering: optimizelegibility;
-    color: 404040;
+    color: #404040;
 }
 iframe{
     width: 100%;
@@ -39,8 +39,19 @@ iframe{
         border: 1px solid #dadada;
         background: #f1f1f1 url(http://png-1.findicons.com/files/icons/2534/aroma/24/resize_width.png) no-repeat 50% 50%;
         user-select: none;
-        &:hover{
-            cursor: col-resize;
+        cursor: col-resize;
+        &:before {
+            content: attr(data-width) ' px';
+            display: block;
+            background: #fafafa;
+            top: -1px;
+            right: 100%;
+            line-height: 30px;
+            padding: 0 5px;
+            font-size: 14px;
+            border: 1px solid #dadada;
+            position: absolute;
+            white-space: nowrap;
         }
     }
 }

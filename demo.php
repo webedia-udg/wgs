@@ -640,9 +640,10 @@
         // Generate fake iframes with resize handles
         $(".js-display-code").each(function(i, element){
 
-            var $this    = $(this);
-            var $iframe  = $('<iframe frameborder="0"></iframe>');
-            var $handle  = $('<div class="iframe-wrapper__handle"></div>');
+            var $this       = $(this);
+            var $iframe     = $('<iframe frameborder="0"></iframe>');
+            var $handle     = $('<div class="iframe-wrapper__handle"></div>');
+            var breakpoints = [480,660,990];
 
             $this.wrap('<div class="iframe-wrapper"></div>');
             var $wrapper = $this.parent();
@@ -650,7 +651,6 @@
             $wrapper.append($handle);
             
             var content = '<style>' + cssRules + '</style>' + $this.html();
-
 
 
             $this.after($iframe);
@@ -661,17 +661,37 @@
             setTimeout(function(){
                 $wrapper.height(($iframe[0].contentWindow.document.body.offsetHeight + 10) + 'px');
             },1000);
-            
 
-            $handle.on("mousedown", function(e){
-                startX = e.clientX;
-                startWidth = parseInt(document.defaultView.getComputedStyle($wrapper[0]).width, 10);
-                $(document).on('mousemove', doDrag);
-                $(document).on('mouseup', stopDrag);
-            });
+
+            function getWrapperWidth() {
+                var width = $wrapper.width();
+
+                if($.inArray(width, breakpoints) != -1) {
+                    width = "Breakpoint : " + width;
+                }
+
+                return width;
+            }
+
+            $handle
+                .attr('data-width', getWrapperWidth())
+                .on("mousedown", function(e){
+                    startX = e.clientX;
+                    startWidth = parseInt(document.defaultView.getComputedStyle($wrapper[0]).width, 10);
+                    $(document).on('mousemove', doDrag);
+                    $(document).on('mouseup', stopDrag);
+                });
 
             function doDrag(e) {
-               $wrapper[0].style.width = (startWidth + e.clientX - startX) + 'px';
+                var width = startWidth + e.clientX - startX;
+
+                for(var i = 0, length = breakpoints.length; i < length; i++) {                
+                    if (Math.abs(width - breakpoints[i]) < 10) {
+                        width = breakpoints[i];
+                    }
+                }
+               $handle.attr('data-width', getWrapperWidth());
+               $wrapper[0].style.width = width + 'px';
             }
 
             function stopDrag(e) {
