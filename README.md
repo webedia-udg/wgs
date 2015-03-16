@@ -22,7 +22,7 @@ https://fiddle.jshell.net/6x1th0n1/3/show/light/
 
 ## Prerequisites
 
-* sass > 3.4
+* libsass > 3.4
 
 ## Installation
 
@@ -39,27 +39,26 @@ https://fiddle.jshell.net/6x1th0n1/3/show/light/
 
 // Setup and write classes
 @include wgsSetup(
-    $fixedWidths : 200px 300px,
     $breakpoints : (
         tablet     : 480px,
         big-tablet : 660px,
         desk       : 990px
     ),
-    $gutters : 12px 16px 18px 22px
+    $gutters : 12px 16px 18px 22px,
+    $fixedWidths : 200px 300px
 );
-
 ```
 
 ```html
 <!-- template.html -->
 <div class="grid">
-    <div class="grid__item 1/2@big-tablet 1/3@desk"></div>
-    <div class="grid__item 1/2@big-tablet 1/3@desk"></div>
-    <div class="grid__item 1/3@desk"></div>
+    <div class="1/2@big-tablet 1/3@desk"></div>
+    <div class="1/2@big-tablet 1/3@desk"></div>
+    <div class="1/3@desk"></div>
 </div>
 <div class="grid grid--fixed@desk grid--12px grid--22px@desk">
-    <div class="grid__item 1/2@tablet 300px@desk"></div>
-    <div class="grid__item 1/2@tablet 1/1@desk"></div>
+    <div class="1/2@tablet 300px@desk"></div>
+    <div class="1/2@tablet 1/1@desk"></div>
 </div>
 <div class="padding-top--12px padding-top--22px@desk"></div>
 ```
@@ -76,7 +75,6 @@ Ex :
 .1/3@desk
 .300px@tablet
 .grid
-.grid__item
 .grid--fixed@tablet
 .padding--22px
 .padding--22px@desk
@@ -99,18 +97,18 @@ Including ``_wgs.scss`` in your sass project gives you access to **two sass mixi
 /// @param {boolean} $mobileFirst [()] - mobile first ? (or desktop first)
 /// @example
 ///   @include wgsSetup(
-///       $fixedWidths : 200px 300px,
 ///       $breakpoints : (
 ///           tablet     : 480px,
 ///           big-tablet : 660px,
 ///           desk       : 990px
 ///       ),
-///       $gutters : 12px 16px 18px 22px
+///       $gutters : 12px 16px 18px 22px,
+///       $fixedWidths : 200px 300px
 ///   );
 @mixin wgsSetup(
-    $fixedWidths  : (),
     $breakpoints  : (),
     $gutters      : (),
+    $fixedWidths  : (),
     $mobileFirst  : true
 ){ /*...*/ }
 ```
