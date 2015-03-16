@@ -68,20 +68,41 @@ https://fiddle.jshell.net/6x1th0n1/3/show/light/
 
 ``class[__element][--modifier][@breakpoint]``
 
+## Vocabulary
+
+`.grid[@breakpointName]` makes an element become a grid, optionnaly starting at a breakpoint. `breakpointName` depends of the setup. Its children become `display: inline-block`.
+
+Ex : 
+```
+.grid           // Always a grid
+.grid@foo       // Grid behaviour from "foo" breakpoint
+```
+
+`.[1-12]/[1-12][@breakpoint]` represents a width. Works inside and outside a grid. `breakpointName` depends of the setup.
+
+Ex:
+
+```
+.1/1
+.1/1@foo
+.1/6@bar
+.12/12
+```
+
+`padding[-(top|right|bottom|left|hori|vert)]--[XX][@breakpoint]` adds a padding on top/right/bottom/left of an element. `XX` is one the values defined in `$gutters` setup parameter.
+
 Ex :
 
 ```
-.1/3
-.1/3@desk
-.300px@tablet
-.grid
-.grid--fixed@tablet
-.padding--22px
-.padding--22px@desk
-.padding--0@desk
-.padding-top--22px
-.padding-top--0@desk
+.padding--42           // Adds a 42px padding around the element
+.padding-top--42       // Adds a 42px padding-top on the element
+.padding-left--42@foo   // Adds a 42px padding-left on the element, starting at "foo" breakpoint
+.padding-hori--42      // Adds a 42px horizontal padding (right + left)
+.padding-hori--42@foo  // Adds a 42px horizontal padding (right + left)), starting at "foo" breakpoint
+.padding-vert--0@foo   // Removes a vertical (top + bottom) by setting it a 0, starting at "foo" breakpoint
 ```
+
+
 
 ## Setup
 
