@@ -11,7 +11,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
     <meta http-equiv="cleartype" content="on">
 
-    <style type="text/css">
+    <style>
         <?php include "demo.css" ?>
     </style>
 
@@ -587,9 +587,7 @@
         </div>
 
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
+    
     <script>
 
         // Returns true/false id a color is dark or not
@@ -605,38 +603,39 @@
         }
 
         // Random colors for .bloc (better reading)
-        $(".bloc").each(function(i, element){
+        var $bloc = document.querySelectorAll(".bloc");
+        Array.prototype.forEach.call($bloc, function(element, i){
             var randomColor     = Math.round(Math.random() * 0xFFFFFF);
             var textColor       = isDarkColor(randomColor) ? '#ffffff' : '#000000';
             var backgroundColor = '#' + randomColor.toString(16);
 
-            $(element).css({
-                "background-color" : backgroundColor,
-                "color": textColor
-            })
+            element.style.backgroundColor = backgroundColor;
+            element.style.color = textColor;  
 
         });
 
         // Display source code after each example
-        $(".js-display-code").each(function(i, element){
-            var $this = $(this);
+        var $jsDisplayCode = document.querySelectorAll(".js-display-code");
+        Array.prototype.forEach.call($jsDisplayCode, function(element, i){
 
-            var $html = $this.clone();
+            var $html = element.cloneNode(true);
 
-            $html.find(".bloc").each(function(j, element){
-                $(element).parent().empty().append($.trim($(element).text()));
+            Array.prototype.forEach.call($html.querySelectorAll(".bloc"), function(element, j){
+                element.parentNode.innerHTML = element.textContent.trim();
             });
 
-            var content = $html.html();
-            content = $.trim(content);
+            var content = $html.innerHTML;
+            content = content.trim();
             //content = content.replace(/(<div class="grid__item[^"]*">)\s+(<\/div>)/g, "$1$2");
             content = content.replace(/^\s{12,12}/gm, "");
-            $("<code></code>").text(content).insertAfter($this);
+            var $code = document.createElement("code");
+            $code.textContent = content;
+            element.insertAdjacentHTML('afterend', $code.outerHTML);
 
         });
 
 
-        var cssRules = $("head style").eq(0).text();
+        var cssRules = document.querySelector("head style").textContent;
 
         var breakpoints = [{
             value: 480,
@@ -651,7 +650,7 @@
 
         // Displays "breakpoint min-with: xxx"
         function getWrapperWidth($wrapper) {
-            var width = $wrapper.width();
+            var width = $wrapper.offsetWidth;
             var i = breakpoints.length-1;
             while(breakpoints[i] && width<breakpoints[i].value){
                 i--;
@@ -667,39 +666,37 @@
         }
 
         // Generate fake iframes with resize handles
-        $(".js-display-code").each(function(i, element){
+        Array.prototype.forEach.call($jsDisplayCode, function(element, i){
 
-            var $this       = $(this);
-            var $iframe     = $('<iframe frameborder="0"></iframe>');
-            var $handle     = $('<div class="iframe-wrapper__handle"></div>');
+            var $wrapper    = document.createElement('div');
+            var $handle     = document.createElement('div');
 
-            $this.wrap('<div class="iframe-wrapper"></div>');
-            var $wrapper = $this.parent();
+            $wrapper.className  = "iframe-wrapper";
+            $handle.className   = "iframe-wrapper__handle";
 
-            $wrapper.append($handle);
+            element.parentNode.insertBefore($wrapper, element);
+            $wrapper.appendChild(element);
+            $wrapper.appendChild($handle);
             
-            var content = '<style>' + cssRules + '</style>' + $this.html();
+            var content = '<style>' + cssRules + '</style>' + element.innerHTML;
 
-
-            $this.after($iframe);
-            $iframe[0].contentWindow.document.write(content);
-            $this.remove();
-
+            element.insertAdjacentHTML('afterend', '<iframe frameborder="0"></iframe>');
+            
+            var $iframe =  $wrapper.querySelector('iframe');
+            $iframe.contentWindow.document.write(content);
+            element.parentNode.removeChild(element);
 
             setTimeout(function(){
-                $wrapper.height(($iframe[0].contentWindow.document.body.offsetHeight + 10) + 'px');
+                $wrapper.style.height = $iframe.contentWindow.document.body.offsetHeight + 10 + 'px';
             },1000);
 
-
-
-            $handle
-                .attr('data-width', getWrapperWidth($wrapper))
-                .on("mousedown", function(e){
-                    startX = e.clientX;
-                    startWidth = parseInt(document.defaultView.getComputedStyle($wrapper[0]).width, 10);
-                    $(document).on('mousemove', doDrag);
-                    $(document).on('mouseup', stopDrag);
-                });
+            $handle.setAttribute('data-width', getWrapperWidth($wrapper));
+            $handle.addEventListener("mousedown", function(e){
+                startX = e.clientX;
+                startWidth = parseInt(document.defaultView.getComputedStyle($wrapper).width, 10);
+                document.addEventListener('mousemove', doDrag);
+                document.addEventListener('mouseup', stopDrag);
+            });
 
             function doDrag(e) {
                 var width = startWidth + e.clientX - startX;
@@ -709,16 +706,15 @@
                         width = breakpoints[i];
                     }
                 }
-               $handle.attr('data-width', getWrapperWidth($wrapper));
-               $wrapper[0].style.width = width + 'px';
+               $handle.setAttribute('data-width', getWrapperWidth($wrapper));
+               $wrapper.style.width = width + 'px';
             }
 
             function stopDrag(e) {
-                $(document).off('mousemove', doDrag);
-                $(document).off('mouseup', stopDrag);
+                document.removeEventListener('mousemove', doDrag);
+                document.removeEventListener('mouseup', stopDrag);
             }
         });
-
 
     </script>
 
