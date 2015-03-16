@@ -637,13 +637,41 @@
 
 
         var cssRules = $("head style").eq(0).text();
+
+        var breakpoints = [{
+            value: 480,
+            label: "Small tablet"
+        }, {
+            value: 660,
+            label: "Big tablet"
+        }, {
+            value: 990,
+            label: "Desktop"
+        }];
+
+        // Displays "breakpoint min-with: xxx"
+        function getWrapperWidth($wrapper) {
+            var width = $wrapper.width();
+            var i = breakpoints.length-1;
+            while(breakpoints[i] && width<breakpoints[i].value){
+                i--;
+            }
+
+            if (i<0){
+                return 'Default style (no breakpoint)';
+            }
+            else{
+                return breakpoints[i].label + " breakpoint (min-width: " + breakpoints[i].value + "px)";
+            }
+            
+        }
+
         // Generate fake iframes with resize handles
         $(".js-display-code").each(function(i, element){
 
             var $this       = $(this);
             var $iframe     = $('<iframe frameborder="0"></iframe>');
             var $handle     = $('<div class="iframe-wrapper__handle"></div>');
-            var breakpoints = [480,660,990];
 
             $this.wrap('<div class="iframe-wrapper"></div>');
             var $wrapper = $this.parent();
@@ -663,18 +691,9 @@
             },1000);
 
 
-            function getWrapperWidth() {
-                var width = $wrapper.width();
-
-                if($.inArray(width, breakpoints) != -1) {
-                    width = "Breakpoint : " + width;
-                }
-
-                return width;
-            }
 
             $handle
-                .attr('data-width', getWrapperWidth())
+                .attr('data-width', getWrapperWidth($wrapper))
                 .on("mousedown", function(e){
                     startX = e.clientX;
                     startWidth = parseInt(document.defaultView.getComputedStyle($wrapper[0]).width, 10);
@@ -690,7 +709,7 @@
                         width = breakpoints[i];
                     }
                 }
-               $handle.attr('data-width', getWrapperWidth());
+               $handle.attr('data-width', getWrapperWidth($wrapper));
                $wrapper[0].style.width = width + 'px';
             }
 

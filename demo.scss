@@ -41,7 +41,7 @@ iframe{
         user-select: none;
         cursor: col-resize;
         &:before {
-            content: attr(data-width) ' px';
+            content: attr(data-width);
             display: block;
             background: #fafafa;
             top: -1px;

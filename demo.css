@@ -786,7 +786,7 @@ iframe {
             user-select: none;
     cursor: col-resize; }
     .iframe-wrapper__handle:before {
-      content: attr(data-width) ' px';
+      content: attr(data-width);
       display: block;
       background: #fafafa;
       top: -1px;
