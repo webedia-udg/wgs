@@ -85,12 +85,12 @@
                                 <div class="bloc__content">B[2]</div>
                             </div>
                         </div>
-                        <div class="1/2@tablet  1/3@big-tablet">
+                        <div class="1/2@tablet 1/3@big-tablet">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">B[3]</div>
                             </div>
                         </div>
-                        <div class="1/2@tablet  1/3@big-tablet">
+                        <div class="1/2@tablet 1/3@big-tablet">
                             <div class="bloc bloc--50">
                                 <div class="bloc__content">B[4]</div>
                             </div>
