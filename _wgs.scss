@@ -13,8 +13,8 @@ $_wgsBreakpoints: ();
 /// Media Query mixin
 /// 
 /// @access public
-/// @param {string} $from [false] - Breakpoint name from witch rules sould be added
-/// @param {string} $until [false] - Breakpoint name until witch rules sould be added
+/// @param {string} $from [false] - Apply rules from this breakpoint name
+/// @param {string} $until [false] - Apply rules until this breakpoint name
 /// @param {string} $and [false] - Additional media query parameters
 /// @example
 ///   @include mq(tablet){ color: red }; // Results depends of the mobile first approach
