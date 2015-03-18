@@ -20,8 +20,6 @@
     font-size: medium;
     direction: ltr;
     text-align: left; }
-  .grid + .grid {
-    margin-top: 0; }
 
 .grid--rev {
   direction: rtl; }
@@ -248,8 +246,6 @@
       font-size: medium;
       direction: ltr;
       text-align: left; }
-    .grid\@tablet + .grid {
-      margin-top: 0; }
   .grid--rev\@tablet {
     direction: rtl; }
   .grid--center\@tablet {
@@ -421,8 +417,6 @@
       font-size: medium;
       direction: ltr;
       text-align: left; }
-    .grid\@big-tablet + .grid {
-      margin-top: 0; }
   .grid--rev\@big-tablet {
     direction: rtl; }
   .grid--center\@big-tablet {
@@ -594,8 +588,6 @@
       font-size: medium;
       direction: ltr;
       text-align: left; }
-    .grid\@desk + .grid {
-      margin-top: 0; }
   .grid--rev\@desk {
     direction: rtl; }
   .grid--center\@desk {
