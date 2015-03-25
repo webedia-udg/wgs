@@ -22,7 +22,7 @@ https://fiddle.jshell.net/6x1th0n1/3/show/light/
 
 ## Prerequisites
 
-* libsass > 3.4
+* sass > 3.4 or libsass > 3.2
 
 ## Installation
 
@@ -140,8 +140,8 @@ Including ``_wgs.scss`` in your sass project gives you access to **two sass mixi
 /// Media Query mixin
 /// 
 /// @access public
-/// @param {string} $from [false] - Breakpoint name from witch rules sould be added
-/// @param {string} $until [false] - Breakpoint name until witch rules sould be added
+/// @param {string} $from [false] - Apply rules from this breakpoint name
+/// @param {string} $until [false] - Apply rules until this breakpoint name
 /// @param {string} $and [false] - Additional media query parameters
 /// @example
 ///   @include mq(tablet){ color: red }; // Results depends of the mobile first approach
