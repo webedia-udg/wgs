@@ -1,0 +1,368 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Wgs - v1.0.0</title><link rel="stylesheet" href="assets/css/main.css"><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,500,700" rel="stylesheet" type="text/css"><meta name="viewport" content="width=device-width"><meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"><!-- Open Graph tags --><meta property="og:title" content="Wgs - SassDoc"><meta property="og:type" content="website"><meta property="og:description" content="<p>Webedia Grid System (WGS)</p>
+"><!-- Thanks to Sass-lang.com for the icons --><link href="assets/images/favicon.png" rel="shortcut icon"></head><body><aside class="sidebar" role="nav"><div class="sidebar__header"><h1 class="sidebar__title">Wgs - 1.0.0</h1></div><div class="sidebar__body"><button type="button" class="btn-toggle js-btn-toggle" data-alt="Open all">Close all</button><p class="sidebar__item sidebar__item--heading" data-slug="undefined"><a href="#undefined">General</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="undefined-mixin"><a href="#undefined-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="mq" data-type="mixin"><a href="#mixin-mq">mq</a></li><li class="sidebar__item sassdoc__item" data-name="wgsGrid" data-type="mixin"><a href="#mixin-wgsGrid">wgsGrid</a></li><li class="sidebar__item sassdoc__item" data-name="wgsRatioWidths" data-type="mixin"><a href="#mixin-wgsRatioWidths">wgsRatioWidths</a></li><li class="sidebar__item sassdoc__item" data-name="wgsFixedWidth" data-type="mixin"><a href="#mixin-wgsFixedWidth">wgsFixedWidth</a></li><li class="sidebar__item sassdoc__item" data-name="wgsHidden" data-type="mixin"><a href="#mixin-wgsHidden">wgsHidden</a></li><li class="sidebar__item sassdoc__item" data-name="wgsVisible" data-type="mixin"><a href="#mixin-wgsVisible">wgsVisible</a></li><li class="sidebar__item sassdoc__item" data-name="wgsSpacing" data-type="mixin"><a href="#mixin-wgsSpacing">wgsSpacing</a></li><li class="sidebar__item sassdoc__item" data-name="wgsSetup" data-type="mixin"><a href="#mixin-wgsSetup">wgsSetup</a></li></ul></div></div></aside><article class="main" role="main"><header class="header" role="banner"><div class="container"><div class="sassdoc__searchbar searchbar"><label for="js-search-input" class="visually-hidden">Search</label><div class="searchbar__form" id="js-search"><input name="search" type="search" class="searchbar__field" autocomplete="off" autofocus id="js-search-input" placeholder="Search"><ul class="searchbar__suggestions" id="js-search-suggestions"></ul></div></div></div></header><section class="main__section"><h1 class="main__heading" id="undefined"><div class="container">General</div></h1><section class="main__sub-section" id="undefined-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="mixin-mq"><h3 class="item__heading"><a class="item__name" href="#mixin-mq">mq</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin mq($from: false, $until: false, $and: false) { 
+    $min-width: 0;
+    $max-width: 0;
+    $media-query: &#39;&#39;;
+
+    // From: this breakpoint (inclusive)
+    @if $from {
+        $min-width: nth(map-get($_wgsBreakpoints, $from),1)
+    }
+
+    // Until: that breakpoint (exclusive)
+    @if $until {
+        $max-width: nth(map-get($_wgsBreakpoints, $until),1) - 1px;
+    }
+
+    @if $min-width != 0 { $media-query: &#39;#{$media-query} and (min-width: #{$min-width})&#39;; }
+    @if $max-width != 0 { $media-query: &#39;#{$media-query} and (max-width: #{$max-width})&#39;; }
+    @if $and            { $media-query: &#39;#{$media-query} and #{$and}&#39;; }
+
+    @media #{&quot;screen&quot; + $media-query} {
+        @content;
+    }
+ }" data-collapsed="@mixin mq($from: false, $until: false, $and: false) { ... }"><code>@mixin mq($from: false, $until: false, $and: false) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Media Query mixin</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$from</code></th><td data-label="desc"><p>Breakpoint name from witch rules sould be added</p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>false</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$until</code></th><td data-label="desc"><p>Breakpoint name until witch rules sould be added</p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>false</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$and</code></th><td data-label="desc"><p>Additional media query parameters</p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>false</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>  @include mq(tablet){ color: red }; // Results depends of the mobile first approach
+  @include mq($from: tablet){ color: red };
+  @include mq($until: desktop){ color: red };</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-wgsSetup"><code>wgsSetup</code></a></li></ul></section><section class="main__item container item" id="mixin-wgsGrid"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-wgsGrid">wgsGrid</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin wgsGrid($gutters: (), $fixedWidths: (), $breakpointName: false) { 
+    $sufix: &quot;&quot;;
+    @if $breakpointName{
+        $sufix: &quot;@#{$breakpointName}&quot;;
+    }
+
+    // 1/ Box sizing for this breakpoint on grid
+    [class~=&quot;grid#{$sufix}&quot;],
+    [class~=&quot;grid__item#{$sufix}&quot;] {
+        &amp;,
+        &amp;:before,
+        &amp;:after{
+            box-sizing: border-box !important;
+        }
+    }
+
+    // 2/ Base style for this breakpoint&#39;s grid
+    [class~=&quot;grid#{$sufix}&quot;]{
+        display: block;
+        font-size: 0;
+        &amp; &gt; .grid__item {
+            display: inline-block;
+            vertical-align: top;
+            width: 100%;
+            font-size: medium;
+
+            // Pour remettre bien l&#39;ordre au cas où la grille serait inversée
+            direction: ltr;
+            text-align:left;
+        }
+        &amp; + .grid {
+            margin-top: 0;  
+        }
+    }
+
+    // 3/ Grid&#39;s modifiers :
+
+    // a/ reversed order
+    [class~=&quot;grid--rev#{$sufix}&quot;] {
+        direction: rtl;
+    }
+
+    // b/ centered grid
+    [class~=&quot;grid--center#{$sufix}&quot;] {
+        text-align: center;
+    }
+
+    // c/ right aligned grid
+    [class~=&quot;grid--right#{$sufix}&quot;] {
+        text-align: right;
+    }
+
+    // d/ fixed grid (no more box-sizing: border-box)
+    .grid[class~=&quot;grid--fixed#{$sufix}&quot;] {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+        margin-left: 0;
+
+
+        &gt; .grid__item {
+            display: table-cell;
+            vertical-align: top;
+            box-sizing: content-box !important;
+            &amp;:first-child {
+                padding-left: 0;
+            }
+
+        }
+    }
+
+    // e/ paddings (grid gutters)
+    @each $gutter in $gutters {
+
+        [class~=&quot;grid--#{$gutter}#{$sufix}&quot;] {
+            margin-left: -$gutter;
+            margin-top: -$gutter;
+
+            &amp; &gt; .grid__item {
+                padding-left: $gutter;
+                padding-top: $gutter;
+            }
+
+        }
+    }
+
+    @if length($gutters){
+        [class~=&quot;grid--0#{$sufix}&quot;] {
+            margin-left: 0;
+            margin-top: 0;
+
+            &amp; &gt; .grid__item {
+                padding-left: 0;
+                padding-top: 0;
+            }
+
+        }
+    }
+ }" data-collapsed="@mixin wgsGrid($gutters: (), $fixedWidths: (), $breakpointName: false) { ... }"><code>@mixin wgsGrid($gutters: (), $fixedWidths: (), $breakpointName: false) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Writes grid classes (.grid &amp; its modifiers, .grid<strong>item), eventually suffixed with breakpoint Handles relations between .grid &amp; .grid</strong>item</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$gutters</code></th><td data-label="desc"><p>List of gutter sizes to handle</p></td><td data-label="type"><code>List</code></td><td data-label="default"><code>()</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$fixedWidths</code></th><td data-label="desc"><p>List of fixed sizes to handle</p></td><td data-label="type"><code>List</code></td><td data-label="default"><code>()</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$breakpointName</code></th><td data-label="desc"><p>Breakpoint name</p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>false</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>  @include wgsGrid(
+    $gutters        : 12px 20px,
+    $fixedWidths    : 200px 300px,
+    $breakpointName : desktop
+  );</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-wgsSetup"><code>wgsSetup</code></a></li></ul></section><section class="main__item container item" id="mixin-wgsRatioWidths"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-wgsRatioWidths">wgsRatioWidths</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin wgsRatioWidths($breakpointName) { 
+
+    $sufix: &quot;&quot;;
+    @if $breakpointName{
+        $sufix: &quot;@#{$breakpointName}&quot;;
+    }
+
+    [class~=&quot;1/1#{$sufix}&quot;]       { width: 100% !important; }
+    
+    // Halves
+    [class~=&quot;1/2#{$sufix}&quot;],
+    [class~=&quot;2/4#{$sufix}&quot;],
+    [class~=&quot;3/6#{$sufix}&quot;],
+    [class~=&quot;4/8#{$sufix}&quot;],
+    [class~=&quot;5/10#{$sufix}&quot;],
+    [class~=&quot;6/12#{$sufix}&quot;]      { width: 50% !important; }
+    
+    // Thirds
+    [class~=&quot;1/3#{$sufix}&quot;],
+    [class~=&quot;2/6#{$sufix}&quot;],
+    [class~=&quot;3/9#{$sufix}&quot;],
+    [class~=&quot;4/12#{$sufix}&quot;]      { width: 33.3333333% !important; }
+    [class~=&quot;2/3#{$sufix}&quot;],
+    [class~=&quot;4/6#{$sufix}&quot;],
+    [class~=&quot;6/9#{$sufix}&quot;],
+    [class~=&quot;8/12#{$sufix}&quot;]      { width: 66.6666666% !important; }
+    
+    // Quarters
+    [class~=&quot;1/4#{$sufix}&quot;],
+    [class~=&quot;2/8#{$sufix}&quot;],
+    [class~=&quot;3/12#{$sufix}&quot;]      { width: 25% !important; }
+    [class~=&quot;3/4#{$sufix}&quot;],
+    [class~=&quot;6/8#{$sufix}&quot;],
+    [class~=&quot;9/12#{$sufix}&quot;]      { width: 75% !important; }
+    
+    // Fifths
+    [class~=&quot;1/5#{$sufix}&quot;],
+    [class~=&quot;2/10#{$sufix}&quot;]      { width: 20% !important; }
+    [class~=&quot;2/5#{$sufix}&quot;],
+    [class~=&quot;4/10#{$sufix}&quot;]      { width: 40% !important; }
+    [class~=&quot;3/5#{$sufix}&quot;],
+    [class~=&quot;6/10#{$sufix}&quot;]      { width: 60% !important; }
+    [class~=&quot;4/5#{$sufix}&quot;],
+    [class~=&quot;8/10#{$sufix}&quot;]      { width: 80% !important; }
+    
+    // Sixths
+    [class~=&quot;1/6#{$sufix}&quot;],
+    [class~=&quot;2/12#{$sufix}&quot;]      { width: 16.6666666% !important; }
+    [class~=&quot;5/6#{$sufix}&quot;],
+    [class~=&quot;10/12#{$sufix}&quot;]     { width: 83.3333333% !important; }
+
+    // Eighths
+    [class~=&quot;1/8#{$sufix}&quot;]       { width: 12.5% !important; }
+    [class~=&quot;3/8#{$sufix}&quot;]       { width: 37.5% !important; }
+    [class~=&quot;5/8#{$sufix}&quot;]       { width: 62.5% !important; }
+    [class~=&quot;7/8#{$sufix}&quot;]       { width: 87.5% !important; }
+    
+    // Ninths
+    [class~=&quot;1/9#{$sufix}&quot;]       { width: 11.1111111% !important; }
+    [class~=&quot;2/9#{$sufix}&quot;]       { width: 22.2222222% !important; }
+    [class~=&quot;4/9#{$sufix}&quot;]       { width: 44.4444444% !important; }
+    [class~=&quot;5/9#{$sufix}&quot;]       { width: 55.5555555% !important; }
+    [class~=&quot;7/9#{$sufix}&quot;]       { width: 77.7777777% !important; }
+    [class~=&quot;8/9#{$sufix}&quot;]       { width: 88.8888888% !important; }
+    
+    // Tenths
+    [class~=&quot;1/10#{$sufix}&quot;]      { width: 10% !important; }
+    [class~=&quot;3/10#{$sufix}&quot;]      { width: 30% !important; }
+    [class~=&quot;7/10#{$sufix}&quot;]      { width: 70% !important; }
+    [class~=&quot;9/10#{$sufix}&quot;]      { width: 90% !important; }
+    
+    // Twelves
+    [class~=&quot;1/12#{$sufix}&quot;]      { width:  8.3333333% !important; }
+    [class~=&quot;5/12#{$sufix}&quot;]      { width: 41.6666666% !important; }
+    [class~=&quot;7/12#{$sufix}&quot;]      { width: 58.3333333% !important; }
+    [class~=&quot;11/12#{$sufix}&quot;]     { width: 91.6666666% !important; }
+ }" data-collapsed="@mixin wgsRatioWidths($breakpointName) { ... }"><code>@mixin wgsRatioWidths($breakpointName) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Writes ratio classes (1/2, 1/3, etc), eventually suffixed with breakpoint name</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$breakpointName</code></th><td data-label="desc"><p>Name of the breakpoint to handle</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>  @include wgsRatioWidths();
+  @include wgsRatioWidths(desktop);</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-wgsSetup"><code>wgsSetup</code></a></li></ul></section><section class="main__item container item" id="mixin-wgsFixedWidth"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-wgsFixedWidth">wgsFixedWidth</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin wgsFixedWidth($size, $breakpointName: false) { 
+
+    $gutter: 0;
+
+    $sufix: &quot;&quot;;
+    @if $breakpointName{
+        $sufix: &quot;@#{$breakpointName}&quot;;
+    }
+
+    [class~=&quot;#{$size}#{$sufix}&quot;] {
+        width: $size !important;
+    }
+
+    .grid__item + [class~=&quot;#{$size}#{$sufix}&quot;] {
+        width: $size + $gutter !important;
+    }
+ }" data-collapsed="@mixin wgsFixedWidth($size, $breakpointName: false) { ... }"><code>@mixin wgsFixedWidth($size, $breakpointName: false) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Writes fixed widths</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$size</code></th><td data-label="desc"><p>Size to handle</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$breakpointName</code></th><td data-label="desc"><p>Breakpoint name</p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>false</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>  @include wgsFixedWidth(200px);
+  @include wgsFixedWidth(300px, desktop);</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-wgsSetup"><code>wgsSetup</code></a></li></ul></section><section class="main__item container item" id="mixin-wgsHidden"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-wgsHidden">wgsHidden</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin wgsHidden($breakpointName: false) { 
+
+    $sufix: &quot;&quot;;
+    @if $breakpointName{
+        $sufix: &quot;@#{$breakpointName}&quot;;
+    }
+
+    [class~=&quot;hidden#{$sufix}&quot;] {
+        display: none !important;
+    }    
+ }" data-collapsed="@mixin wgsHidden($breakpointName: false) { ... }"><code>@mixin wgsHidden($breakpointName: false) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Writes some visibility classes: .hidden@[breakpointName]</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$breakpointName</code></th><td data-label="desc"><p>breakpoint name</p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>false</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>  @include wgsHidden();
+  @include wgsHidden(desktop);</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-wgsSetup"><code>wgsSetup</code></a></li></ul></section><section class="main__item container item" id="mixin-wgsVisible"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-wgsVisible">wgsVisible</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin wgsVisible() { 
+
+    $sufix: &quot;&quot;;
+    @if $breakpointName{
+        $sufix: &quot;@#{$breakpointName}&quot;;
+    }
+
+    [class~=&quot;visible#{$sufix}&quot;] {
+        display: none !important;
+    }    
+ }" data-collapsed="@mixin wgsVisible() { ... }"><code>@mixin wgsVisible() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Writes some visibility classes: .visible@[breakpointName]</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>  @include wgsVisible();
+  @include wgsVisible(desktop);</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-wgsSetup"><code>wgsSetup</code></a></li></ul></section><section class="main__item container item" id="mixin-wgsSpacing"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-wgsSpacing">wgsSpacing</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin wgsSpacing() { 
+    $sufix: &quot;&quot;;
+    @if $breakpointName{
+        $sufix: &quot;@#{$breakpointName}&quot;;
+    }
+
+    @each $gutter in $gutters {
+
+        [class~=&quot;padding-top--#{$gutter}#{$sufix}&quot;]{
+            padding-top: $gutter;
+        }
+        [class~=&quot;padding-right--#{$gutter}#{$sufix}&quot;]{
+            padding-right: $gutter;
+        }
+        [class~=&quot;padding-bottom--#{$gutter}#{$sufix}&quot;]{
+            padding-bottom: $gutter;
+        }
+        [class~=&quot;padding-left--#{$gutter}#{$sufix}&quot;]{
+            padding-left: $gutter;
+        }
+
+        [class~=&quot;padding-hori--#{$gutter}#{$sufix}&quot;]{
+            @extend [class~=&quot;padding-right--#{$gutter}#{$sufix}&quot;];
+            @extend [class~=&quot;padding-left--#{$gutter}#{$sufix}&quot;];
+        }   
+
+        [class~=&quot;padding-vert--#{$gutter}#{$sufix}&quot;]{
+            @extend [class~=&quot;padding-top--#{$gutter}#{$sufix}&quot;];
+            @extend [class~=&quot;padding-bottom--#{$gutter}#{$sufix}&quot;];
+        }
+
+        [class~=&quot;padding--#{$gutter}#{$sufix}&quot;]{
+            @extend [class~=&quot;padding-hori--#{$gutter}#{$sufix}&quot;];
+            @extend [class~=&quot;padding-vert--#{$gutter}#{$sufix}&quot;];
+        }
+    }
+    @if length($gutters){
+        [class~=&quot;padding-top--0#{$sufix}&quot;]{
+            padding-top: 0;
+        }
+        [class~=&quot;padding-right--0#{$sufix}&quot;]{
+            padding-right: 0;
+        }
+        [class~=&quot;padding-bottom--0#{$sufix}&quot;]{
+            padding-bottom: 0;
+        }
+        [class~=&quot;padding-left--0#{$sufix}&quot;]{
+            padding-left: 0;
+        }
+        [class~=&quot;padding-hori--0#{$sufix}&quot;]{
+            @extend [class~=&quot;padding-right--0#{$sufix}&quot;];
+            @extend [class~=&quot;padding-left--0#{$sufix}&quot;];
+        }
+        [class~=&quot;padding-vert--0#{$sufix}&quot;]{
+            @extend [class~=&quot;padding-top--0#{$sufix}&quot;];
+            @extend [class~=&quot;padding-bottom--0#{$sufix}&quot;];
+        }
+
+        [class~=&quot;padding--0#{$sufix}&quot;]{
+            @extend [class~=&quot;padding-top--0#{$sufix}&quot;];
+            @extend [class~=&quot;padding-right--0#{$sufix}&quot;];
+            @extend [class~=&quot;padding-bottom--0#{$sufix}&quot;];
+            @extend [class~=&quot;padding-left--0#{$sufix}&quot;];
+        }        
+    }
+ }" data-collapsed="@mixin wgsSpacing() { ... }"><code>@mixin wgsSpacing() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>writes OO spacing classes</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>  @include wgsSpacing(18px 22px);
+  @include wgsSpacing(18px 22px, desktop);</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-wgsSetup"><code>wgsSetup</code></a></li></ul></section><section class="main__item container item" id="mixin-wgsSetup"><h3 class="item__heading"><a class="item__name" href="#mixin-wgsSetup">wgsSetup</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin wgsSetup($breakpoints: (), $gutters: (), $fixedWidths: (), $mobileFirst: ()) { 
+    // Global namespaced variable holding breakpoint definition used by mq()
+    $_wgsBreakpoints : $breakpoints !global;
+
+
+
+    // 1/ Grid class &amp; grid modifiers
+    @include wgsGrid($gutters, $fixedWidths);
+
+    // 2/ Ratio widths
+    @include wgsRatioWidths;
+
+    // 3/ Fixed widths
+    @each $width in $fixedWidths {
+        @include wgsFixedWidth($width);
+    }
+
+    // 4/ Spacings
+    @include wgsSpacing($gutters);
+
+    // 5/ 1, 2, 3 &amp; 4, but in a breakpoint
+    @each $breakpointName, $breakpointSize in $breakpoints {
+
+        // 
+        @if $mobileFirst {
+            $from  : $breakpointName;
+            $until : false;
+        }
+        @else{
+            $from  : false;
+            $until : $breakpointName;
+        }
+        @include mq($from: $from, $until: $until) {
+
+            @include wgsGrid($gutters, $fixedWidths, $breakpointName);
+            @include wgsRatioWidths($breakpointName);
+            @include wgsHidden($breakpointName);
+
+            @each $width in $fixedWidths {
+                @include wgsFixedWidth($width, $breakpointName);
+            }
+
+            @include wgsSpacing($gutters, $breakpointName);
+
+        }
+
+        @include mq($until: $breakpointName) {
+            @include wgsVisible($breakpointName);
+        }
+    }
+ }" data-collapsed="@mixin wgsSetup($breakpoints: (), $gutters: (), $fixedWidths: (), $mobileFirst: ()) { ... }"><code>@mixin wgsSetup($breakpoints: (), $gutters: (), $fixedWidths: (), $mobileFirst: ()) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Main function. has to be called with wanted fixed widths, breakpoints definition and gutter widths to handle</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$breakpoints</code></th><td data-label="desc"><p>breakpoints</p></td><td data-label="type"><code>Map</code></td><td data-label="default"><code>()</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$gutters</code></th><td data-label="desc"><p>gutters to handle</p></td><td data-label="type"><code>List</code></td><td data-label="default"><code>()</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$fixedWidths</code></th><td data-label="desc"><p>fixed sizes to handle</p></td><td data-label="type"><code>List</code></td><td data-label="default"><code>()</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$mobileFirst</code></th><td data-label="desc"><p>mobile first ? (or desktop first)</p></td><td data-label="type"><code>Boolean</code></td><td data-label="default"><code>()</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>  @include wgsSetup(
+      $breakpoints : (
+          tablet     : 480px,
+          big-tablet : 660px,
+          desk       : 990px
+      ),
+      $gutters : 12px 16px 18px 22px,
+      $fixedWidths : 200px 300px
+  );</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-wgsGrid"><code>wgsGrid</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-wgsRatioWidths"><code>wgsRatioWidths</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-wgsFixedWidth"><code>wgsFixedWidth</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-wgsSpacing"><code>wgsSpacing</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-mq"><code>mq</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-wgsHidden"><code>wgsHidden</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-wgsVisible"><code>wgsVisible</code></a></li></ul></section></section></section><footer class="footer" role="contentinfo"><div class="container"><div class="footer__project-info project-info"><!-- Name and URL --><span class="project-info__name">Wgs</span><!-- Version --> <span class="project-info__version">- v1.0.0</span><!-- License --> <span class="project-info__license">, under ISC</span></div><a class="footer__watermark" href="http://sassdoc.com"><img src="assets/images/logo_light_inline.svg" alt="SassDoc Logo"></a></div></footer></article><script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script><script src="assets/js/main.min.js"></script></body></html>

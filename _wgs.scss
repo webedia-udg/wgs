@@ -5,363 +5,483 @@
  *
  * https://github.com/webedia-udg/wgs
  *
+ * Warning, this file wont compile with libsass, because of backshash escaping
+ * if you want to make it work with libsass, use a simple escape instead of double.
  */
 
-/**
- * Mixin de media-query
- *
- * @param string $breakpoint : nom du breakpoint. Doit correspondre à l'un des
- *                             éléments de $breakpoints transmis à wgsSetup()
- * Ex : @include mq(desk){...}
- */
-@mixin mq($breakpointName) { 
-    @if map-has-key($_wgsBreakpoints, $breakpointName) {
-        $size: nth(map-get($_wgsBreakpoints, $breakpointName),1);
-        @media screen and (min-width: $size) {
-            @content;
-        }
+// Global variable use to store breakpoints names
+$_wgsBreakpoints: ();
+
+/// Media Query mixin
+/// 
+/// @access public
+/// @param {string} $from [false] - Apply rules from this breakpoint name
+/// @param {string} $until [false] - Apply rules until this breakpoint name
+/// @param {string} $and [false] - Additional media query parameters
+/// @example
+///   @include mq(tablet){ color: red }; // Results depends of the mobile first approach
+///   @include mq($from: tablet){ color: red };
+///   @include mq($until: desktop){ color: red };
+/// 
+@mixin mq(
+    $from: false,
+    $until: false,
+    $and: false
+) {
+    $min-width: 0;
+    $max-width: 0;
+    $media-query: '';
+
+    // From: this breakpoint (inclusive)
+    @if $from {
+        $min-width: nth(map-get($_wgsBreakpoints, $from),1)
+    }
+
+    // Until: that breakpoint (exclusive)
+    @if $until {
+        $max-width: nth(map-get($_wgsBreakpoints, $until),1) - 1px;
+    }
+
+    @if $min-width != 0 { $media-query: '#{$media-query} and (min-width: #{$min-width})'; }
+    @if $max-width != 0 { $media-query: '#{$media-query} and (max-width: #{$max-width})'; }
+    @if $and            { $media-query: '#{$media-query} and #{$and}'; }
+
+    @media #{"screen" + $media-query} {
+        @content;
     }
 }
 
-@mixin mqUntil($breakpointName) { 
-    @if map-has-key($_wgsBreakpoints, $breakpointName) {
-        $size: nth(map-get($_wgsBreakpoints, $breakpointName),1) - 1px;
-        @media screen and (max-width: $size ) {
-            @content;
-        }
-    }
-}
-
-
-/**
- * Ajoute les classes de grilles (.grid, .grid--fixed, .grid__item),
- * éventuellement préfixées. Gère les relations entre les .grid & .grid__item
- *
- * @param list $fixedWidths (false) => Liste de tailles fixes à gérer
- * @param string $breakpointName (false) => Le nom du breakpoint
- */
-@mixin wgsGrid($fixedWidths: false, $breakpointName:false) {
+/// Writes grid classes (.grid & its modifiers), eventually suffixed with breakpoint
+/// Handles relations between .grid and its cells
+/// 
+/// @access private
+/// @param {list} $gutters [()] - List of gutter sizes to handle
+/// @param {list} $fixedWidths [()] - List of fixed sizes to handle
+/// @param {string} $breakpointName [false] - Breakpoint name
+/// @example
+///   @include wgsGrid(
+///     $gutters        : 12px 20px,
+///     $fixedWidths    : 200px 300px,
+///     $breakpointName : desktop
+///   );
+/// 
+@mixin wgsGrid($gutters: (), $fixedWidths: (), $breakpointName:false) {
     $sufix: "";
     @if $breakpointName{
-        $sufix: "@#{$breakpointName}";
+        $sufix: "\\@#{$breakpointName}";
     }
 
-    @if $sufix == "" {
-        .grid {
-            display: block;
-            & > .grid__item {
-                display: inline-block;
-                vertical-align: top;
-                width: 100%;
-
-                // Pour remettre bien l'ordre au cas où la grille serait inversée
-                direction: ltr;
-                text-align:left;
-            }
-            & + .grid {
-                margin-top: 0;  
-            }
+    // 1/ Box sizing for this breakpoint on grid
+    .grid#{$sufix},
+    .grid#{$sufix} > * {
+        &,
+        &:before,
+        &:after{
+            box-sizing: border-box !important;
         }
     }
 
+    // 2/ Base style for this breakpoint's grid
+    .grid#{$sufix} {
+        display: block;
+        font-size: 0;
+        & > * {
+            display: inline-block;
+            vertical-align: top;
+            width: 100%;
+            font-size: medium;
 
-    [class~="grid--rev#{$sufix}"] {
+            // Pour remettre bien l'ordre au cas où la grille serait inversée
+            direction: ltr;
+            text-align:left;
+        }
+    }
+
+    // 3/ Grid's modifiers :
+
+    // a/ reversed order
+    .grid--rev#{$sufix} {
         direction: rtl;
     }
 
-    [class~="grid--center#{$sufix}"] {
+    // b/ centered grid
+    .grid--center#{$sufix} {
         text-align: center;
     }
 
-    [class~="grid--right#{$sufix}"] {
+    // c/ right aligned grid
+    .grid--right#{$sufix} {
         text-align: right;
     }
 
-    @if $fixedWidths {
+    // d/ fixed grid (no more box-sizing: border-box)
+    // overload of main grid properties
+    .grid.grid--fixed#{$sufix} {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+        margin-left: 0;
 
-        .grid[class~="grid--fixed#{$sufix}"] {
-            width: 100%;
-            display: table;
-            table-layout: fixed;
-            margin-left: 0;
-            > .grid__item {
-                display: table-cell;
-                vertical-align: top;
-                &:first-child {
-                    padding-left: 0;
-                }
 
+        > * {
+            display: table-cell;
+            vertical-align: top;
+            box-sizing: content-box !important;
+            &:first-child {
+                padding-left: 0;
             }
+
+        }
+    }
+
+    // e/ paddings (grid gutters)
+    @each $gutter in $gutters {
+
+        .grid--#{$gutter}#{$sufix} {
+            margin-left: -$gutter;
+            margin-top: -$gutter;
+
+            & > * {
+                padding-left: $gutter;
+                padding-top: $gutter;
+            }
+
+        }
+    }
+
+    @if length($gutters){
+        .grid--0#{$sufix} {
+            margin-left: 0;
+            margin-top: 0;
+
+            & > * {
+                padding-left: 0;
+                padding-top: 0;
+            }
+
         }
     }
 }
 
-/**
- * Gestion des gouttières
- * @param string $gutter => Taille de la gouttière
- * @param list $fixedWidths (false) => Liste de tailles fixes à gérer.
- * @param string $breakpointName (false) => Le nom du breakpoint
- */
-@mixin wgsGridGutter($gutter, $fixedWidths: false, $breakpointName:false) {
+/// Escapes a ratio with a sufix
+/// @example
+///   #{wgsRatio(1 , 2, "tablet")}
+///   // => [class~="1/2@tablet"]
+@function wgsRatio($a, $b, $breakpointName: false){
+
     $sufix: "";
     @if $breakpointName{
-        $sufix: "@#{$breakpointName}";
+        $sufix: "\\@#{$breakpointName}";
     }
 
-    [class~="grid#{$sufix}"] {
-        margin-left: -$gutter;
-        margin-top: -$gutter;
-
-        & > .grid__item {
-            padding-left: $gutter;
-            padding-top: $gutter;
-        }
-
-    }
+    @return ".\\3" + $a + " \\/" + $b + $sufix;
 }
 
-
-/**
- * Ecrit des classes de largeur ratio.
- * 
- * @param String $breakpointName : le nom du breakpoint à prendre en compte
- */
+/// Writes ratio classes (1/2, 1/3, etc), eventually suffixed with breakpoint name
+/// 
+/// @access private
+/// @param {string} $breakpointName - Name of the breakpoint to handle
+/// @example
+///   @include wgsRatioWidths();
+///   @include wgsRatioWidths(desktop);
 @mixin wgsRatioWidths($breakpointName:false){
 
     $sufix: "";
     @if $breakpointName{
-        $sufix: "@#{$breakpointName}";
+        $sufix: "\\@#{$breakpointName}";
     }
 
-    [class~="1/1#{$sufix}"]       { width: 100% !important; }
-    
-    // Demis
-    [class~="1/2#{$sufix}"],
-    [class~="2/4#{$sufix}"],
-    [class~="3/6#{$sufix}"],
-    [class~="4/8#{$sufix}"],
-    [class~="5/10#{$sufix}"],
-    [class~="6/12#{$sufix}"]      { width: 50% !important; }
-    
-    // Tiers
-    [class~="1/3#{$sufix}"],
-    [class~="2/6#{$sufix}"],
-    [class~="3/9#{$sufix}"],
-    [class~="4/12#{$sufix}"]      { width: 33.3333333% !important; }
-    [class~="2/3#{$sufix}"],
-    [class~="4/6#{$sufix}"],
-    [class~="6/9#{$sufix}"],
-    [class~="8/12#{$sufix}"]      { width: 66.6666666% !important; }
-    
-    // Quarts
-    [class~="1/4#{$sufix}"],
-    [class~="2/8#{$sufix}"],
-    [class~="3/12#{$sufix}"]      { width: 25% !important; }
-    [class~="3/4#{$sufix}"],
-    [class~="6/8#{$sufix}"],
-    [class~="9/12#{$sufix}"]      { width: 75% !important; }
-    
-    // Cinquièmes
-    [class~="1/5#{$sufix}"],
-    [class~="2/10#{$sufix}"]      { width: 20% !important; }
-    [class~="2/5#{$sufix}"],
-    [class~="4/10#{$sufix}"]      { width: 40% !important; }
-    [class~="3/5#{$sufix}"],
-    [class~="6/10#{$sufix}"]      { width: 60% !important; }
-    [class~="4/5#{$sufix}"],
-    [class~="8/10#{$sufix}"]      { width: 80% !important; }
-    
-    // Sixièmes
-    [class~="1/6#{$sufix}"],
-    [class~="2/12#{$sufix}"]      { width: 16.6666666% !important; }
-    [class~="5/6#{$sufix}"],
-    [class~="10/12#{$sufix}"]     { width: 83.3333333% !important; }
+    // Whole
+    #{wgsRatio(1 , 1, $breakpointName)}       { width: 100% !important; }
 
-    // Huitièmes
-    [class~="1/8#{$sufix}"]       { width: 12.5% !important; }
-    [class~="3/8#{$sufix}"]       { width: 37.5% !important; }
-    [class~="5/8#{$sufix}"]       { width: 62.5% !important; }
-    [class~="7/8#{$sufix}"]       { width: 87.5% !important; }
     
-    // Neuvièmes
-    [class~="1/9#{$sufix}"]       { width: 11.1111111% !important; }
-    [class~="2/9#{$sufix}"]       { width: 22.2222222% !important; }
-    [class~="4/9#{$sufix}"]       { width: 44.4444444% !important; }
-    [class~="5/9#{$sufix}"]       { width: 55.5555555% !important; }
-    [class~="7/9#{$sufix}"]       { width: 77.7777777% !important; }
-    [class~="8/9#{$sufix}"]       { width: 88.8888888% !important; }
+    // Halves
+    #{wgsRatio(1 , 2, $breakpointName)},
+    #{wgsRatio(2 , 4, $breakpointName)},
+    #{wgsRatio(3 , 6, $breakpointName)},
+    #{wgsRatio(4 , 8, $breakpointName)},
+    #{wgsRatio(5 ,10, $breakpointName)},
+    #{wgsRatio(6 ,12, $breakpointName)}      { width: 50% !important; }
     
-    // Dixièmes
-    [class~="1/10#{$sufix}"]      { width: 10% !important; }
-    [class~="3/10#{$sufix}"]      { width: 30% !important; }
-    [class~="7/10#{$sufix}"]      { width: 70% !important; }
-    [class~="9/10#{$sufix}"]      { width: 90% !important; }
+    // Thirds
+    #{wgsRatio(1 , 3, $breakpointName)},
+    #{wgsRatio(2 , 6, $breakpointName)},
+    #{wgsRatio(3 , 9, $breakpointName)},
+    #{wgsRatio(4 ,12, $breakpointName)}      { width: 33.3333333% !important; }
+    #{wgsRatio(2 , 3, $breakpointName)},
+    #{wgsRatio(4 , 6, $breakpointName)},
+    #{wgsRatio(6 , 9, $breakpointName)},
+    #{wgsRatio(8 ,12, $breakpointName)}      { width: 66.6666666% !important; }
+
+    // Quarters
+    #{wgsRatio(1 , 4, $breakpointName)},
+    #{wgsRatio(2 , 8, $breakpointName)},
+    #{wgsRatio(3 ,12, $breakpointName)}      { width: 25% !important; }
+    #{wgsRatio(3 , 4, $breakpointName)},
+    #{wgsRatio(6 , 8, $breakpointName)},
+    #{wgsRatio(9 ,12, $breakpointName)}      { width: 75% !important; }
+
+    // Fifths
+    #{wgsRatio(1 , 5, $breakpointName)},
+    #{wgsRatio(2 ,10, $breakpointName)}      { width: 20% !important; }
+    #{wgsRatio(2 , 5, $breakpointName)},
+    #{wgsRatio(4 ,10, $breakpointName)}      { width: 40% !important; }
+    #{wgsRatio(3 , 5, $breakpointName)},
+    #{wgsRatio(6 ,10, $breakpointName)}      { width: 60% !important; }
+    #{wgsRatio(4 , 5, $breakpointName)},
+    #{wgsRatio(8 ,10, $breakpointName)}      { width: 80% !important; }
+
+    // Sixths
+    #{wgsRatio(1 , 6, $breakpointName)},
+    #{wgsRatio(2 ,12, $breakpointName)}      { width: 16.6666666% !important; }
+    #{wgsRatio(5 , 6, $breakpointName)},
+    #{wgsRatio(10,12, $breakpointName)}      { width: 83.3333333% !important; }
+
+    // Eighths
+    #{wgsRatio(1 , 8, $breakpointName)}      { width: 12.5% !important; }
+    #{wgsRatio(3 , 8, $breakpointName)}      { width: 37.5% !important; }
+    #{wgsRatio(5 , 8, $breakpointName)}      { width: 62.5% !important; }
+    #{wgsRatio(7 , 8, $breakpointName)}      { width: 87.5% !important; }
+
+    // Ninths
+    #{wgsRatio(1 , 9, $breakpointName)}      { width: 11.1111111% !important; }
+    #{wgsRatio(2 , 9, $breakpointName)}      { width: 11.1111111% !important; }
+    #{wgsRatio(4 , 9, $breakpointName)}      { width: 44.4444444% !important; }
+    #{wgsRatio(5 , 9, $breakpointName)}      { width: 55.5555555% !important; }
+    #{wgsRatio(7 , 9, $breakpointName)}      { width: 77.7777777% !important; }
+    #{wgsRatio(8 , 9, $breakpointName)}      { width: 88.8888888% !important; }
+
+    // Tenths
+    #{wgsRatio(1 ,10, $breakpointName)}      { width: 10% !important; }
+    #{wgsRatio(3 ,10, $breakpointName)}      { width: 30% !important; }
+    #{wgsRatio(7 ,10, $breakpointName)}      { width: 70% !important; }
+    #{wgsRatio(9 ,10, $breakpointName)}      { width: 90% !important; }
+
+    // Twelves
+    #{wgsRatio(1 ,12, $breakpointName)}      { width:  8.3333333% !important; }
+    #{wgsRatio(5 ,12, $breakpointName)}      { width: 41.6666666% !important; }
+    #{wgsRatio(7 ,12, $breakpointName)}      { width: 58.3333333% !important; }
+    #{wgsRatio(11,12, $breakpointName)}      { width: 91.6666666% !important; }
     
-    // Douzièmes
-    [class~="1/12#{$sufix}"]      { width:  8.3333333% !important; }
-    [class~="5/12#{$sufix}"]      { width: 41.6666666% !important; }
-    [class~="7/12#{$sufix}"]      { width: 58.3333333% !important; }
-    [class~="11/12#{$sufix}"]     { width: 91.6666666% !important; }
 }
 
-/**
- * Ecrit des classes de largeur fixe.
- * @param string $size => taille à géger. Ex : 300px
- * @param string $gutter => Taille de la gouttière. Ex : 24px
- * @param string $breakpointName (false) => Le nom du breakpoint
- */
-@mixin wgsFixedWidth($size, $gutter, $breakpointName:false) {
+@function strip-units($value) {
+    @return $value / ($value * 0 + 1);
+}
+
+/// Writes fixed widths
+///
+/// @access private
+/// @param {string} $size - Size to handle
+/// @param {string} $breakpointName [false] - Breakpoint name
+/// @example
+///   @include wgsFixedWidth(200px);
+///   @include wgsFixedWidth(300px, desktop);
+@mixin wgsFixedWidth($size, $breakpointName:false) {
+
+    $sizeValue: strip-units($size);
+    $sizeUnit: unit($size);
+
+    $gutter: 0;
 
     $sufix: "";
     @if $breakpointName{
-        $sufix: "@#{$breakpointName}";
+        $sufix: "\@#{$breakpointName}";
     }
-
+    // Fixme : pure escaping wont work
+    // .\3#{$sizeValue} #{$sizeUnit}#{$sufix}{
+    //     width: $size !important;        
+    // }
     [class~="#{$size}#{$sufix}"] {
         width: $size !important;
-    }
-
-    .grid__item + [class~="#{$size}#{$sufix}"] {
-        width: $size + $gutter !important;
     }
 }
 
 
-/**
- * Quelques classes de visibilité
- * @param string $breakpointName (false) => Le nom du breakpoint
- */
+/// Writes some visibility classes: .hidden@[breakpointName]
+///
+/// @access private
+/// @param {string} $breakpointName [false] - breakpoint name
+/// @example
+///   @include wgsHidden();
+///   @include wgsHidden(desktop);
 @mixin wgsHidden($breakpointName: false) {
 
     $sufix: "";
     @if $breakpointName{
-        $sufix: "@#{$breakpointName}";
+        $sufix: "\\@#{$breakpointName}";
     }
 
-    [class~="hidden#{$sufix}"] {
+    .hidden#{$sufix} {
         display: none !important;
     }    
 }
 
+/// Writes some visibility classes: .visible@[breakpointName]
+///
+/// @access private
+/// @example
+///   @include wgsVisible();
+///   @include wgsVisible(desktop);
 @mixin wgsVisible($breakpointName: false) {
 
     $sufix: "";
     @if $breakpointName{
-        $sufix: "@#{$breakpointName}";
+        $sufix: "\\@#{$breakpointName}";
     }
 
-    [class~="visible#{$sufix}"] {
+    .visible#{$sufix} {
         display: none !important;
     }    
 }
 
-/**
- * Ecriture des règles
- * @param list $fixedWidths (false) : les tailles fixes à prendre en compte
- * @param map $breakpoints (false) : les breakpoints à prendre en compte
- * @param string $gutter (12px) : taille de la gouttière par défaut
- */
+/// writes OO spacing classes
+///
+/// @access private
+/// @example
+///   @include wgsSpacing(18px 22px);
+///   @include wgsSpacing(18px 22px, desktop);
+@mixin wgsSpacing($gutters: (), $breakpointName: false) {
+    $sufix: "";
+    @if $breakpointName{
+        $sufix: "\\@#{$breakpointName}";
+    }
+
+    @each $gutter in $gutters {
+
+        .padding-top--#{$gutter}#{$sufix} {
+            padding-top: $gutter;
+        }
+        .padding-right--#{$gutter}#{$sufix} {
+            padding-right: $gutter;
+        }
+        .padding-bottom--#{$gutter}#{$sufix} {
+            padding-bottom: $gutter;
+        }
+        .padding-left--#{$gutter}#{$sufix} {
+            padding-left: $gutter;
+        }
+
+        .padding-hori--#{$gutter}#{$sufix} {
+            @extend .padding-right--#{$gutter}#{$sufix};
+            @extend .padding-left--#{$gutter}#{$sufix};
+        }   
+
+        .padding-vert--#{$gutter}#{$sufix} {
+            @extend .padding-top--#{$gutter}#{$sufix};
+            @extend .padding-bottom--#{$gutter}#{$sufix};
+        }
+
+        .padding--#{$gutter}#{$sufix} {
+            @extend .padding-hori--#{$gutter}#{$sufix};
+            @extend .padding-vert--#{$gutter}#{$sufix};
+        }
+    }
+    @if length($gutters){
+        .padding-top--0#{$sufix} {
+            padding-top: 0;
+        }
+        .padding-right--0#{$sufix} {
+            padding-right: 0;
+        }
+        .padding-bottom--0#{$sufix} {
+            padding-bottom: 0;
+        }
+        .padding-left--0#{$sufix} {
+            padding-left: 0;
+        }
+        .padding-hori--0#{$sufix} {
+            @extend .padding-right--0#{$sufix};
+            @extend .padding-left--0#{$sufix};
+        }
+        .padding-vert--0#{$sufix} {
+            @extend .padding-top--0#{$sufix};
+            @extend .padding-bottom--0#{$sufix};
+        }
+
+        .padding--0#{$sufix} {
+            @extend .padding-top--0#{$sufix};
+            @extend .padding-right--0#{$sufix};
+            @extend .padding-bottom--0#{$sufix};
+            @extend .padding-left--0#{$sufix};
+        }        
+    }
+}
+
+
+/// Main function. has to be called with wanted fixed widths, breakpoints definition and gutter widths to handle
+///
+/// @access public
+/// @param {map} $breakpoints [()] - breakpoints
+/// @param {list} $gutters [()] - gutters to handle
+/// @param {list} $fixedWidths [()] - fixed sizes to handle
+/// @param {boolean} $mobileFirst [()] - mobile first ? (or desktop first)
+/// @example
+///   @include wgsSetup(
+///       $breakpoints : (
+///           tablet     : 480px,
+///           big-tablet : 660px,
+///           desk       : 990px
+///       ),
+///       $gutters : 12px 16px 18px 22px,
+///       $fixedWidths : 200px 300px
+///   );
 @mixin wgsSetup(
-    $fixedWidths  : false,
-    $breakpoints  : false,
-    $gutter       : 12px
-){
-    // Global namespaced variable, utilisée par @include mq() pour éviter 
-    // d'avoir à lui filer le tableau à chaque fois
+    $breakpoints  : (),
+    $gutters      : (),
+    $fixedWidths  : (),
+    $mobileFirst  : true
+) {
+    // Global namespaced variable holding breakpoint definition used by mq()
     $_wgsBreakpoints : $breakpoints !global;
 
-    // 1/ Borderbox pour tout le monde !
-    // css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
-    // paulirish.com/2012/box-sizing-border-box-ftw
-    html {
-        -webkit-box-sizing: border-box;
-           -moz-box-sizing: border-box;
-                box-sizing: border-box;
-    }
-    * {
-        &,
-        &:before,
-        &:after{
-            -webkit-box-sizing: inherit;
-               -moz-box-sizing: inherit;
-                    box-sizing: inherit;
-        }
-    }
 
 
-    // 2/ Ratios sans responsive
-    @include wgsGrid($fixedWidths);
-    @include wgsGridGutter($gutter, $fixedWidths);
+    // 1/ Grid class & grid modifiers
+    @include wgsGrid($gutters, $fixedWidths);
+
+    // 2/ Ratio widths
     @include wgsRatioWidths;
 
-
-    // 3/ Tailles fixes sans responsive
-    @if $fixedWidths {
-        @each $width in $fixedWidths {
-            @include wgsFixedWidth($width, $gutter);
-        }
+    // 3/ Fixed widths
+    @each $width in $fixedWidths {
+        @include wgsFixedWidth($width);
     }
 
+    // 4/ Spacings
+    @include wgsSpacing($gutters);
 
-    // 4/ Gestion des ratios et tailles fixes en responsive
-    @if $breakpoints {
-        
-        @for $i from 1 through length($breakpoints) {
+    // 5/ 1, 2, 3 & 4, but in a breakpoint
+    @each $breakpointName, $breakpointSize in $breakpoints {
 
-            $breakpointData   : nth(map-values($breakpoints), $i);
-            $breakpointName   : nth(map-keys($breakpoints), $i);
-            $breakpointSize   : nth($breakpointData,1);
-            $breakpointGutter : nth($breakpointData,2);
+        // 
+        $from  : false;
+        $until : $breakpointName;
 
+        @if $mobileFirst {
+            $from  : $breakpointName;
+            $until : false;
+        }
 
-            @include mq($breakpointName) {
-                @include wgsGrid($fixedWidths, $breakpointName);
-                @include wgsGridGutter($breakpointGutter, $fixedWidths);
-                @include wgsGridGutter($breakpointGutter, $fixedWidths, $breakpointName);
-                @include wgsRatioWidths($breakpointName);
-                @include wgsHidden($breakpointName);
+        @include mq($from: $from, $until: $until) {
 
-                @if $fixedWidths {
-                    @each $width in $fixedWidths {
-                        @include wgsFixedWidth($width, $breakpointGutter, $breakpointName);
-                    }
-                }
+            @include wgsGrid($gutters, $fixedWidths, $breakpointName);
+            @include wgsRatioWidths($breakpointName);
+            @include wgsHidden($breakpointName);
+
+            @each $width in $fixedWidths {
+                @include wgsFixedWidth($width, $breakpointName);
             }
 
-            @include mqUntil($breakpointName){
-                @include wgsVisible($breakpointName);
-            }
+            @include wgsSpacing($gutters, $breakpointName);
 
-            // Pour chaque breakpoint, à cause des tailles fixes,
-            // on regarde les breakpoints supérieurs et on applique des valeurs
-            // spécifiques au breakpoint courant, valables pour les breakpoints
-            // supérieurs.
-            // 
-            // Ex : .300px@big-tablet
-            // avec un gutter de 18px en big-tablet, qui doit être de 24px en
-            // desktop, doit s'appliquer, même s'il n'y a pas la classe
-            // .300px@desk
-            @if $i + 1 <= length($breakpoints){
-                @for $j from $i + 1 through length($breakpoints) {
-                    $nextBreakpointData   : nth(map-values($breakpoints), $j);
-                    $nextBreakpointName   : nth(map-keys($breakpoints), $j);
-                    $nextBreakpointSize   : nth($nextBreakpointData,1);
-                    $nextBreakpointGutter : nth($nextBreakpointData,2);
+        }
 
-                    @include mq($nextBreakpointName) {
-                        @include wgsGridGutter($nextBreakpointGutter, $fixedWidths, $breakpointName);
-                    }
-
-                    @if $fixedWidths {
-                        @each $width in $fixedWidths {
-
-                            @include mq($nextBreakpointName) {
-                                @include wgsFixedWidth($width, $nextBreakpointGutter, $breakpointName);
-                            }
-                        }
-                    }
-                }
-            }
+        @include mq($until: $breakpointName) {
+            @include wgsVisible($breakpointName);
         }
     }
 }
+
+
+
