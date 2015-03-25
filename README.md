@@ -22,7 +22,8 @@ https://fiddle.jshell.net/6x1th0n1/3/show/light/
 
 ## Prerequisites
 
-* sass > 3.4 or libsass > 3.2
+* sass > 3.4 (warning, libsass won't work)
+
 
 ## Installation
 
