@@ -5,6 +5,8 @@
  *
  * https://github.com/webedia-udg/wgs
  *
+ * Warning, this file wont compile with libsass, because of backshash escaping
+ * if you want to make it work with libsass, use a simple escape instead of double.
  */
 
 // Global variable use to store breakpoints names
@@ -66,7 +68,7 @@ $_wgsBreakpoints: ();
 @mixin wgsGrid($gutters: (), $fixedWidths: (), $breakpointName:false) {
     $sufix: "";
     @if $breakpointName{
-        $sufix: "\@#{$breakpointName}";
+        $sufix: "\\@#{$breakpointName}";
     }
 
     // 1/ Box sizing for this breakpoint on grid
@@ -172,10 +174,10 @@ $_wgsBreakpoints: ();
 
     $sufix: "";
     @if $breakpointName{
-        $sufix: "\@#{$breakpointName}";
+        $sufix: "\\@#{$breakpointName}";
     }
 
-    @return ".\3" + $a + " \/" + $b + $sufix;
+    @return ".\\3" + $a + " \\/" + $b + $sufix;
 }
 
 /// Writes ratio classes (1/2, 1/3, etc), eventually suffixed with breakpoint name
@@ -187,9 +189,15 @@ $_wgsBreakpoints: ();
 ///   @include wgsRatioWidths(desktop);
 @mixin wgsRatioWidths($breakpointName:false){
 
-    // Whole
-    #{wgsRatio(1 ,1, $breakpointName)}       { width: 100% !important; }
+    $sufix: "";
+    @if $breakpointName{
+        $sufix: "\\@#{$breakpointName}";
+    }
 
+    // Whole
+    #{wgsRatio(1 , 1, $breakpointName)}       { width: 100% !important; }
+
+    
     // Halves
     #{wgsRatio(1 , 2, $breakpointName)},
     #{wgsRatio(2 , 4, $breakpointName)},
@@ -257,6 +265,7 @@ $_wgsBreakpoints: ();
     #{wgsRatio(5 ,12, $breakpointName)}      { width: 41.6666666% !important; }
     #{wgsRatio(7 ,12, $breakpointName)}      { width: 58.3333333% !important; }
     #{wgsRatio(11,12, $breakpointName)}      { width: 91.6666666% !important; }
+    
 }
 
 @function strip-units($value) {
@@ -303,7 +312,7 @@ $_wgsBreakpoints: ();
 
     $sufix: "";
     @if $breakpointName{
-        $sufix: "\@#{$breakpointName}";
+        $sufix: "\\@#{$breakpointName}";
     }
 
     .hidden#{$sufix} {
@@ -321,7 +330,7 @@ $_wgsBreakpoints: ();
 
     $sufix: "";
     @if $breakpointName{
-        $sufix: "\@#{$breakpointName}";
+        $sufix: "\\@#{$breakpointName}";
     }
 
     .visible#{$sufix} {
@@ -338,7 +347,7 @@ $_wgsBreakpoints: ();
 @mixin wgsSpacing($gutters: (), $breakpointName: false) {
     $sufix: "";
     @if $breakpointName{
-        $sufix: "\@#{$breakpointName}";
+        $sufix: "\\@#{$breakpointName}";
     }
 
     @each $gutter in $gutters {
@@ -449,14 +458,13 @@ $_wgsBreakpoints: ();
     @each $breakpointName, $breakpointSize in $breakpoints {
 
         // 
+        $from  : false;
+        $until : $breakpointName;
         @if $mobileFirst {
             $from  : $breakpointName;
             $until : false;
         }
-        @else{
-            $from  : false;
-            $until : $breakpointName;
-        }
+
         @include mq($from: $from, $until: $until) {
 
             @include wgsGrid($gutters, $fixedWidths, $breakpointName);

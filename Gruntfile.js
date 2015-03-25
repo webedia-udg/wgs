@@ -3,12 +3,14 @@ module.exports = function(grunt) {
   grunt.initConfig({
     sass: {
         dist: {
+            options: {
+              style: 'nested'
+            },
             files: {
                 'demo.css': 'demo.scss'
             }
         }
     },
-
     autoprefixer: {
       options: {
         browsers: ['last 2 versions', 'ie 9']
@@ -26,8 +28,8 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-autoprefixer');
-  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-contrib-sass');
 
-  grunt.registerTask('default', ['libsass']);
+  grunt.registerTask('default', ['watch']);
 
 };
