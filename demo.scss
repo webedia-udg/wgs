@@ -1,4 +1,4 @@
-// Import du WGS
+// Import of WGS
 @import "wgs";
 
 @include wgsSetup(
@@ -12,7 +12,7 @@
 );
 
 
-/* Styles uniquement pour la page de démo */
+/* Thoses styles are only for demo purpose */
 body {
     padding: 0;
     margin: 0;
@@ -65,7 +65,7 @@ iframe{
     transition: width .2s ease-out;
 }
 
-// Titres
+// Titles
 .main-title{
     color: #404040;
     text-transform: uppercase;
@@ -112,7 +112,7 @@ code {
     }
 }
 
-// Simulation de contenu
+// Content simulation
 .bloc{
     position: relative;
     background-color: #dadada;

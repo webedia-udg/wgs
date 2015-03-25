@@ -1,6 +1,5 @@
-@charset "UTF-8";
 /**
- * WGS (Webedia Grid System)
+ * Whatever Grid System (WGS) v0.7.0
  *
  * README :
  *
@@ -136,7 +135,7 @@
   width: 16.6666666% !important; }
 
 .\35 \/6,
-.\310 \/12 {
+.\31 0\/12 {
   width: 83.3333333% !important; }
 
 .\31 \/8 {
@@ -190,13 +189,13 @@
 .\37 \/12 {
   width: 58.3333333% !important; }
 
-.\311 \/12 {
+.\31 1\/12 {
   width: 91.6666666% !important; }
 
-[class~="200px"] {
+.\32 00px {
   width: 200px !important; }
 
-[class~="300px"] {
+.\33 00px {
   width: 300px !important; }
 
 .padding-top--12px, .padding-vert--12px, .padding--12px {
@@ -387,7 +386,7 @@
     width: 16.6666666% !important; }
 
   .\35 \/6\@tablet,
-  .\310 \/12\@tablet {
+  .\31 0\/12\@tablet {
     width: 83.3333333% !important; }
 
   .\31 \/8\@tablet {
@@ -441,16 +440,16 @@
   .\37 \/12\@tablet {
     width: 58.3333333% !important; }
 
-  .\311 \/12\@tablet {
+  .\31 1\/12\@tablet {
     width: 91.6666666% !important; }
 
   .hidden\@tablet {
     display: none !important; }
 
-  [class~="200px@tablet"] {
+  .\32 00px\@tablet {
     width: 200px !important; }
 
-  [class~="300px@tablet"] {
+  .\33 00px\@tablet {
     width: 300px !important; }
 
   .padding-top--12px\@tablet, .padding-vert--12px\@tablet, .padding--12px\@tablet {
@@ -643,7 +642,7 @@
     width: 16.6666666% !important; }
 
   .\35 \/6\@big-tablet,
-  .\310 \/12\@big-tablet {
+  .\31 0\/12\@big-tablet {
     width: 83.3333333% !important; }
 
   .\31 \/8\@big-tablet {
@@ -697,16 +696,16 @@
   .\37 \/12\@big-tablet {
     width: 58.3333333% !important; }
 
-  .\311 \/12\@big-tablet {
+  .\31 1\/12\@big-tablet {
     width: 91.6666666% !important; }
 
   .hidden\@big-tablet {
     display: none !important; }
 
-  [class~="200px@big-tablet"] {
+  .\32 00px\@big-tablet {
     width: 200px !important; }
 
-  [class~="300px@big-tablet"] {
+  .\33 00px\@big-tablet {
     width: 300px !important; }
 
   .padding-top--12px\@big-tablet, .padding-vert--12px\@big-tablet, .padding--12px\@big-tablet {
@@ -899,7 +898,7 @@
     width: 16.6666666% !important; }
 
   .\35 \/6\@desk,
-  .\310 \/12\@desk {
+  .\31 0\/12\@desk {
     width: 83.3333333% !important; }
 
   .\31 \/8\@desk {
@@ -953,16 +952,16 @@
   .\37 \/12\@desk {
     width: 58.3333333% !important; }
 
-  .\311 \/12\@desk {
+  .\31 1\/12\@desk {
     width: 91.6666666% !important; }
 
   .hidden\@desk {
     display: none !important; }
 
-  [class~="200px@desk"] {
+  .\32 00px\@desk {
     width: 200px !important; }
 
-  [class~="300px@desk"] {
+  .\33 00px\@desk {
     width: 300px !important; }
 
   .padding-top--12px\@desk, .padding-vert--12px\@desk, .padding--12px\@desk {
@@ -1027,7 +1026,7 @@
 @media screen and (max-width: 989px) {
   .visible\@desk {
     display: none !important; } }
-/* Styles uniquement pour la page de démo */
+/* Thoses styles are only for demo purpose */
 body {
   padding: 0;
   margin: 0;

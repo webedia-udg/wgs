@@ -1,7 +1,7 @@
 {
   "name": "wgs",
-  "version": "1.0.0",
-  "description": "Webedia Grid System (WGS)",
+  "version": "0.7.0",
+  "description": "Whatever Grid System (WGS)",
   "main": "index.js",
   "dependencies": {
     "grunt": "^0.4.5",

@@ -1,9 +1,9 @@
 {
   "name": "wgs",
-  "version": "0.1.0",
+  "version": "0.7.0",
   "homepage": "https://github.com/webedia-udg/wgs",
   "authors": [
-    "Stol <afaye@corp.webedia.fr>"
+    "Stol <afaye@webedia-group.com>"
   ],
   "description": "Grid System with fixed & proportional columns",
   "main": "_wgs.scss",
