@@ -22,7 +22,7 @@ https://jsfiddle.net/6x1th0n1/4/embedded/result/
 
 ## Prerequisites
 
-* sass > 3.4 (warning, libsass won't work)
+* sass > 3.4 or libsass > ??? (find out)
 
 
 ## Installation
