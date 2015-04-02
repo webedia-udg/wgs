@@ -28,7 +28,8 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-autoprefixer');
-  grunt.loadNpmTasks('grunt-contrib-sass');
+  // grunt.loadNpmTasks('grunt-contrib-sass'); // sass ruby
+  grunt.loadNpmTasks('grunt-sass');  // libsass
 
   grunt.registerTask('default', ['watch']);
 
