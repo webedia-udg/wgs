@@ -17,6 +17,19 @@ $_wgsBreakpoints: ();
     @return $value / ($value * 0 + 1);
 }
 
+// Preprend BackSlash to a string
+@function prependBackSlash($str) {
+    // Hack : RubySass needs a second backslash.
+    // RubySass 
+    @if "\$" == "$" {
+        @return "\\#{$str}";
+    }
+    // LibSass
+    @else {
+        @return "\#{$str}";
+    }
+}
+
 /// Escapes the first digit of a number
 /// @param {string|integer} $number - the number to escape
 /// @example
@@ -27,13 +40,13 @@ $_wgsBreakpoints: ();
 ///     escapeFirstDigit("99999999")
 ///     // => '\39 9999999'
 @function escapeFirstDigit($number) {
-    $string: inspect($number); // = toString()
+    $string: #{$number}; // = toString()
 
     $firstDigit: str-slice($string, 1, 1);
 
-    $remainingDigits: str-slice($string, 2);
-
-    $return: #{"\\3" + $firstDigit + " " + $remainingDigits};
+    $remainingDigits: str-slice($string, 2, 99); // 99 is useless but without the third parameter, 
+                                                 // str-slice by libSass doesn't work properly 
+    $return: #{prependBackSlash("3") + $firstDigit + " " + $remainingDigits};
 
     @return $return;
 }
@@ -45,10 +58,10 @@ $_wgsBreakpoints: ();
 
     $sufix: "";
     @if $breakpointName{
-        $sufix: "\\@#{$breakpointName}";
+        $sufix: prependBackSlash("@#{$breakpointName}");
     }
 
-    @return "." + escapeFirstDigit($a) + "\\/" + $b + $sufix;
+    @return "." + escapeFirstDigit($a) + prependBackSlash("/") + $b + $sufix;
 }
 
 /// Media Query mixin
@@ -107,7 +120,7 @@ $_wgsBreakpoints: ();
 @mixin wgsGrid($gutters: (), $fixedWidths: (), $breakpointName:false) {
     $sufix: "";
     @if $breakpointName{
-        $sufix: "\\@#{$breakpointName}";
+        $sufix: prependBackSlash("@#{$breakpointName}");
     }
 
     // 1/ Box sizing for this breakpoint on grid
@@ -213,7 +226,7 @@ $_wgsBreakpoints: ();
 
     $sufix: "";
     @if $breakpointName{
-        $sufix: "\\@#{$breakpointName}";
+        $sufix: prependBackSlash("@#{$breakpointName}");
     }
 
     // Whole
@@ -309,7 +322,7 @@ $_wgsBreakpoints: ();
 
     $sufix: "";
     @if $breakpointName{
-        $sufix: "\\@#{$breakpointName}";
+        $sufix: prependBackSlash("@#{$breakpointName}");
     }
     $hop: #{"." + escapeFirstDigit($sizeValue) + $sizeUnit + $sufix};
     //@debug $hop;
@@ -333,7 +346,7 @@ $_wgsBreakpoints: ();
 
     $sufix: "";
     @if $breakpointName{
-        $sufix: "\\@#{$breakpointName}";
+        $sufix: prependBackSlash("@#{$breakpointName}");
     }
 
     .hidden#{$sufix} {
@@ -351,7 +364,7 @@ $_wgsBreakpoints: ();
 
     $sufix: "";
     @if $breakpointName{
-        $sufix: "\\@#{$breakpointName}";
+        $sufix: prependBackSlash("@#{$breakpointName}");
     }
 
     .visible#{$sufix} {
@@ -368,7 +381,7 @@ $_wgsBreakpoints: ();
 @mixin wgsSpacing($gutters: (), $breakpointName: false) {
     $sufix: "";
     @if $breakpointName{
-        $sufix: "\\@#{$breakpointName}";
+        $sufix: prependBackSlash("@#{$breakpointName}");
     }
 
     @each $gutter in $gutters {
