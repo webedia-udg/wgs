@@ -46,7 +46,8 @@ https://jsfiddle.net/6x1th0n1/4/embedded/result/
         desk       : 990px
     ),
     $gutters : 12px 16px 18px 22px,
-    $fixedWidths : 200px 300px
+    $fixedWidths : 200px 300px,
+    $namespace: false
 );
 ```
 
@@ -67,7 +68,7 @@ https://jsfiddle.net/6x1th0n1/4/embedded/result/
 ## Classes naming
 
 
-``class[__element][--modifier][@breakpoint]``
+``[namespace]class[__element][--modifier][@breakpoint]``
 
 ## Vocabulary
 
@@ -76,6 +77,7 @@ https://jsfiddle.net/6x1th0n1/4/embedded/result/
 Ex : 
 ```
 .grid           // Always a grid
+.u-grid         // Always a grid ('u-' namespace)
 .grid@foo       // Grid behaviour from "foo" breakpoint
 ```
 
@@ -87,10 +89,11 @@ Ex:
 .1/1
 .1/1@foo
 .1/6@bar
+.u-1/6@bar // '-u' namespace
 .12/12
 ```
 
-`padding[-(top|right|bottom|left|hori|vert)]--[XX][@breakpoint]` adds a padding on top/right/bottom/left of an element. `XX` is one the values defined in `$gutters` setup parameter.
+`[namespace]padding[-(top|right|bottom|left|hori|vert)]--[XX][@breakpoint]` adds a padding on top/right/bottom/left of an element. `XX` is one the values defined in `$gutters` setup parameter.
 
 Ex :
 
@@ -117,6 +120,7 @@ Including ``_wgs.scss`` in your sass project gives you access to **two sass mixi
 /// @param {map} $breakpoints [()] - breakpoints
 /// @param {list} $gutters [()] - gutters to handle
 /// @param {boolean} $mobileFirst [()] - mobile first ? (or desktop first)
+/// @param {string} $namespace [false] - namespace used by wgs
 /// @example
 ///   @include wgsSetup(
 ///       $breakpoints : (
@@ -131,7 +135,8 @@ Including ``_wgs.scss`` in your sass project gives you access to **two sass mixi
     $breakpoints  : (),
     $gutters      : (),
     $fixedWidths  : (),
-    $mobileFirst  : true
+    $mobileFirst  : true,
+    $namespace    : false
 ){ /*...*/ }
 ```
 
