@@ -11,6 +11,7 @@
 
 // Global variable use to store breakpoints names
 $_wgsBreakpoints: ();
+$_wgsNamespace: false;
 
 
 @function strip-units($value) {
@@ -61,7 +62,13 @@ $_wgsBreakpoints: ();
         $sufix: prependBackSlash("@#{$breakpointName}");
     }
 
-    @return "." + escapeFirstDigit($a) + prependBackSlash("/") + $b + $sufix;
+    @if $_wgsNamespace{
+        @return "."  + $_wgsNamespace + $a + prependBackSlash("/") + $b + $sufix;
+    }
+    @else{
+        @return "." + escapeFirstDigit($a) + prependBackSlash("/") + $b + $sufix;
+    }
+
 }
 
 /// Media Query mixin
@@ -123,9 +130,15 @@ $_wgsBreakpoints: ();
         $sufix: prependBackSlash("@#{$breakpointName}");
     }
 
+
+    $prefix: "";
+    @if $_wgsNamespace{
+        $prefix: $_wgsNamespace;
+    }
+
     // 1/ Box sizing for this breakpoint on grid
-    .grid#{$sufix},
-    .grid#{$sufix} > * {
+    .#{$prefix}grid#{$sufix},
+    .#{$prefix}grid#{$sufix} > * {
         &,
         &:before,
         &:after{
@@ -134,7 +147,7 @@ $_wgsBreakpoints: ();
     }
 
     // 2/ Base style for this breakpoint's grid
-    .grid#{$sufix} {
+    .#{$prefix}grid#{$sufix} {
         display: block;
         font-size: 0;
         & > * {
@@ -152,23 +165,23 @@ $_wgsBreakpoints: ();
     // 3/ Grid's modifiers :
 
     // a/ reversed order
-    .grid--rev#{$sufix} {
+    .#{$prefix}grid--rev#{$sufix} {
         direction: rtl;
     }
 
     // b/ centered grid
-    .grid--center#{$sufix} {
+    .#{$prefix}grid--center#{$sufix} {
         text-align: center;
     }
 
     // c/ right aligned grid
-    .grid--right#{$sufix} {
+    .#{$prefix}grid--right#{$sufix} {
         text-align: right;
     }
 
     // d/ fixed grid (no more box-sizing: border-box)
     // overload of main grid properties
-    .grid.grid--fixed#{$sufix} {
+    .#{$prefix}grid.#{$prefix}grid--fixed#{$sufix} {
         width: 100%;
         display: table;
         table-layout: fixed;
@@ -189,7 +202,7 @@ $_wgsBreakpoints: ();
     // e/ paddings (grid gutters)
     @each $gutter in $gutters {
 
-        .grid--#{$gutter}#{$sufix} {
+        .#{$prefix}grid--#{$gutter}#{$sufix} {
             margin-left: -$gutter;
             margin-top: -$gutter;
 
@@ -202,7 +215,7 @@ $_wgsBreakpoints: ();
     }
 
     @if length($gutters){
-        .grid--0#{$sufix} {
+        .#{$prefix}grid--0#{$sufix} {
             margin-left: 0;
             margin-top: 0;
 
@@ -223,11 +236,6 @@ $_wgsBreakpoints: ();
 ///   @include wgsRatioWidths();
 ///   @include wgsRatioWidths(desktop);
 @mixin wgsRatioWidths($breakpointName:false){
-
-    $sufix: "";
-    @if $breakpointName{
-        $sufix: prependBackSlash("@#{$breakpointName}");
-    }
 
     // Whole
     #{wgsRatio(1 , 1, $breakpointName)}       { width: 100% !important; }
@@ -315,23 +323,30 @@ $_wgsBreakpoints: ();
 ///   @include wgsFixedWidth(300px, desktop);
 @mixin wgsFixedWidth($size, $breakpointName:false) {
 
-    $sizeValue: strip-units($size);
-    $sizeUnit: unit($size);
-
-    $gutter: 0;
-
     $sufix: "";
     @if $breakpointName{
         $sufix: prependBackSlash("@#{$breakpointName}");
     }
-    $hop: #{"." + escapeFirstDigit($sizeValue) + $sizeUnit + $sufix};
-    //@debug $hop;
-    // Fixme : pure escaping wont work
-    #{$hop}{
-         width: $size !important;        
+
+    // No need to escape if namespace provided
+    @if $_wgsNamespace{
+        .#{$_wgsNamespace}#{$size}#{$sufix}{
+             width: $size !important;        
+         }
     }
-    // [class~="#{$size}#{$sufix}"] {
-    //     width: $size !important;
+    @else{
+        $sizeValue: strip-units($size);
+        $sizeUnit: unit($size);
+        $hop: #{"." + escapeFirstDigit($sizeValue) + $sizeUnit + $sufix};
+        //@debug $hop;
+        // Fixme : pure escaping wont work
+        #{$hop}{
+             width: $size !important;        
+        }
+        // [class~="#{$size}#{$sufix}"] {
+        //     width: $size !important;
+    }
+
 }
 
 
@@ -348,8 +363,12 @@ $_wgsBreakpoints: ();
     @if $breakpointName{
         $sufix: prependBackSlash("@#{$breakpointName}");
     }
+    $prefix: "";
+    @if $_wgsNamespace{
+        $prefix: $_wgsNamespace;
+    }
 
-    .hidden#{$sufix} {
+    .#{$prefix}hidden#{$sufix} {
         display: none !important;
     }    
 }
@@ -366,8 +385,12 @@ $_wgsBreakpoints: ();
     @if $breakpointName{
         $sufix: prependBackSlash("@#{$breakpointName}");
     }
+    $prefix: "";
+    @if $_wgsNamespace{
+        $prefix: $_wgsNamespace;
+    }
 
-    .visible#{$sufix} {
+    .#{$prefix}visible#{$sufix} {
         display: none !important;
     }    
 }
@@ -384,63 +407,69 @@ $_wgsBreakpoints: ();
         $sufix: prependBackSlash("@#{$breakpointName}");
     }
 
+    $prefix: "";
+    @if $_wgsNamespace{
+        $prefix: $_wgsNamespace;
+    }
+
+
     @each $gutter in $gutters {
 
-        .padding-top--#{$gutter}#{$sufix} {
+        .#{$prefix}padding-top--#{$gutter}#{$sufix} {
             padding-top: $gutter;
         }
-        .padding-right--#{$gutter}#{$sufix} {
+        .#{$prefix}padding-right--#{$gutter}#{$sufix} {
             padding-right: $gutter;
         }
-        .padding-bottom--#{$gutter}#{$sufix} {
+        .#{$prefix}padding-bottom--#{$gutter}#{$sufix} {
             padding-bottom: $gutter;
         }
-        .padding-left--#{$gutter}#{$sufix} {
+        .#{$prefix}padding-left--#{$gutter}#{$sufix} {
             padding-left: $gutter;
         }
 
-        .padding-hori--#{$gutter}#{$sufix} {
-            @extend .padding-right--#{$gutter}#{$sufix};
-            @extend .padding-left--#{$gutter}#{$sufix};
+        .#{$prefix}padding-hori--#{$gutter}#{$sufix} {
+            @extend .#{$prefix}padding-right--#{$gutter}#{$sufix};
+            @extend .#{$prefix}padding-left--#{$gutter}#{$sufix};
         }   
 
-        .padding-vert--#{$gutter}#{$sufix} {
-            @extend .padding-top--#{$gutter}#{$sufix};
-            @extend .padding-bottom--#{$gutter}#{$sufix};
+        .#{$prefix}padding-vert--#{$gutter}#{$sufix} {
+            @extend .#{$prefix}padding-top--#{$gutter}#{$sufix};
+            @extend .#{$prefix}padding-bottom--#{$gutter}#{$sufix};
         }
 
-        .padding--#{$gutter}#{$sufix} {
-            @extend .padding-hori--#{$gutter}#{$sufix};
-            @extend .padding-vert--#{$gutter}#{$sufix};
+        .#{$prefix}padding--#{$gutter}#{$sufix} {
+            @extend .#{$prefix}padding-hori--#{$gutter}#{$sufix};
+            @extend .#{$prefix}padding-vert--#{$gutter}#{$sufix};
         }
     }
     @if length($gutters){
-        .padding-top--0#{$sufix} {
+        .#{$prefix}padding-top--0#{$sufix} {
             padding-top: 0;
         }
-        .padding-right--0#{$sufix} {
+        .#{$prefix}padding-right--0#{$sufix} {
             padding-right: 0;
         }
-        .padding-bottom--0#{$sufix} {
+        .#{$prefix}padding-bottom--0#{$sufix} {
             padding-bottom: 0;
         }
-        .padding-left--0#{$sufix} {
+        .#{$prefix}padding-left--0#{$sufix} {
             padding-left: 0;
         }
-        .padding-hori--0#{$sufix} {
-            @extend .padding-right--0#{$sufix};
-            @extend .padding-left--0#{$sufix};
+        .#{$prefix}padding-hori--0#{$sufix} {
+            @extend .#{$prefix}padding-right--0#{$sufix};
+            @extend .#{$prefix}padding-left--0#{$sufix};
         }
-        .padding-vert--0#{$sufix} {
-            @extend .padding-top--0#{$sufix};
-            @extend .padding-bottom--0#{$sufix};
+        .#{$prefix}padding-vert--0#{$sufix} {
+            @extend .#{$prefix}padding-top--0#{$sufix};
+            @extend .#{$prefix}padding-bottom--0#{$sufix};
         }
 
-        .padding--0#{$sufix} {
-            @extend .padding-top--0#{$sufix};
-            @extend .padding-right--0#{$sufix};
-            @extend .padding-bottom--0#{$sufix};
-            @extend .padding-left--0#{$sufix};
+        .#{$prefix}padding--0#{$sufix} {
+            @extend .#{$prefix}padding-top--0#{$sufix};
+            @extend .#{$prefix}padding-right--0#{$sufix};
+            @extend .#{$prefix}padding-bottom--0#{$sufix};
+            @extend .#{$prefix}padding-left--0#{$sufix};
         }        
     }
 }
@@ -453,6 +482,7 @@ $_wgsBreakpoints: ();
 /// @param {list} $gutters [()] - gutters to handle
 /// @param {list} $fixedWidths [()] - fixed sizes to handle
 /// @param {boolean} $mobileFirst [()] - mobile first ? (or desktop first)
+/// @param {string} $namespace [false] - namespace used by wgs
 /// @example
 ///   @include wgsSetup(
 ///       $breakpoints : (
@@ -467,11 +497,14 @@ $_wgsBreakpoints: ();
     $breakpoints  : (),
     $gutters      : (),
     $fixedWidths  : (),
-    $mobileFirst  : true
+    $mobileFirst  : true,
+    $namespace    : false
 ) {
     // Global namespaced variable holding breakpoint definition used by mq()
     $_wgsBreakpoints : $breakpoints !global;
 
+    // Global namespace
+    $_wgsNamespace : $namespace !global;
 
 
     // 1/ Grid class & grid modifiers
