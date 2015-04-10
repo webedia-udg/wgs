@@ -13,23 +13,38 @@
 
 .grid {
   display: block;
-  font-size: 0; }
+  font-size: 0;
+  direction: ltr; }
   .grid > * {
     display: inline-block;
     vertical-align: top;
     width: 100%;
     font-size: medium;
-    direction: ltr;
-    text-align: left; }
+    text-align: left;
+    direction: ltr; }
+  .arabic .grid {
+    direction: rtl; }
+    .arabic .grid > * {
+      text-align: left;
+      direction: rtl; }
 
 .grid--rev {
   direction: rtl; }
+  .arabic .grid--rev {
+    direction: ltr; }
 
 .grid--center {
   text-align: center; }
 
+.grid--left {
+  text-align: left; }
+  .arabic .grid--left {
+    text-align: right; }
+
 .grid--right {
   text-align: right; }
+  .arabic .grid--right {
+    text-align: left; }
 
 .grid.grid--fixed {
   width: 100%;
@@ -239,20 +254,34 @@
     box-sizing: border-box !important; }
   .grid\@tablet {
     display: block;
-    font-size: 0; }
+    font-size: 0;
+    direction: ltr; }
     .grid\@tablet > * {
       display: inline-block;
       vertical-align: top;
       width: 100%;
       font-size: medium;
-      direction: ltr;
-      text-align: left; }
+      text-align: left;
+      direction: ltr; }
+    .arabic .grid\@tablet {
+      direction: rtl; }
+      .arabic .grid\@tablet > * {
+        text-align: left;
+        direction: rtl; }
   .grid--rev\@tablet {
     direction: rtl; }
+    .arabic .grid--rev\@tablet {
+      direction: ltr; }
   .grid--center\@tablet {
     text-align: center; }
+  .grid--left\@tablet {
+    text-align: left; }
+    .arabic .grid--left\@tablet {
+      text-align: right; }
   .grid--right\@tablet {
     text-align: right; }
+    .arabic .grid--right\@tablet {
+      text-align: left; }
   .grid.grid--fixed\@tablet {
     width: 100%;
     display: table;
@@ -410,20 +439,34 @@
     box-sizing: border-box !important; }
   .grid\@big-tablet {
     display: block;
-    font-size: 0; }
+    font-size: 0;
+    direction: ltr; }
     .grid\@big-tablet > * {
       display: inline-block;
       vertical-align: top;
       width: 100%;
       font-size: medium;
-      direction: ltr;
-      text-align: left; }
+      text-align: left;
+      direction: ltr; }
+    .arabic .grid\@big-tablet {
+      direction: rtl; }
+      .arabic .grid\@big-tablet > * {
+        text-align: left;
+        direction: rtl; }
   .grid--rev\@big-tablet {
     direction: rtl; }
+    .arabic .grid--rev\@big-tablet {
+      direction: ltr; }
   .grid--center\@big-tablet {
     text-align: center; }
+  .grid--left\@big-tablet {
+    text-align: left; }
+    .arabic .grid--left\@big-tablet {
+      text-align: right; }
   .grid--right\@big-tablet {
     text-align: right; }
+    .arabic .grid--right\@big-tablet {
+      text-align: left; }
   .grid.grid--fixed\@big-tablet {
     width: 100%;
     display: table;
@@ -581,20 +624,34 @@
     box-sizing: border-box !important; }
   .grid\@desk {
     display: block;
-    font-size: 0; }
+    font-size: 0;
+    direction: ltr; }
     .grid\@desk > * {
       display: inline-block;
       vertical-align: top;
       width: 100%;
       font-size: medium;
-      direction: ltr;
-      text-align: left; }
+      text-align: left;
+      direction: ltr; }
+    .arabic .grid\@desk {
+      direction: rtl; }
+      .arabic .grid\@desk > * {
+        text-align: left;
+        direction: rtl; }
   .grid--rev\@desk {
     direction: rtl; }
+    .arabic .grid--rev\@desk {
+      direction: ltr; }
   .grid--center\@desk {
     text-align: center; }
+  .grid--left\@desk {
+    text-align: left; }
+    .arabic .grid--left\@desk {
+      text-align: right; }
   .grid--right\@desk {
     text-align: right; }
+    .arabic .grid--right\@desk {
+      text-align: left; }
   .grid.grid--fixed\@desk {
     width: 100%;
     display: table;

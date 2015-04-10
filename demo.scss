@@ -9,7 +9,9 @@
     ),
     $gutters : 12px 16px 18px 22px,
     $fixedWidths : 200px 300px,
-    $namespace: false
+    $namespace: false,
+    $direction: 'ltr',
+    $directionRevClass: 'arabic'
 );
 
 

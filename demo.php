@@ -37,7 +37,9 @@
 //     .grid--12px, .grid--22px@desk, .padding--12px, .padding-top--22px@desk...
 // [3] Enable the use of 200px and 300px fixed widths. We can use .200px and .300px classes,
 //     with sufixes provided in $breakpoints parameter: .200px@tablet, 300px@desk...
-// [3] No namespace. Could have been 'u-' or "myNamespace"
+// [4] No namespace. Could have been 'u-' or "myNamespace"
+// [5] Left to right direction
+// [6] parent class to handle when the direction needs to be flipped
 @include wgsSetup(
     $breakpoints : (                // [1]
         tablet     : 480px,
@@ -45,8 +47,10 @@
         desk       : 990px
     ),
     $gutters : 12px 16px 18px 22px, // [2]
-    $fixedWidths : 200px 300px,      // [3]
-    $namespace : false      // [4]
+    $fixedWidths : 200px 300px,     // [3]
+    $namespace : false              // [4]
+    $direction: 'ltr',              // [5]
+    $directionRevClass: 'arabic'    // [6]
 );</code>
 
         <h3 class="title">Example 1: ratios widths</h3>
