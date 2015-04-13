@@ -1,5 +1,5 @@
 /**
- * Whatever Grid System (WGS) v0.7.3
+ * Whatever Grid System (WGS) v0.7.4
  *
  * README :
  *
@@ -281,7 +281,22 @@ $_wgsNamespace: false;
             vertical-align: top;
             box-sizing: content-box !important;
             &:first-child {
-                padding-left: 0;
+                @if $direction == 'ltr' {
+                    padding-left: 0;
+                }
+                @elseif $direction == 'rtl' {
+                    padding-right: 0;
+                }
+                @if $directionRevClass {
+                    .#{$directionRevClass} & {
+                        @if $direction == 'ltr' {
+                            padding-right: 0;
+                        }
+                        @elseif $direction == 'rtl' {
+                            padding-left: 0;
+                        }
+                    }
+                }
             }
 
         }
@@ -291,12 +306,44 @@ $_wgsNamespace: false;
     @each $gutter in $gutters {
 
         .#{$prefix}grid--#{$gutter}#{$sufix} {
-            margin-left: -$gutter;
             margin-top: -$gutter;
+            @if $direction == 'ltr' {
+                margin-left: -$gutter;
+            }
+            @elseif $direction == 'rtl' {
+                margin-right: -$gutter;
+            }
+            @if $directionRevClass {
+                .#{$directionRevClass} & {
+                    @if $direction == 'ltr' {
+                        margin-right: -$gutter;
+                    }
+                    @elseif $direction == 'rtl' {
+                        margin-left: -$gutter;
+                    }
+                }
+            }
 
             & > * {
-                padding-left: $gutter;
                 padding-top: $gutter;
+                @if $direction == 'ltr' {
+                    padding-left: $gutter;
+                }
+                @elseif $direction == 'rtl' {
+                    padding-right: $gutter;
+                }
+
+                @if $directionRevClass {
+                    .#{$directionRevClass} & {
+                        @if $direction == 'ltr' {
+                            padding-right: $gutter;
+                        }
+                        @elseif $direction == 'rtl' {
+                            padding-left: $gutter;
+                        }
+                    }
+                }
+
             }
 
         }
@@ -304,12 +351,22 @@ $_wgsNamespace: false;
 
     @if length($gutters){
         .#{$prefix}grid--0#{$sufix} {
-            margin-left: 0;
             margin-top: 0;
+            @if $direction == 'ltr' {
+                margin-left: 0;
+            }
+            @elseif $direction == 'rtl' {
+                margin-right: 0;
+            }
 
             & > * {
-                padding-left: 0;
                 padding-top: 0;
+                @if $direction == 'ltr' {
+                    padding-left: 0;
+                }
+                @elseif $direction == 'rtl' {
+                    padding-right: 0;
+                }
             }
 
         }
