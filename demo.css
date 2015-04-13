@@ -29,6 +29,9 @@
 .grid--center {
   text-align: center; }
 
+.grid--left {
+  text-align: left; }
+
 .grid--right {
   text-align: right; }
 
@@ -253,6 +256,8 @@
     direction: rtl; }
   .grid--center\@tablet {
     text-align: center; }
+  .grid--left\@tablet {
+    text-align: left; }
   .grid--right\@tablet {
     text-align: right; }
   .grid.grid--fixed\@tablet {
@@ -425,6 +430,8 @@
     direction: rtl; }
   .grid--center\@big-tablet {
     text-align: center; }
+  .grid--left\@big-tablet {
+    text-align: left; }
   .grid--right\@big-tablet {
     text-align: right; }
   .grid.grid--fixed\@big-tablet {
@@ -597,6 +604,8 @@
     direction: rtl; }
   .grid--center\@desk {
     text-align: center; }
+  .grid--left\@desk {
+    text-align: left; }
   .grid--right\@desk {
     text-align: right; }
   .grid.grid--fixed\@desk {

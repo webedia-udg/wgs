@@ -232,12 +232,43 @@ $_wgsNamespace: false;
         text-align: center;
     }
 
-    // c/ right aligned grid
-    .#{$prefix}grid--right#{$sufix} {
-        text-align: right;
+    // c/ left aligned grid
+    .#{$prefix}grid--left#{$sufix} {
+        @if $defaultDirection {
+            text-align: left;
+        }
+        @if $ltrParentClass {
+            .#{$ltrParentClass} & {
+                text-align: left;
+            }
+        }
+        @if $rtlParentClass {
+            .#{$rtlParentClass} & {
+                text-align: right;
+            }
+        }
     }
 
-    // d/ fixed grid (no more box-sizing: border-box)
+    // d/ right aligned grid
+    .#{$prefix}grid--right#{$sufix} {
+
+        @if $defaultDirection {
+            text-align: right;
+        }
+        @if $ltrParentClass {
+            .#{$ltrParentClass} & {
+                text-align: right;
+            }
+        }
+        @if $rtlParentClass {
+            .#{$rtlParentClass} & {
+                text-align: left;
+            }
+        }
+
+    }
+
+    // e/ fixed grid (no more box-sizing: border-box)
     // overload of main grid properties
     .#{$prefix}grid.#{$prefix}grid--fixed#{$sufix} {
         width: 100%;
@@ -288,7 +319,7 @@ $_wgsNamespace: false;
         }
     }
 
-    // e/ paddings (grid gutters)
+    // f/ paddings (grid gutters)
     @each $gutter in $gutters {
 
         .#{$prefix}grid--#{$gutter}#{$sufix} {
@@ -550,7 +581,13 @@ $_wgsNamespace: false;
 /// @example
 ///   @include wgsSpacing(18px 22px);
 ///   @include wgsSpacing(18px 22px, desktop);
-@mixin wgsSpacing($gutters: (), $breakpointName: false) {
+@mixin wgsSpacing(
+    $gutters: (),
+    $breakpointName: false,
+    $defaultDirection : ltr,
+    $ltrParentClass : false,
+    $rtlParentClass : false
+) {
     $sufix: "";
     @if $breakpointName{
         $sufix: prependBackSlash("@#{$breakpointName}");
@@ -568,13 +605,38 @@ $_wgsNamespace: false;
             padding-top: $gutter;
         }
         .#{$prefix}padding-right--#{$gutter}#{$sufix} {
-            padding-right: $gutter;
+            @if $defaultDirection {
+                padding-right: $gutter;
+            }
+            @if $ltrParentClass {
+                .#{$ltrParentClass} & {
+                    padding-right: $gutter;
+                }
+            }
+            @if $rtlParentClass {
+                .#{$rtlParentClass} & {
+                    padding-left: $gutter;
+                }
+            }
+
         }
         .#{$prefix}padding-bottom--#{$gutter}#{$sufix} {
             padding-bottom: $gutter;
         }
         .#{$prefix}padding-left--#{$gutter}#{$sufix} {
-            padding-left: $gutter;
+            @if $defaultDirection {
+                padding-left: $gutter;
+            }
+            @if $ltrParentClass {
+                .#{$ltrParentClass} & {
+                    padding-left: $gutter;
+                }
+            }
+            @if $rtlParentClass {
+                .#{$rtlParentClass} & {
+                    padding-right: $gutter;
+                }
+            }
         }
 
         .#{$prefix}padding-hori--#{$gutter}#{$sufix} {
@@ -597,13 +659,38 @@ $_wgsNamespace: false;
             padding-top: 0;
         }
         .#{$prefix}padding-right--0#{$sufix} {
-            padding-right: 0;
+            @if $defaultDirection {
+                padding-right: 0;
+            }
+            @if $ltrParentClass {
+                .#{$ltrParentClass} & {
+                    padding-right: 0;
+                }
+            }
+            @if $rtlParentClass {
+                .#{$rtlParentClass} & {
+                    padding-left: 0;
+                }
+            }
+
         }
         .#{$prefix}padding-bottom--0#{$sufix} {
             padding-bottom: 0;
         }
         .#{$prefix}padding-left--0#{$sufix} {
-            padding-left: 0;
+            @if $defaultDirection {
+                padding-left: 0;
+            }
+            @if $ltrParentClass {
+                .#{$ltrParentClass} & {
+                    padding-left: 0;
+                }
+            }
+            @if $rtlParentClass {
+                .#{$rtlParentClass} & {
+                    padding-right: 0;
+                }
+            }
         }
         .#{$prefix}padding-hori--0#{$sufix} {
             @extend .#{$prefix}padding-right--0#{$sufix};
@@ -633,8 +720,8 @@ $_wgsNamespace: false;
 /// @param {boolean} $mobileFirst [()] - mobile first ? (or desktop first)
 /// @param {string} $namespace [false] - namespace used by wgs
 /// @param {string} $defaultDirection [ltr] - default text direction
-/// @param {string} $ltrParentClass [ltr] - parent Class Toggleling RTL direction
-/// @param {string} $defaultDirection [ltr] - parent Class Toggleling LTR direction
+/// @param {string} $ltrParentClass [false] - parent Class Toggleling RTL direction
+/// @param {string} $rtlParentClass [false] - parent Class Toggleling LTR direction
 /// @example
 ///   @include wgsSetup(
 ///       $breakpoints : (
@@ -674,7 +761,7 @@ $_wgsNamespace: false;
     }
 
     // 4/ Spacings
-    @include wgsSpacing($gutters);
+    @include wgsSpacing($gutters, false, $defaultDirection, $ltrParentClass, $rtlParentClass);
 
     // 5/ 1, 2, 3 & 4, but in a breakpoint
     @each $breakpointName, $breakpointSize in $breakpoints {
@@ -698,7 +785,7 @@ $_wgsNamespace: false;
                 @include wgsFixedWidth($width, $breakpointName);
             }
 
-            @include wgsSpacing($gutters, $breakpointName);
+            @include wgsSpacing($gutters, $breakpointName, $defaultDirection, $ltrParentClass, $rtlParentClass);
 
         }
 
