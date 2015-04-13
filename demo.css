@@ -1,5 +1,5 @@
 /**
- * Whatever Grid System (WGS) v0.7.3
+ * Whatever Grid System (WGS) v0.7.5
  *
  * README :
  *
@@ -20,31 +20,17 @@
     vertical-align: top;
     width: 100%;
     font-size: medium;
-    text-align: left;
-    direction: ltr; }
-  .arabic .grid {
-    direction: rtl; }
-    .arabic .grid > * {
-      text-align: left;
-      direction: rtl; }
+    direction: ltr;
+    text-align: left; }
 
 .grid--rev {
   direction: rtl; }
-  .arabic .grid--rev {
-    direction: ltr; }
 
 .grid--center {
   text-align: center; }
 
-.grid--left {
-  text-align: left; }
-  .arabic .grid--left {
-    text-align: right; }
-
 .grid--right {
   text-align: right; }
-  .arabic .grid--right {
-    text-align: left; }
 
 .grid.grid--fixed {
   width: 100%;
@@ -59,39 +45,39 @@
       padding-left: 0; }
 
 .grid--12px {
-  margin-left: -12px;
-  margin-top: -12px; }
+  margin-top: -12px;
+  margin-left: -12px; }
   .grid--12px > * {
-    padding-left: 12px;
-    padding-top: 12px; }
+    padding-top: 12px;
+    padding-left: 12px; }
 
 .grid--16px {
-  margin-left: -16px;
-  margin-top: -16px; }
+  margin-top: -16px;
+  margin-left: -16px; }
   .grid--16px > * {
-    padding-left: 16px;
-    padding-top: 16px; }
+    padding-top: 16px;
+    padding-left: 16px; }
 
 .grid--18px {
-  margin-left: -18px;
-  margin-top: -18px; }
+  margin-top: -18px;
+  margin-left: -18px; }
   .grid--18px > * {
-    padding-left: 18px;
-    padding-top: 18px; }
+    padding-top: 18px;
+    padding-left: 18px; }
 
 .grid--22px {
-  margin-left: -22px;
-  margin-top: -22px; }
+  margin-top: -22px;
+  margin-left: -22px; }
   .grid--22px > * {
-    padding-left: 22px;
-    padding-top: 22px; }
+    padding-top: 22px;
+    padding-left: 22px; }
 
 .grid--0 {
-  margin-left: 0;
-  margin-top: 0; }
+  margin-top: 0;
+  margin-left: 0; }
   .grid--0 > * {
-    padding-left: 0;
-    padding-top: 0; }
+    padding-top: 0;
+    padding-left: 0; }
 
 .\31 \/1 {
   width: 100% !important; }
@@ -261,27 +247,14 @@
       vertical-align: top;
       width: 100%;
       font-size: medium;
-      text-align: left;
-      direction: ltr; }
-    .arabic .grid\@tablet {
-      direction: rtl; }
-      .arabic .grid\@tablet > * {
-        text-align: left;
-        direction: rtl; }
+      direction: ltr;
+      text-align: left; }
   .grid--rev\@tablet {
     direction: rtl; }
-    .arabic .grid--rev\@tablet {
-      direction: ltr; }
   .grid--center\@tablet {
     text-align: center; }
-  .grid--left\@tablet {
-    text-align: left; }
-    .arabic .grid--left\@tablet {
-      text-align: right; }
   .grid--right\@tablet {
     text-align: right; }
-    .arabic .grid--right\@tablet {
-      text-align: left; }
   .grid.grid--fixed\@tablet {
     width: 100%;
     display: table;
@@ -294,35 +267,35 @@
       .grid.grid--fixed\@tablet > *:first-child {
         padding-left: 0; }
   .grid--12px\@tablet {
-    margin-left: -12px;
-    margin-top: -12px; }
+    margin-top: -12px;
+    margin-left: -12px; }
     .grid--12px\@tablet > * {
-      padding-left: 12px;
-      padding-top: 12px; }
+      padding-top: 12px;
+      padding-left: 12px; }
   .grid--16px\@tablet {
-    margin-left: -16px;
-    margin-top: -16px; }
+    margin-top: -16px;
+    margin-left: -16px; }
     .grid--16px\@tablet > * {
-      padding-left: 16px;
-      padding-top: 16px; }
+      padding-top: 16px;
+      padding-left: 16px; }
   .grid--18px\@tablet {
-    margin-left: -18px;
-    margin-top: -18px; }
+    margin-top: -18px;
+    margin-left: -18px; }
     .grid--18px\@tablet > * {
-      padding-left: 18px;
-      padding-top: 18px; }
+      padding-top: 18px;
+      padding-left: 18px; }
   .grid--22px\@tablet {
-    margin-left: -22px;
-    margin-top: -22px; }
+    margin-top: -22px;
+    margin-left: -22px; }
     .grid--22px\@tablet > * {
-      padding-left: 22px;
-      padding-top: 22px; }
+      padding-top: 22px;
+      padding-left: 22px; }
   .grid--0\@tablet {
-    margin-left: 0;
-    margin-top: 0; }
+    margin-top: 0;
+    margin-left: 0; }
     .grid--0\@tablet > * {
-      padding-left: 0;
-      padding-top: 0; }
+      padding-top: 0;
+      padding-left: 0; }
   .\31 \/1\@tablet {
     width: 100% !important; }
   .\31 \/2\@tablet, .\32 \/4\@tablet, .\33 \/6\@tablet, .\34 \/8\@tablet, .\35 \/10\@tablet, .\36 \/12\@tablet {
@@ -446,27 +419,14 @@
       vertical-align: top;
       width: 100%;
       font-size: medium;
-      text-align: left;
-      direction: ltr; }
-    .arabic .grid\@big-tablet {
-      direction: rtl; }
-      .arabic .grid\@big-tablet > * {
-        text-align: left;
-        direction: rtl; }
+      direction: ltr;
+      text-align: left; }
   .grid--rev\@big-tablet {
     direction: rtl; }
-    .arabic .grid--rev\@big-tablet {
-      direction: ltr; }
   .grid--center\@big-tablet {
     text-align: center; }
-  .grid--left\@big-tablet {
-    text-align: left; }
-    .arabic .grid--left\@big-tablet {
-      text-align: right; }
   .grid--right\@big-tablet {
     text-align: right; }
-    .arabic .grid--right\@big-tablet {
-      text-align: left; }
   .grid.grid--fixed\@big-tablet {
     width: 100%;
     display: table;
@@ -479,35 +439,35 @@
       .grid.grid--fixed\@big-tablet > *:first-child {
         padding-left: 0; }
   .grid--12px\@big-tablet {
-    margin-left: -12px;
-    margin-top: -12px; }
+    margin-top: -12px;
+    margin-left: -12px; }
     .grid--12px\@big-tablet > * {
-      padding-left: 12px;
-      padding-top: 12px; }
+      padding-top: 12px;
+      padding-left: 12px; }
   .grid--16px\@big-tablet {
-    margin-left: -16px;
-    margin-top: -16px; }
+    margin-top: -16px;
+    margin-left: -16px; }
     .grid--16px\@big-tablet > * {
-      padding-left: 16px;
-      padding-top: 16px; }
+      padding-top: 16px;
+      padding-left: 16px; }
   .grid--18px\@big-tablet {
-    margin-left: -18px;
-    margin-top: -18px; }
+    margin-top: -18px;
+    margin-left: -18px; }
     .grid--18px\@big-tablet > * {
-      padding-left: 18px;
-      padding-top: 18px; }
+      padding-top: 18px;
+      padding-left: 18px; }
   .grid--22px\@big-tablet {
-    margin-left: -22px;
-    margin-top: -22px; }
+    margin-top: -22px;
+    margin-left: -22px; }
     .grid--22px\@big-tablet > * {
-      padding-left: 22px;
-      padding-top: 22px; }
+      padding-top: 22px;
+      padding-left: 22px; }
   .grid--0\@big-tablet {
-    margin-left: 0;
-    margin-top: 0; }
+    margin-top: 0;
+    margin-left: 0; }
     .grid--0\@big-tablet > * {
-      padding-left: 0;
-      padding-top: 0; }
+      padding-top: 0;
+      padding-left: 0; }
   .\31 \/1\@big-tablet {
     width: 100% !important; }
   .\31 \/2\@big-tablet, .\32 \/4\@big-tablet, .\33 \/6\@big-tablet, .\34 \/8\@big-tablet, .\35 \/10\@big-tablet, .\36 \/12\@big-tablet {
@@ -631,27 +591,14 @@
       vertical-align: top;
       width: 100%;
       font-size: medium;
-      text-align: left;
-      direction: ltr; }
-    .arabic .grid\@desk {
-      direction: rtl; }
-      .arabic .grid\@desk > * {
-        text-align: left;
-        direction: rtl; }
+      direction: ltr;
+      text-align: left; }
   .grid--rev\@desk {
     direction: rtl; }
-    .arabic .grid--rev\@desk {
-      direction: ltr; }
   .grid--center\@desk {
     text-align: center; }
-  .grid--left\@desk {
-    text-align: left; }
-    .arabic .grid--left\@desk {
-      text-align: right; }
   .grid--right\@desk {
     text-align: right; }
-    .arabic .grid--right\@desk {
-      text-align: left; }
   .grid.grid--fixed\@desk {
     width: 100%;
     display: table;
@@ -664,35 +611,35 @@
       .grid.grid--fixed\@desk > *:first-child {
         padding-left: 0; }
   .grid--12px\@desk {
-    margin-left: -12px;
-    margin-top: -12px; }
+    margin-top: -12px;
+    margin-left: -12px; }
     .grid--12px\@desk > * {
-      padding-left: 12px;
-      padding-top: 12px; }
+      padding-top: 12px;
+      padding-left: 12px; }
   .grid--16px\@desk {
-    margin-left: -16px;
-    margin-top: -16px; }
+    margin-top: -16px;
+    margin-left: -16px; }
     .grid--16px\@desk > * {
-      padding-left: 16px;
-      padding-top: 16px; }
+      padding-top: 16px;
+      padding-left: 16px; }
   .grid--18px\@desk {
-    margin-left: -18px;
-    margin-top: -18px; }
+    margin-top: -18px;
+    margin-left: -18px; }
     .grid--18px\@desk > * {
-      padding-left: 18px;
-      padding-top: 18px; }
+      padding-top: 18px;
+      padding-left: 18px; }
   .grid--22px\@desk {
-    margin-left: -22px;
-    margin-top: -22px; }
+    margin-top: -22px;
+    margin-left: -22px; }
     .grid--22px\@desk > * {
-      padding-left: 22px;
-      padding-top: 22px; }
+      padding-top: 22px;
+      padding-left: 22px; }
   .grid--0\@desk {
-    margin-left: 0;
-    margin-top: 0; }
+    margin-top: 0;
+    margin-left: 0; }
     .grid--0\@desk > * {
-      padding-left: 0;
-      padding-top: 0; }
+      padding-top: 0;
+      padding-left: 0; }
   .\31 \/1\@desk {
     width: 100% !important; }
   .\31 \/2\@desk, .\32 \/4\@desk, .\33 \/6\@desk, .\34 \/8\@desk, .\35 \/10\@desk, .\36 \/12\@desk {

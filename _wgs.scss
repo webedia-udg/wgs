@@ -1,5 +1,5 @@
 /**
- * Whatever Grid System (WGS) v0.7.4
+ * Whatever Grid System (WGS) v0.7.5
  *
  * README :
  *
@@ -124,7 +124,14 @@ $_wgsNamespace: false;
 ///     $breakpointName : desktop
 ///   );
 /// 
-@mixin wgsGrid($gutters: (), $fixedWidths: (), $breakpointName:false, $direction: 'ltr', $directionRevClass: false) {
+@mixin wgsGrid(
+    $gutters: (),
+    $fixedWidths: (),
+    $breakpointName:false,
+    $defaultDirection : ltr,
+    $ltrParentClass : false,
+    $rtlParentClass : false
+) {
     $sufix: "";
     @if $breakpointName{
         $sufix: prependBackSlash("@#{$breakpointName}");
@@ -150,130 +157,110 @@ $_wgsNamespace: false;
     .#{$prefix}grid#{$sufix} {
         display: block;
         font-size: 0;
-        @if $direction == 'ltr' {
+
+        @if $defaultDirection == ltr{
             direction: ltr;
         }
-        @elseif $direction == 'rtl' {
+        @elseif $defaultDirection == rtl{
             direction: rtl;
         }
+        @if $ltrParentClass {
+            .#{$ltrParentClass} & {
+                direction: ltr;
+            }
+        }
+        @if $rtlParentClass {
+            .#{$rtlParentClass} & {
+                direction: rtl;
+            }
+        }
+
         & > * {
             display: inline-block;
             vertical-align: top;
             width: 100%;
             font-size: medium;
 
-            // Put pack original style in case it has been inversed
-            @if $direction == 'ltr' {
-                text-align:left;
+            // Pour remettre bien l'ordre au cas où la grille serait inversée
+            @if $defaultDirection == ltr{
                 direction: ltr;
+                text-align:left;
             }
-            @elseif $direction == 'rtl' {
-                text-align: right;
+            @elseif $defaultDirection == rtl{
                 direction: rtl;
+                text-align: right;
             }
-        }
-
-        @if $directionRevClass {
-
-            .#{$directionRevClass} &{
-                @if $direction == 'ltr' {
-                    direction: rtl;
-                }
-                @elseif $direction == 'rtl' {
+            @if $ltrParentClass {
+                .#{$ltrParentClass} & {
                     direction: ltr;
+                    text-align:left;
                 }
-                & > * {
-                    @if $direction == 'ltr' {
-                        text-align: left;
-                        direction: rtl;
-                    }
-                    @elseif $direction == 'rtl' {
-                        text-align: left;
-                        direction: ltr;
-                    }
+            }
+            @if $rtlParentClass {
+                .#{$rtlParentClass} & {
+                    direction: rtl;
+                    text-align: right;
                 }
             }
         }
     }
-
 
     // 3/ Grid's modifiers :
 
     // a/ reversed order
     .#{$prefix}grid--rev#{$sufix} {
-        @if $direction == 'ltr' {
+        @if $defaultDirection == ltr{
             direction: rtl;
         }
-        @elseif $direction == 'rtl' {
+        @elseif $defaultDirection == rtl{
             direction: ltr;
-
         }
-        @if $directionRevClass {
-            .#{$directionRevClass} & {
-                @if $direction == 'ltr' {
-                    direction: ltr;
-                }
-                @elseif $direction == 'rtl' {
-                    direction: rtl;
-                }
+        @if $ltrParentClass {
+            .#{$ltrParentClass} & {
+                direction: rtl;
+            }
+        }
+        @if $rtlParentClass {
+            .#{$rtlParentClass} & {
+                direction: ltr;
             }
         }
     }
-
 
     // b/ centered grid
     .#{$prefix}grid--center#{$sufix} {
         text-align: center;
     }
 
-    // c/ left aligned grid
-    .#{$prefix}grid--left#{$sufix} {
-        @if $direction == 'ltr' {
-            text-align: left;
-        }
-        @elseif $direction == 'rtl' {
-            text-align: right;
-        }
-        @if $directionRevClass {
-            .#{$directionRevClass} & {
-                @if $direction == 'ltr' {
-                    text-align: right;
-                }
-                @elseif $direction == 'rtl' {
-                    text-align: left;
-                }
-            }
-        }
-    }
-
-
-    // d/ right aligned grid
+    // c/ right aligned grid
     .#{$prefix}grid--right#{$sufix} {
-        @if $direction == 'ltr' {
-            text-align: right;
-        }
-        @elseif $direction == 'rtl' {
-            text-align: left;
-        }
-        @if $directionRevClass {
-            .#{$directionRevClass} & {
-                @if $direction == 'ltr' {
-                    text-align: left;
-                }
-                @elseif $direction == 'rtl' {
-                    text-align: right;
-                }
-            }
-        }
+        text-align: right;
     }
 
-    // e/ fixed grid (no more box-sizing: border-box)
+    // d/ fixed grid (no more box-sizing: border-box)
     // overload of main grid properties
     .#{$prefix}grid.#{$prefix}grid--fixed#{$sufix} {
         width: 100%;
         display: table;
         table-layout: fixed;
-        margin-left: 0;
+
+        @if $defaultDirection == ltr{
+            margin-left: 0;
+        }
+        @elseif $defaultDirection == rtl{
+            margin-right: 0;
+        }
+        @if $ltrParentClass {
+            .#{$ltrParentClass} & {
+                margin-left: 0;
+            }
+        }
+        @if $rtlParentClass {
+            .#{$rtlParentClass} & {
+                margin-right: 0;
+            }
+        }
+
 
 
         > * {
@@ -281,94 +268,111 @@ $_wgsNamespace: false;
             vertical-align: top;
             box-sizing: content-box !important;
             &:first-child {
-                @if $direction == 'ltr' {
+                @if $defaultDirection == ltr{
                     padding-left: 0;
                 }
-                @elseif $direction == 'rtl' {
+                @elseif $defaultDirection == rtl{
                     padding-right: 0;
                 }
-                @if $directionRevClass {
-                    .#{$directionRevClass} & {
-                        @if $direction == 'ltr' {
-                            padding-right: 0;
-                        }
-                        @elseif $direction == 'rtl' {
-                            padding-left: 0;
-                        }
+                @if $ltrParentClass {
+                    .#{$ltrParentClass} & {
+                        padding-left: 0;
+                    }
+                }
+                @if $rtlParentClass {
+                    .#{$rtlParentClass} & {
+                        padding-right: 0;
                     }
                 }
             }
-
         }
     }
 
-    // f/ paddings (grid gutters)
+    // e/ paddings (grid gutters)
     @each $gutter in $gutters {
 
         .#{$prefix}grid--#{$gutter}#{$sufix} {
             margin-top: -$gutter;
-            @if $direction == 'ltr' {
+            @if $defaultDirection == ltr{
                 margin-left: -$gutter;
             }
-            @elseif $direction == 'rtl' {
+            @elseif $defaultDirection == rtl{
                 margin-right: -$gutter;
             }
-            @if $directionRevClass {
-                .#{$directionRevClass} & {
-                    @if $direction == 'ltr' {
-                        margin-right: -$gutter;
-                    }
-                    @elseif $direction == 'rtl' {
-                        margin-left: -$gutter;
-                    }
+            @if $ltrParentClass {
+                .#{$ltrParentClass} & {
+                    margin-left: -$gutter;
+                }
+            }
+            @if $rtlParentClass {
+                .#{$rtlParentClass} & {
+                    margin-right: -$gutter;
                 }
             }
 
             & > * {
                 padding-top: $gutter;
-                @if $direction == 'ltr' {
+
+                @if $defaultDirection == ltr{
                     padding-left: $gutter;
                 }
-                @elseif $direction == 'rtl' {
+                @elseif $defaultDirection == rtl{
                     padding-right: $gutter;
                 }
-
-                @if $directionRevClass {
-                    .#{$directionRevClass} & {
-                        @if $direction == 'ltr' {
-                            padding-right: $gutter;
-                        }
-                        @elseif $direction == 'rtl' {
-                            padding-left: $gutter;
-                        }
+                @if $ltrParentClass {
+                    .#{$ltrParentClass} & {
+                        padding-left: $gutter;
                     }
                 }
-
+                @if $rtlParentClass {
+                    .#{$rtlParentClass} & {
+                        padding-right: $gutter;
+                    }
+                }
             }
-
         }
     }
 
     @if length($gutters){
         .#{$prefix}grid--0#{$sufix} {
             margin-top: 0;
-            @if $direction == 'ltr' {
+            @if $defaultDirection == ltr{
                 margin-left: 0;
             }
-            @elseif $direction == 'rtl' {
+            @elseif $defaultDirection == rtl{
                 margin-right: 0;
+            }
+            @if $ltrParentClass {
+                .#{$ltrParentClass} & {
+                    margin-left: 0;
+                }
+            }
+            @if $rtlParentClass {
+                .#{$rtlParentClass} & {
+                    margin-right: 0;
+                }
             }
 
             & > * {
                 padding-top: 0;
-                @if $direction == 'ltr' {
+
+                @if $defaultDirection == ltr{
                     padding-left: 0;
                 }
-                @elseif $direction == 'rtl' {
+                @elseif $defaultDirection == rtl{
                     padding-right: 0;
                 }
+                @if $ltrParentClass {
+                    .#{$ltrParentClass} & {
+                        padding-left: 0;
+                    }
+                }
+                @if $rtlParentClass {
+                    .#{$rtlParentClass} & {
+                        padding-right: 0;
+                    }
+                }
             }
-
         }
     }
 }
@@ -628,8 +632,9 @@ $_wgsNamespace: false;
 /// @param {list} $fixedWidths [()] - fixed sizes to handle
 /// @param {boolean} $mobileFirst [()] - mobile first ? (or desktop first)
 /// @param {string} $namespace [false] - namespace used by wgs
-/// @param {string} $direction ["ltr"] - text direction
-/// @param {string} $directionRevClass [false] - parent class name that should toggle reversed direction. ex "arabic", without the "." (dot)
+/// @param {string} $defaultDirection [ltr] - default text direction
+/// @param {string} $ltrParentClass [ltr] - parent Class Toggleling RTL direction
+/// @param {string} $defaultDirection [ltr] - parent Class Toggleling LTR direction
 /// @example
 ///   @include wgsSetup(
 ///       $breakpoints : (
@@ -646,8 +651,9 @@ $_wgsNamespace: false;
     $fixedWidths  : (),
     $mobileFirst  : true,
     $namespace    : false,
-    $direction    : 'ltr',
-    $directionRevClass : false
+    $defaultDirection : ltr,
+    $ltrParentClass : false,
+    $rtlParentClass : false
 ) {
     // Global namespaced variable holding breakpoint definition used by mq()
     $_wgsBreakpoints : $breakpoints !global;
@@ -657,7 +663,7 @@ $_wgsNamespace: false;
 
 
     // 1/ Grid class & grid modifiers
-    @include wgsGrid($gutters, $fixedWidths, false, $direction, $directionRevClass);
+    @include wgsGrid($gutters, $fixedWidths, false, $defaultDirection, $ltrParentClass, $rtlParentClass);
 
     // 2/ Ratio widths
     @include wgsRatioWidths;
@@ -684,7 +690,7 @@ $_wgsNamespace: false;
 
         @include mq($from: $from, $until: $until) {
 
-            @include wgsGrid($gutters, $fixedWidths, $breakpointName, $direction, $directionRevClass);
+            @include wgsGrid($gutters, $fixedWidths, $breakpointName, $defaultDirection, $ltrParentClass, $rtlParentClass);
             @include wgsRatioWidths($breakpointName);
             @include wgsHidden($breakpointName);
 
