@@ -322,8 +322,13 @@ $_wgsNamespace: false;
     // f/ paddings (grid gutters)
     @each $gutter in $gutters {
 
-        .#{$prefix}grid--#{$gutter}#{$sufix} {
+        .#{$prefix}grid--#{$gutter}-vert#{$sufix}{
             margin-top: -$gutter;
+            & > * {
+                padding-top: $gutter;
+            }
+        }
+        .#{$prefix}grid--#{$gutter}-hori#{$sufix}{
             @if $defaultDirection == ltr{
                 margin-left: -$gutter;
             }
@@ -342,8 +347,6 @@ $_wgsNamespace: false;
             }
 
             & > * {
-                padding-top: $gutter;
-
                 @if $defaultDirection == ltr{
                     padding-left: $gutter;
                 }
@@ -362,6 +365,13 @@ $_wgsNamespace: false;
                 }
             }
         }
+
+
+        .#{$prefix}grid--#{$gutter}#{$sufix} {
+            @extend .#{$prefix}grid--#{$gutter}-vert#{$sufix};
+            @extend .#{$prefix}grid--#{$gutter}-hori#{$sufix};
+        }
+
     }
 
     @if length($gutters){

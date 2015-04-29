@@ -47,32 +47,44 @@
     .grid.grid--fixed > *:first-child {
       padding-left: 0; }
 
-.grid--12px {
-  margin-top: -12px;
+.grid--12px-vert, .grid--12px {
+  margin-top: -12px; }
+  .grid--12px-vert > *, .grid--12px > * {
+    padding-top: 12px; }
+
+.grid--12px-hori, .grid--12px {
   margin-left: -12px; }
-  .grid--12px > * {
-    padding-top: 12px;
+  .grid--12px-hori > *, .grid--12px > * {
     padding-left: 12px; }
 
-.grid--16px {
-  margin-top: -16px;
+.grid--16px-vert, .grid--16px {
+  margin-top: -16px; }
+  .grid--16px-vert > *, .grid--16px > * {
+    padding-top: 16px; }
+
+.grid--16px-hori, .grid--16px {
   margin-left: -16px; }
-  .grid--16px > * {
-    padding-top: 16px;
+  .grid--16px-hori > *, .grid--16px > * {
     padding-left: 16px; }
 
-.grid--18px {
-  margin-top: -18px;
+.grid--18px-vert, .grid--18px {
+  margin-top: -18px; }
+  .grid--18px-vert > *, .grid--18px > * {
+    padding-top: 18px; }
+
+.grid--18px-hori, .grid--18px {
   margin-left: -18px; }
-  .grid--18px > * {
-    padding-top: 18px;
+  .grid--18px-hori > *, .grid--18px > * {
     padding-left: 18px; }
 
-.grid--22px {
-  margin-top: -22px;
+.grid--22px-vert, .grid--22px {
+  margin-top: -22px; }
+  .grid--22px-vert > *, .grid--22px > * {
+    padding-top: 22px; }
+
+.grid--22px-hori, .grid--22px {
   margin-left: -22px; }
-  .grid--22px > * {
-    padding-top: 22px;
+  .grid--22px-hori > *, .grid--22px > * {
     padding-left: 22px; }
 
 .grid--0 {
@@ -271,29 +283,37 @@
       box-sizing: content-box !important; }
       .grid.grid--fixed\@tablet > *:first-child {
         padding-left: 0; }
-  .grid--12px\@tablet {
-    margin-top: -12px;
+  .grid--12px-vert\@tablet, .grid--12px\@tablet {
+    margin-top: -12px; }
+    .grid--12px-vert\@tablet > *, .grid--12px\@tablet > * {
+      padding-top: 12px; }
+  .grid--12px-hori\@tablet, .grid--12px\@tablet {
     margin-left: -12px; }
-    .grid--12px\@tablet > * {
-      padding-top: 12px;
+    .grid--12px-hori\@tablet > *, .grid--12px\@tablet > * {
       padding-left: 12px; }
-  .grid--16px\@tablet {
-    margin-top: -16px;
+  .grid--16px-vert\@tablet, .grid--16px\@tablet {
+    margin-top: -16px; }
+    .grid--16px-vert\@tablet > *, .grid--16px\@tablet > * {
+      padding-top: 16px; }
+  .grid--16px-hori\@tablet, .grid--16px\@tablet {
     margin-left: -16px; }
-    .grid--16px\@tablet > * {
-      padding-top: 16px;
+    .grid--16px-hori\@tablet > *, .grid--16px\@tablet > * {
       padding-left: 16px; }
-  .grid--18px\@tablet {
-    margin-top: -18px;
+  .grid--18px-vert\@tablet, .grid--18px\@tablet {
+    margin-top: -18px; }
+    .grid--18px-vert\@tablet > *, .grid--18px\@tablet > * {
+      padding-top: 18px; }
+  .grid--18px-hori\@tablet, .grid--18px\@tablet {
     margin-left: -18px; }
-    .grid--18px\@tablet > * {
-      padding-top: 18px;
+    .grid--18px-hori\@tablet > *, .grid--18px\@tablet > * {
       padding-left: 18px; }
-  .grid--22px\@tablet {
-    margin-top: -22px;
+  .grid--22px-vert\@tablet, .grid--22px\@tablet {
+    margin-top: -22px; }
+    .grid--22px-vert\@tablet > *, .grid--22px\@tablet > * {
+      padding-top: 22px; }
+  .grid--22px-hori\@tablet, .grid--22px\@tablet {
     margin-left: -22px; }
-    .grid--22px\@tablet > * {
-      padding-top: 22px;
+    .grid--22px-hori\@tablet > *, .grid--22px\@tablet > * {
       padding-left: 22px; }
   .grid--0\@tablet {
     margin-top: 0;
@@ -445,29 +465,37 @@
       box-sizing: content-box !important; }
       .grid.grid--fixed\@big-tablet > *:first-child {
         padding-left: 0; }
-  .grid--12px\@big-tablet {
-    margin-top: -12px;
+  .grid--12px-vert\@big-tablet, .grid--12px\@big-tablet {
+    margin-top: -12px; }
+    .grid--12px-vert\@big-tablet > *, .grid--12px\@big-tablet > * {
+      padding-top: 12px; }
+  .grid--12px-hori\@big-tablet, .grid--12px\@big-tablet {
     margin-left: -12px; }
-    .grid--12px\@big-tablet > * {
-      padding-top: 12px;
+    .grid--12px-hori\@big-tablet > *, .grid--12px\@big-tablet > * {
       padding-left: 12px; }
-  .grid--16px\@big-tablet {
-    margin-top: -16px;
+  .grid--16px-vert\@big-tablet, .grid--16px\@big-tablet {
+    margin-top: -16px; }
+    .grid--16px-vert\@big-tablet > *, .grid--16px\@big-tablet > * {
+      padding-top: 16px; }
+  .grid--16px-hori\@big-tablet, .grid--16px\@big-tablet {
     margin-left: -16px; }
-    .grid--16px\@big-tablet > * {
-      padding-top: 16px;
+    .grid--16px-hori\@big-tablet > *, .grid--16px\@big-tablet > * {
       padding-left: 16px; }
-  .grid--18px\@big-tablet {
-    margin-top: -18px;
+  .grid--18px-vert\@big-tablet, .grid--18px\@big-tablet {
+    margin-top: -18px; }
+    .grid--18px-vert\@big-tablet > *, .grid--18px\@big-tablet > * {
+      padding-top: 18px; }
+  .grid--18px-hori\@big-tablet, .grid--18px\@big-tablet {
     margin-left: -18px; }
-    .grid--18px\@big-tablet > * {
-      padding-top: 18px;
+    .grid--18px-hori\@big-tablet > *, .grid--18px\@big-tablet > * {
       padding-left: 18px; }
-  .grid--22px\@big-tablet {
-    margin-top: -22px;
+  .grid--22px-vert\@big-tablet, .grid--22px\@big-tablet {
+    margin-top: -22px; }
+    .grid--22px-vert\@big-tablet > *, .grid--22px\@big-tablet > * {
+      padding-top: 22px; }
+  .grid--22px-hori\@big-tablet, .grid--22px\@big-tablet {
     margin-left: -22px; }
-    .grid--22px\@big-tablet > * {
-      padding-top: 22px;
+    .grid--22px-hori\@big-tablet > *, .grid--22px\@big-tablet > * {
       padding-left: 22px; }
   .grid--0\@big-tablet {
     margin-top: 0;
@@ -619,29 +647,37 @@
       box-sizing: content-box !important; }
       .grid.grid--fixed\@desk > *:first-child {
         padding-left: 0; }
-  .grid--12px\@desk {
-    margin-top: -12px;
+  .grid--12px-vert\@desk, .grid--12px\@desk {
+    margin-top: -12px; }
+    .grid--12px-vert\@desk > *, .grid--12px\@desk > * {
+      padding-top: 12px; }
+  .grid--12px-hori\@desk, .grid--12px\@desk {
     margin-left: -12px; }
-    .grid--12px\@desk > * {
-      padding-top: 12px;
+    .grid--12px-hori\@desk > *, .grid--12px\@desk > * {
       padding-left: 12px; }
-  .grid--16px\@desk {
-    margin-top: -16px;
+  .grid--16px-vert\@desk, .grid--16px\@desk {
+    margin-top: -16px; }
+    .grid--16px-vert\@desk > *, .grid--16px\@desk > * {
+      padding-top: 16px; }
+  .grid--16px-hori\@desk, .grid--16px\@desk {
     margin-left: -16px; }
-    .grid--16px\@desk > * {
-      padding-top: 16px;
+    .grid--16px-hori\@desk > *, .grid--16px\@desk > * {
       padding-left: 16px; }
-  .grid--18px\@desk {
-    margin-top: -18px;
+  .grid--18px-vert\@desk, .grid--18px\@desk {
+    margin-top: -18px; }
+    .grid--18px-vert\@desk > *, .grid--18px\@desk > * {
+      padding-top: 18px; }
+  .grid--18px-hori\@desk, .grid--18px\@desk {
     margin-left: -18px; }
-    .grid--18px\@desk > * {
-      padding-top: 18px;
+    .grid--18px-hori\@desk > *, .grid--18px\@desk > * {
       padding-left: 18px; }
-  .grid--22px\@desk {
-    margin-top: -22px;
+  .grid--22px-vert\@desk, .grid--22px\@desk {
+    margin-top: -22px; }
+    .grid--22px-vert\@desk > *, .grid--22px\@desk > * {
+      padding-top: 22px; }
+  .grid--22px-hori\@desk, .grid--22px\@desk {
     margin-left: -22px; }
-    .grid--22px\@desk > * {
-      padding-top: 22px;
+    .grid--22px-hori\@desk > *, .grid--22px\@desk > * {
       padding-left: 22px; }
   .grid--0\@desk {
     margin-top: 0;
@@ -828,6 +864,13 @@ iframe {
   text-align: center;
   padding-bottom: 12px;
   margin-top: 60px; }
+
+.third-title {
+  color: #404040;
+  font-size: 18px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  margin-top: 40px;
+  font-weight: 700; }
 
 .title {
   color: #404040;

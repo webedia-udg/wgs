@@ -54,7 +54,7 @@
 );</code>
 
         <h3 class="title">Example 1: ratios widths</h3>
-        <p>Various nested grids with ratios widths</p>
+        <p class="third-title">Various nested grids with ratios widths:</p>
 
 
         <div class="js-display-code">
@@ -220,7 +220,7 @@
 
         <h3 class="title">Example 2: gutters</h3>
 
-        <p>Grid without gutter</p>
+        <p class="third-title">Grid without gutter:</p>
 
         <div class="js-display-code">
             <div class="grid">
@@ -242,7 +242,7 @@
             </div>
         </div>
 
-        <p>Grid with 12px gutter</p>
+        <p class="third-title">Grid with 12px gutter:</p>
 
         <div class="js-display-code">
             <div class="grid grid--12px">
@@ -264,7 +264,7 @@
             </div>
         </div>
 
-        <p>Grid with 22px gutter</p>
+        <p class="third-title">Grid with 22px gutter:</p>
 
         <div class="js-display-code">
             <div class="grid grid--22px">
@@ -286,7 +286,7 @@
             </div>
         </div>
 
-        <p>Grid without gutter (default) and with a 22px gutter from "desk" breakpoint</p>
+        <p class="third-title">Grid without gutter (default) and with a 22px gutter from "desk" breakpoint:</p>
 
         <div class="js-display-code">
             <div class="grid grid--22px@desk">
@@ -308,7 +308,7 @@
             </div>
         </div>
 
-        <p>Grid with 12px gutter gutter (default), and no gutter from "desk" breakpoint</p>
+        <p class="third-title">Grid with 12px gutter gutter (default), and no gutter from "desk" breakpoint:</p>
 
         <div class="js-display-code">
             <div class="grid grid--12px grid--0@desk">
@@ -332,8 +332,8 @@
 
         <h3 class="title">Example 3: grid example with fixed width cell</h3>
 
-        <p>2 columns grid. Default layout has 2 rows with one cell 100% wide per row.<br/>
-            At "tablet" breakpoint, the layout becomes "fixed" on one row with first cell 300px wide</p>
+        <p class="third-title">2 columns grid. Default layout has 2 rows with one cell 100% wide per row.<br/>
+            At "tablet" breakpoint, the layout becomes "fixed" on one row with first cell 300px wide:</p>
     
         <div class="js-display-code">
             <div class="grid grid--18px grid--fixed@big-tablet">
@@ -352,7 +352,7 @@
 
         <h3 class="title">Example 4: grid example with fixed width cell</h3>
 
-        <p>2 columns grid, 50% wide. First cell becomes 300px wide at "tablet" breakpoint</p>
+        <p class="third-title">2 columns grid, 50% wide. First cell becomes 300px wide at "tablet" breakpoint:</p>
 
 
         <div class="js-display-code">
@@ -373,7 +373,7 @@
 
         <h3 class="title">Example 5: grid example with fixed width cell and visibility class</h3>
 
-        <p>2 colonnes grid. The right one is 300px wide AND <b>visible</b> from "big-tablet" breakpoint</p>
+        <p class="third-title">2 colonnes grid. The right one is 300px wide AND <b>visible</b> from "big-tablet" breakpoint:</p>
 
         <div class="js-display-code">
 
@@ -424,7 +424,7 @@
 
         <h3 class="title">Example 6: another grid with fixed width</h3>
 
-        <p>3 cells layout. First two cells 50% wide from "tablet" breakpoint, third one 300px wide from "big-tablet" breakpoint</p>
+        <p class="third-title">3 cells layout. First two cells 50% wide from "tablet" breakpoint, third one 300px wide from "big-tablet" breakpoint:</p>
 
         <div class="js-display-code">
 
@@ -450,8 +450,8 @@
 
         <h3 class="title">Example 7: nested grids</h3>
 
-        <p>2 cells grid. First cell contains another grid with its own behaviour.<br/>
-            Second cell is hidden and becomes visible and 300px wide from "big-tablet" breakpoint.</p>
+        <p class="third-title">2 cells grid. First cell contains another grid with its own behaviour.<br/>
+            Second cell is hidden and becomes visible and 300px wide from "big-tablet" breakpoint:</p>
 
         <div class="js-display-code">
             <div class="grid grid--18px grid--fixed@big-tablet">
@@ -486,7 +486,7 @@
 
         <h3 class="title">Example 8: another nester grid</h3>
 
-        <p>2 cells grid. First cell becomes 300px wide from "big-tablet" breakpoint. Second cells gets remaining space, and contains another grid with its own behaviour</p>
+        <p class="third-title">2 cells grid. First cell becomes 300px wide from "big-tablet" breakpoint. Second cells gets remaining space, and contains another grid with its own behaviour:</p>
 
 
         <div class="js-display-code">
@@ -573,6 +573,43 @@
             </div>
         </div>
 
+        <h3 class="title">Example 10: Distinct vertical and horizontal rythme</h3>
+
+        <p class="third-title">Grid with 18px vertical gutter:</p>
+        <div class="js-display-code">
+            <div class="grid grid--18px-vert">
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">A</div></div></div>
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">B</div></div></div>
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">C</div></div></div>
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">D</div></div></div>
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">E</div></div></div>
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">F</div></div></div>
+            </div>
+        </div>
+
+        <p class="third-title">Grid with 18px horizontal gutter:</p>
+        <div class="js-display-code">
+            <div class="grid grid--18px-hori">
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">A</div></div></div>
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">B</div></div></div>
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">C</div></div></div>
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">D</div></div></div>
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">E</div></div></div>
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">F</div></div></div>
+            </div>
+        </div>
+
+        <p class="third-title">Grid with 12px horizontal gutter and 22px vertical gutter:</p>
+        <div class="js-display-code">
+            <div class="grid grid--12px-hori grid--22px-vert">
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">A</div></div></div>
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">B</div></div></div>
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">C</div></div></div>
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">D</div></div></div>
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">E</div></div></div>
+                <div class="1/3"><div class="bloc bloc--150"><div class="bloc__content">F</div></div></div>
+            </div>
+        </div>
 
 
         <h3 class="title">Example 10: visibility classes</h3>
