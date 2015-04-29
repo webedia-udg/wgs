@@ -8,7 +8,8 @@ This library est highly customisable : gutters, widths, spaces, breakpoint names
 It contains :
 
 * grid classes, with ratio and **fixed widths**
-* grid gutter classes, with an option for distinct vertical/horizontal rythms
+* **RTL support**
+* grid gutter classes, with an option for **distinct vertical/horizontal rythms**
 * spacing classes
 * visibility classes
 
