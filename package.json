@@ -1,6 +1,6 @@
 {
   "name": "wgs",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "description": "Whatever Grid System (WGS)",
   "main": "index.js",
   "dependencies": {
