@@ -1,5 +1,5 @@
 /**
- * Whatever Grid System (WGS) v0.7.6
+ * Whatever Grid System (WGS) v0.7.7
  *
  * README :
  *
@@ -7,6 +7,8 @@
  *
  * Warning, this file wont compile with libsass, because of backshash escaping
  * if you want to make it work with libsass, use a simple escape instead of double.
+ * 
+ * TODO : beeing explicit for fluid vs fixed grids
  */
 
 // Global variable use to store breakpoints names
@@ -319,7 +321,20 @@ $_wgsNamespace: false;
         }
     }
 
-    // f/ paddings (grid gutters)
+    // f/ fluid grid
+    .#{$prefix}grid.#{$prefix}grid--fluid#{$sufix} {
+        width: auto;
+        display: block;
+        table-layout: auto;
+
+        & > * {
+            display: inline-block;
+            box-sizing: border-box !important;
+        }
+    }
+
+
+    // g/ paddings (grid gutters)
     @each $gutter in $gutters {
 
         .#{$prefix}grid--#{$gutter}-vert#{$sufix}{

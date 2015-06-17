@@ -1,5 +1,5 @@
 /**
- * Whatever Grid System (WGS) v0.7.6
+ * Whatever Grid System (WGS) v0.7.7
  *
  * README :
  *
@@ -7,6 +7,8 @@
  *
  * Warning, this file wont compile with libsass, because of backshash escaping
  * if you want to make it work with libsass, use a simple escape instead of double.
+ * 
+ * TODO : beeing explicit for fluid vs fixed grids
  */
 .grid, .grid:before, .grid:after, .grid > *, .grid > *:before, .grid > *:after {
   box-sizing: border-box !important; }
@@ -46,6 +48,14 @@
     box-sizing: content-box !important; }
     .grid.grid--fixed > *:first-child {
       padding-left: 0; }
+
+.grid.grid--fluid {
+  width: auto;
+  display: block;
+  table-layout: auto; }
+  .grid.grid--fluid > * {
+    display: inline-block;
+    box-sizing: border-box !important; }
 
 .grid--12px-vert, .grid--12px {
   margin-top: -12px; }
@@ -283,6 +293,13 @@
       box-sizing: content-box !important; }
       .grid.grid--fixed\@tablet > *:first-child {
         padding-left: 0; }
+  .grid.grid--fluid\@tablet {
+    width: auto;
+    display: block;
+    table-layout: auto; }
+    .grid.grid--fluid\@tablet > * {
+      display: inline-block;
+      box-sizing: border-box !important; }
   .grid--12px-vert\@tablet, .grid--12px\@tablet {
     margin-top: -12px; }
     .grid--12px-vert\@tablet > *, .grid--12px\@tablet > * {
@@ -465,6 +482,13 @@
       box-sizing: content-box !important; }
       .grid.grid--fixed\@big-tablet > *:first-child {
         padding-left: 0; }
+  .grid.grid--fluid\@big-tablet {
+    width: auto;
+    display: block;
+    table-layout: auto; }
+    .grid.grid--fluid\@big-tablet > * {
+      display: inline-block;
+      box-sizing: border-box !important; }
   .grid--12px-vert\@big-tablet, .grid--12px\@big-tablet {
     margin-top: -12px; }
     .grid--12px-vert\@big-tablet > *, .grid--12px\@big-tablet > * {
@@ -647,6 +671,13 @@
       box-sizing: content-box !important; }
       .grid.grid--fixed\@desk > *:first-child {
         padding-left: 0; }
+  .grid.grid--fluid\@desk {
+    width: auto;
+    display: block;
+    table-layout: auto; }
+    .grid.grid--fluid\@desk > * {
+      display: inline-block;
+      box-sizing: border-box !important; }
   .grid--12px-vert\@desk, .grid--12px\@desk {
     margin-top: -12px; }
     .grid--12px-vert\@desk > *, .grid--12px\@desk > * {
