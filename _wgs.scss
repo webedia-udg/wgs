@@ -1,5 +1,5 @@
 /**
- * Whatever Grid System (WGS) v0.7.7
+ * Whatever Grid System (WGS) v0.7.8
  *
  * README :
  *
@@ -496,7 +496,7 @@ $_wgsNamespace: false;
 
     // Ninths
     #{wgsRatio(1 , 9, $breakpointName)}      { width: 11.1111111% !important; }
-    #{wgsRatio(2 , 9, $breakpointName)}      { width: 11.1111111% !important; }
+    #{wgsRatio(2 , 9, $breakpointName)}      { width: 22.2222222% !important; }
     #{wgsRatio(4 , 9, $breakpointName)}      { width: 44.4444444% !important; }
     #{wgsRatio(5 , 9, $breakpointName)}      { width: 55.5555555% !important; }
     #{wgsRatio(7 , 9, $breakpointName)}      { width: 77.7777777% !important; }

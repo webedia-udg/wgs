@@ -1,5 +1,5 @@
 /**
- * Whatever Grid System (WGS) v0.7.7
+ * Whatever Grid System (WGS) v0.7.8
  *
  * README :
  *
@@ -156,7 +156,7 @@
   width: 11.1111111% !important; }
 
 .\32 \/9 {
-  width: 11.1111111% !important; }
+  width: 22.2222222% !important; }
 
 .\34 \/9 {
   width: 44.4444444% !important; }
@@ -373,7 +373,7 @@
   .\31 \/9\@tablet {
     width: 11.1111111% !important; }
   .\32 \/9\@tablet {
-    width: 11.1111111% !important; }
+    width: 22.2222222% !important; }
   .\34 \/9\@tablet {
     width: 44.4444444% !important; }
   .\35 \/9\@tablet {
@@ -562,7 +562,7 @@
   .\31 \/9\@big-tablet {
     width: 11.1111111% !important; }
   .\32 \/9\@big-tablet {
-    width: 11.1111111% !important; }
+    width: 22.2222222% !important; }
   .\34 \/9\@big-tablet {
     width: 44.4444444% !important; }
   .\35 \/9\@big-tablet {
@@ -751,7 +751,7 @@
   .\31 \/9\@desk {
     width: 11.1111111% !important; }
   .\32 \/9\@desk {
-    width: 11.1111111% !important; }
+    width: 22.2222222% !important; }
   .\34 \/9\@desk {
     width: 44.4444444% !important; }
   .\35 \/9\@desk {
