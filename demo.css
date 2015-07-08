@@ -1,5 +1,5 @@
 /**
- * Whatever Grid System (WGS) v0.7.8
+ * Whatever Grid System (WGS) v0.8.0
  *
  * README :
  *
@@ -16,7 +16,8 @@
 .grid {
   display: block;
   font-size: 0;
-  direction: ltr; }
+  direction: ltr;
+  text-align: left; }
   .grid > * {
     display: inline-block;
     vertical-align: top;
@@ -26,7 +27,8 @@
     text-align: left; }
 
 .grid--rev {
-  direction: rtl; }
+  direction: rtl;
+  text-align: right; }
 
 .grid--center {
   text-align: center; }
@@ -266,7 +268,8 @@
   .grid\@tablet {
     display: block;
     font-size: 0;
-    direction: ltr; }
+    direction: ltr;
+    text-align: left; }
     .grid\@tablet > * {
       display: inline-block;
       vertical-align: top;
@@ -275,7 +278,8 @@
       direction: ltr;
       text-align: left; }
   .grid--rev\@tablet {
-    direction: rtl; }
+    direction: rtl;
+    text-align: right; }
   .grid--center\@tablet {
     text-align: center; }
   .grid--left\@tablet {
@@ -455,7 +459,8 @@
   .grid\@big-tablet {
     display: block;
     font-size: 0;
-    direction: ltr; }
+    direction: ltr;
+    text-align: left; }
     .grid\@big-tablet > * {
       display: inline-block;
       vertical-align: top;
@@ -464,7 +469,8 @@
       direction: ltr;
       text-align: left; }
   .grid--rev\@big-tablet {
-    direction: rtl; }
+    direction: rtl;
+    text-align: right; }
   .grid--center\@big-tablet {
     text-align: center; }
   .grid--left\@big-tablet {
@@ -644,7 +650,8 @@
   .grid\@desk {
     display: block;
     font-size: 0;
-    direction: ltr; }
+    direction: ltr;
+    text-align: left; }
     .grid\@desk > * {
       display: inline-block;
       vertical-align: top;
@@ -653,7 +660,8 @@
       direction: ltr;
       text-align: left; }
   .grid--rev\@desk {
-    direction: rtl; }
+    direction: rtl;
+    text-align: right; }
   .grid--center\@desk {
     text-align: center; }
   .grid--left\@desk {

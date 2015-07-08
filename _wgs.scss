@@ -1,5 +1,5 @@
 /**
- * Whatever Grid System (WGS) v0.7.8
+ * Whatever Grid System (WGS) v0.8.0
  *
  * README :
  *
@@ -162,18 +162,22 @@ $_wgsNamespace: false;
 
         @if $defaultDirection == ltr{
             direction: ltr;
+            text-align: left;
         }
         @elseif $defaultDirection == rtl{
             direction: rtl;
+            text-align: right;
         }
         @if $ltrParentClass {
             .#{$ltrParentClass} & {
                 direction: ltr;
+                text-align: left;
             }
         }
         @if $rtlParentClass {
             .#{$rtlParentClass} & {
                 direction: rtl;
+                text-align: right;
             }
         }
 
@@ -213,18 +217,22 @@ $_wgsNamespace: false;
     .#{$prefix}grid--rev#{$sufix} {
         @if $defaultDirection == ltr{
             direction: rtl;
+            text-align: right;
         }
         @elseif $defaultDirection == rtl{
             direction: ltr;
+            text-align: left;
         }
         @if $ltrParentClass {
             .#{$ltrParentClass} & {
                 direction: rtl;
+                text-align: right;
             }
         }
         @if $rtlParentClass {
             .#{$rtlParentClass} & {
                 direction: ltr;
+                text-align: left;
             }
         }
     }
