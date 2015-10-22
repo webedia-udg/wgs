@@ -1,5 +1,5 @@
 /**
- * Whatever Grid System (WGS) v0.8.0
+ * Whatever Grid System (WGS) v0.8.1
  *
  * README :
  *
@@ -10,7 +10,7 @@
  * 
  * TODO : beeing explicit for fluid vs fixed grids
  */
-.grid, .grid:before, .grid:after, .grid > *, .grid > *:before, .grid > *:after {
+.grid, .grid:before, .grid:after, .grid > :not(script), .grid > :not(script):before, .grid > :not(script):after {
   box-sizing: border-box !important; }
 
 .grid {
@@ -18,7 +18,7 @@
   font-size: 0;
   direction: ltr;
   text-align: left; }
-  .grid > * {
+  .grid > :not(script) {
     display: inline-block;
     vertical-align: top;
     width: 100%;
@@ -44,65 +44,65 @@
   display: table;
   table-layout: fixed;
   margin-left: 0; }
-  .grid.grid--fixed > * {
+  .grid.grid--fixed > :not(script) {
     display: table-cell;
     vertical-align: top;
     box-sizing: content-box !important; }
-    .grid.grid--fixed > *:first-child {
+    .grid.grid--fixed > :not(script):first-child {
       padding-left: 0; }
 
 .grid.grid--fluid {
   width: auto;
   display: block;
   table-layout: auto; }
-  .grid.grid--fluid > * {
+  .grid.grid--fluid > :not(script) {
     display: inline-block;
     box-sizing: border-box !important; }
 
 .grid--12px-vert, .grid--12px {
   margin-top: -12px; }
-  .grid--12px-vert > *, .grid--12px > * {
+  .grid--12px-vert > :not(script), .grid--12px > :not(script) {
     padding-top: 12px; }
 
 .grid--12px-hori, .grid--12px {
   margin-left: -12px; }
-  .grid--12px-hori > *, .grid--12px > * {
+  .grid--12px-hori > :not(script), .grid--12px > :not(script) {
     padding-left: 12px; }
 
 .grid--16px-vert, .grid--16px {
   margin-top: -16px; }
-  .grid--16px-vert > *, .grid--16px > * {
+  .grid--16px-vert > :not(script), .grid--16px > :not(script) {
     padding-top: 16px; }
 
 .grid--16px-hori, .grid--16px {
   margin-left: -16px; }
-  .grid--16px-hori > *, .grid--16px > * {
+  .grid--16px-hori > :not(script), .grid--16px > :not(script) {
     padding-left: 16px; }
 
 .grid--18px-vert, .grid--18px {
   margin-top: -18px; }
-  .grid--18px-vert > *, .grid--18px > * {
+  .grid--18px-vert > :not(script), .grid--18px > :not(script) {
     padding-top: 18px; }
 
 .grid--18px-hori, .grid--18px {
   margin-left: -18px; }
-  .grid--18px-hori > *, .grid--18px > * {
+  .grid--18px-hori > :not(script), .grid--18px > :not(script) {
     padding-left: 18px; }
 
 .grid--22px-vert, .grid--22px {
   margin-top: -22px; }
-  .grid--22px-vert > *, .grid--22px > * {
+  .grid--22px-vert > :not(script), .grid--22px > :not(script) {
     padding-top: 22px; }
 
 .grid--22px-hori, .grid--22px {
   margin-left: -22px; }
-  .grid--22px-hori > *, .grid--22px > * {
+  .grid--22px-hori > :not(script), .grid--22px > :not(script) {
     padding-left: 22px; }
 
 .grid--0 {
   margin-top: 0;
   margin-left: 0; }
-  .grid--0 > * {
+  .grid--0 > :not(script) {
     padding-top: 0;
     padding-left: 0; }
 
@@ -263,14 +263,14 @@
   padding-left: 0; }
 
 @media screen and (min-width: 480px) {
-  .grid\@tablet, .grid\@tablet:before, .grid\@tablet:after, .grid\@tablet > *, .grid\@tablet > *:before, .grid\@tablet > *:after {
+  .grid\@tablet, .grid\@tablet:before, .grid\@tablet:after, .grid\@tablet > :not(script), .grid\@tablet > :not(script):before, .grid\@tablet > :not(script):after {
     box-sizing: border-box !important; }
   .grid\@tablet {
     display: block;
     font-size: 0;
     direction: ltr;
     text-align: left; }
-    .grid\@tablet > * {
+    .grid\@tablet > :not(script) {
       display: inline-block;
       vertical-align: top;
       width: 100%;
@@ -291,55 +291,55 @@
     display: table;
     table-layout: fixed;
     margin-left: 0; }
-    .grid.grid--fixed\@tablet > * {
+    .grid.grid--fixed\@tablet > :not(script) {
       display: table-cell;
       vertical-align: top;
       box-sizing: content-box !important; }
-      .grid.grid--fixed\@tablet > *:first-child {
+      .grid.grid--fixed\@tablet > :not(script):first-child {
         padding-left: 0; }
   .grid.grid--fluid\@tablet {
     width: auto;
     display: block;
     table-layout: auto; }
-    .grid.grid--fluid\@tablet > * {
+    .grid.grid--fluid\@tablet > :not(script) {
       display: inline-block;
       box-sizing: border-box !important; }
   .grid--12px-vert\@tablet, .grid--12px\@tablet {
     margin-top: -12px; }
-    .grid--12px-vert\@tablet > *, .grid--12px\@tablet > * {
+    .grid--12px-vert\@tablet > :not(script), .grid--12px\@tablet > :not(script) {
       padding-top: 12px; }
   .grid--12px-hori\@tablet, .grid--12px\@tablet {
     margin-left: -12px; }
-    .grid--12px-hori\@tablet > *, .grid--12px\@tablet > * {
+    .grid--12px-hori\@tablet > :not(script), .grid--12px\@tablet > :not(script) {
       padding-left: 12px; }
   .grid--16px-vert\@tablet, .grid--16px\@tablet {
     margin-top: -16px; }
-    .grid--16px-vert\@tablet > *, .grid--16px\@tablet > * {
+    .grid--16px-vert\@tablet > :not(script), .grid--16px\@tablet > :not(script) {
       padding-top: 16px; }
   .grid--16px-hori\@tablet, .grid--16px\@tablet {
     margin-left: -16px; }
-    .grid--16px-hori\@tablet > *, .grid--16px\@tablet > * {
+    .grid--16px-hori\@tablet > :not(script), .grid--16px\@tablet > :not(script) {
       padding-left: 16px; }
   .grid--18px-vert\@tablet, .grid--18px\@tablet {
     margin-top: -18px; }
-    .grid--18px-vert\@tablet > *, .grid--18px\@tablet > * {
+    .grid--18px-vert\@tablet > :not(script), .grid--18px\@tablet > :not(script) {
       padding-top: 18px; }
   .grid--18px-hori\@tablet, .grid--18px\@tablet {
     margin-left: -18px; }
-    .grid--18px-hori\@tablet > *, .grid--18px\@tablet > * {
+    .grid--18px-hori\@tablet > :not(script), .grid--18px\@tablet > :not(script) {
       padding-left: 18px; }
   .grid--22px-vert\@tablet, .grid--22px\@tablet {
     margin-top: -22px; }
-    .grid--22px-vert\@tablet > *, .grid--22px\@tablet > * {
+    .grid--22px-vert\@tablet > :not(script), .grid--22px\@tablet > :not(script) {
       padding-top: 22px; }
   .grid--22px-hori\@tablet, .grid--22px\@tablet {
     margin-left: -22px; }
-    .grid--22px-hori\@tablet > *, .grid--22px\@tablet > * {
+    .grid--22px-hori\@tablet > :not(script), .grid--22px\@tablet > :not(script) {
       padding-left: 22px; }
   .grid--0\@tablet {
     margin-top: 0;
     margin-left: 0; }
-    .grid--0\@tablet > * {
+    .grid--0\@tablet > :not(script) {
       padding-top: 0;
       padding-left: 0; }
   .\31 \/1\@tablet {
@@ -454,14 +454,14 @@
     display: none !important; } }
 
 @media screen and (min-width: 660px) {
-  .grid\@big-tablet, .grid\@big-tablet:before, .grid\@big-tablet:after, .grid\@big-tablet > *, .grid\@big-tablet > *:before, .grid\@big-tablet > *:after {
+  .grid\@big-tablet, .grid\@big-tablet:before, .grid\@big-tablet:after, .grid\@big-tablet > :not(script), .grid\@big-tablet > :not(script):before, .grid\@big-tablet > :not(script):after {
     box-sizing: border-box !important; }
   .grid\@big-tablet {
     display: block;
     font-size: 0;
     direction: ltr;
     text-align: left; }
-    .grid\@big-tablet > * {
+    .grid\@big-tablet > :not(script) {
       display: inline-block;
       vertical-align: top;
       width: 100%;
@@ -482,55 +482,55 @@
     display: table;
     table-layout: fixed;
     margin-left: 0; }
-    .grid.grid--fixed\@big-tablet > * {
+    .grid.grid--fixed\@big-tablet > :not(script) {
       display: table-cell;
       vertical-align: top;
       box-sizing: content-box !important; }
-      .grid.grid--fixed\@big-tablet > *:first-child {
+      .grid.grid--fixed\@big-tablet > :not(script):first-child {
         padding-left: 0; }
   .grid.grid--fluid\@big-tablet {
     width: auto;
     display: block;
     table-layout: auto; }
-    .grid.grid--fluid\@big-tablet > * {
+    .grid.grid--fluid\@big-tablet > :not(script) {
       display: inline-block;
       box-sizing: border-box !important; }
   .grid--12px-vert\@big-tablet, .grid--12px\@big-tablet {
     margin-top: -12px; }
-    .grid--12px-vert\@big-tablet > *, .grid--12px\@big-tablet > * {
+    .grid--12px-vert\@big-tablet > :not(script), .grid--12px\@big-tablet > :not(script) {
       padding-top: 12px; }
   .grid--12px-hori\@big-tablet, .grid--12px\@big-tablet {
     margin-left: -12px; }
-    .grid--12px-hori\@big-tablet > *, .grid--12px\@big-tablet > * {
+    .grid--12px-hori\@big-tablet > :not(script), .grid--12px\@big-tablet > :not(script) {
       padding-left: 12px; }
   .grid--16px-vert\@big-tablet, .grid--16px\@big-tablet {
     margin-top: -16px; }
-    .grid--16px-vert\@big-tablet > *, .grid--16px\@big-tablet > * {
+    .grid--16px-vert\@big-tablet > :not(script), .grid--16px\@big-tablet > :not(script) {
       padding-top: 16px; }
   .grid--16px-hori\@big-tablet, .grid--16px\@big-tablet {
     margin-left: -16px; }
-    .grid--16px-hori\@big-tablet > *, .grid--16px\@big-tablet > * {
+    .grid--16px-hori\@big-tablet > :not(script), .grid--16px\@big-tablet > :not(script) {
       padding-left: 16px; }
   .grid--18px-vert\@big-tablet, .grid--18px\@big-tablet {
     margin-top: -18px; }
-    .grid--18px-vert\@big-tablet > *, .grid--18px\@big-tablet > * {
+    .grid--18px-vert\@big-tablet > :not(script), .grid--18px\@big-tablet > :not(script) {
       padding-top: 18px; }
   .grid--18px-hori\@big-tablet, .grid--18px\@big-tablet {
     margin-left: -18px; }
-    .grid--18px-hori\@big-tablet > *, .grid--18px\@big-tablet > * {
+    .grid--18px-hori\@big-tablet > :not(script), .grid--18px\@big-tablet > :not(script) {
       padding-left: 18px; }
   .grid--22px-vert\@big-tablet, .grid--22px\@big-tablet {
     margin-top: -22px; }
-    .grid--22px-vert\@big-tablet > *, .grid--22px\@big-tablet > * {
+    .grid--22px-vert\@big-tablet > :not(script), .grid--22px\@big-tablet > :not(script) {
       padding-top: 22px; }
   .grid--22px-hori\@big-tablet, .grid--22px\@big-tablet {
     margin-left: -22px; }
-    .grid--22px-hori\@big-tablet > *, .grid--22px\@big-tablet > * {
+    .grid--22px-hori\@big-tablet > :not(script), .grid--22px\@big-tablet > :not(script) {
       padding-left: 22px; }
   .grid--0\@big-tablet {
     margin-top: 0;
     margin-left: 0; }
-    .grid--0\@big-tablet > * {
+    .grid--0\@big-tablet > :not(script) {
       padding-top: 0;
       padding-left: 0; }
   .\31 \/1\@big-tablet {
@@ -645,14 +645,14 @@
     display: none !important; } }
 
 @media screen and (min-width: 990px) {
-  .grid\@desk, .grid\@desk:before, .grid\@desk:after, .grid\@desk > *, .grid\@desk > *:before, .grid\@desk > *:after {
+  .grid\@desk, .grid\@desk:before, .grid\@desk:after, .grid\@desk > :not(script), .grid\@desk > :not(script):before, .grid\@desk > :not(script):after {
     box-sizing: border-box !important; }
   .grid\@desk {
     display: block;
     font-size: 0;
     direction: ltr;
     text-align: left; }
-    .grid\@desk > * {
+    .grid\@desk > :not(script) {
       display: inline-block;
       vertical-align: top;
       width: 100%;
@@ -673,55 +673,55 @@
     display: table;
     table-layout: fixed;
     margin-left: 0; }
-    .grid.grid--fixed\@desk > * {
+    .grid.grid--fixed\@desk > :not(script) {
       display: table-cell;
       vertical-align: top;
       box-sizing: content-box !important; }
-      .grid.grid--fixed\@desk > *:first-child {
+      .grid.grid--fixed\@desk > :not(script):first-child {
         padding-left: 0; }
   .grid.grid--fluid\@desk {
     width: auto;
     display: block;
     table-layout: auto; }
-    .grid.grid--fluid\@desk > * {
+    .grid.grid--fluid\@desk > :not(script) {
       display: inline-block;
       box-sizing: border-box !important; }
   .grid--12px-vert\@desk, .grid--12px\@desk {
     margin-top: -12px; }
-    .grid--12px-vert\@desk > *, .grid--12px\@desk > * {
+    .grid--12px-vert\@desk > :not(script), .grid--12px\@desk > :not(script) {
       padding-top: 12px; }
   .grid--12px-hori\@desk, .grid--12px\@desk {
     margin-left: -12px; }
-    .grid--12px-hori\@desk > *, .grid--12px\@desk > * {
+    .grid--12px-hori\@desk > :not(script), .grid--12px\@desk > :not(script) {
       padding-left: 12px; }
   .grid--16px-vert\@desk, .grid--16px\@desk {
     margin-top: -16px; }
-    .grid--16px-vert\@desk > *, .grid--16px\@desk > * {
+    .grid--16px-vert\@desk > :not(script), .grid--16px\@desk > :not(script) {
       padding-top: 16px; }
   .grid--16px-hori\@desk, .grid--16px\@desk {
     margin-left: -16px; }
-    .grid--16px-hori\@desk > *, .grid--16px\@desk > * {
+    .grid--16px-hori\@desk > :not(script), .grid--16px\@desk > :not(script) {
       padding-left: 16px; }
   .grid--18px-vert\@desk, .grid--18px\@desk {
     margin-top: -18px; }
-    .grid--18px-vert\@desk > *, .grid--18px\@desk > * {
+    .grid--18px-vert\@desk > :not(script), .grid--18px\@desk > :not(script) {
       padding-top: 18px; }
   .grid--18px-hori\@desk, .grid--18px\@desk {
     margin-left: -18px; }
-    .grid--18px-hori\@desk > *, .grid--18px\@desk > * {
+    .grid--18px-hori\@desk > :not(script), .grid--18px\@desk > :not(script) {
       padding-left: 18px; }
   .grid--22px-vert\@desk, .grid--22px\@desk {
     margin-top: -22px; }
-    .grid--22px-vert\@desk > *, .grid--22px\@desk > * {
+    .grid--22px-vert\@desk > :not(script), .grid--22px\@desk > :not(script) {
       padding-top: 22px; }
   .grid--22px-hori\@desk, .grid--22px\@desk {
     margin-left: -22px; }
-    .grid--22px-hori\@desk > *, .grid--22px\@desk > * {
+    .grid--22px-hori\@desk > :not(script), .grid--22px\@desk > :not(script) {
       padding-left: 22px; }
   .grid--0\@desk {
     margin-top: 0;
     margin-left: 0; }
-    .grid--0\@desk > * {
+    .grid--0\@desk > :not(script) {
       padding-top: 0;
       padding-left: 0; }
   .\31 \/1\@desk {

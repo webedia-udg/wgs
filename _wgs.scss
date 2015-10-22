@@ -1,5 +1,5 @@
 /**
- * Whatever Grid System (WGS) v0.8.0
+ * Whatever Grid System (WGS) v0.8.1
  *
  * README :
  *
@@ -147,7 +147,7 @@ $_wgsNamespace: false;
 
     // 1/ Box sizing for this breakpoint on grid
     .#{$prefix}grid#{$sufix},
-    .#{$prefix}grid#{$sufix} > * {
+    .#{$prefix}grid#{$sufix} > :not(script) {
         &,
         &:before,
         &:after{
@@ -181,7 +181,7 @@ $_wgsNamespace: false;
             }
         }
 
-        & > * {
+        & > :not(script) {
             display: inline-block;
             vertical-align: top;
             width: 100%;
@@ -304,7 +304,7 @@ $_wgsNamespace: false;
 
 
 
-        > * {
+        > :not(script) {
             display: table-cell;
             vertical-align: top;
             box-sizing: content-box !important;
@@ -335,7 +335,7 @@ $_wgsNamespace: false;
         display: block;
         table-layout: auto;
 
-        & > * {
+        & > :not(script) {
             display: inline-block;
             box-sizing: border-box !important;
         }
@@ -347,7 +347,7 @@ $_wgsNamespace: false;
 
         .#{$prefix}grid--#{$gutter}-vert#{$sufix}{
             margin-top: -$gutter;
-            & > * {
+            & > :not(script) {
                 padding-top: $gutter;
             }
         }
@@ -369,7 +369,7 @@ $_wgsNamespace: false;
                 }
             }
 
-            & > * {
+            & > :not(script) {
                 @if $defaultDirection == ltr{
                     padding-left: $gutter;
                 }
@@ -417,7 +417,7 @@ $_wgsNamespace: false;
                 }
             }
 
-            & > * {
+            & > :not(script) {
                 padding-top: 0;
 
                 @if $defaultDirection == ltr{
