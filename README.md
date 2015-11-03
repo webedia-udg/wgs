@@ -162,6 +162,11 @@ Including ``_wgs.scss`` in your sass project gives you access to **two sass mixi
 ) { /*...*/ }
 ```
 
+## Roadmap
+
+* use [atomic css](http://acss.io/) for spacing classes
+* update documentation
+
 ## Tribute
 
 This project was heavily inspired by [Harry Roberts grid system](https://github.com/csswizardry/csswizardry-grids) for the grid part, and [sass-mq](https://github.com/sass-mq/sass-mq) for the modulable mq() mixin.
